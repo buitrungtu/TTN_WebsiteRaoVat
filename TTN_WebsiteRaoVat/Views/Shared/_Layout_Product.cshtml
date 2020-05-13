@@ -1,0 +1,468 @@
+﻿@using WebsiteRaoVat.Common;
+@using WebsiteRaoVat.Models;
+@{
+    VatPhamAccess vpa = new VatPhamAccess();
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Chợ Tốt</title>
+    <link rel="stylesheet" href="/Content/css/bootstrap.min.css"><!-- bootstrap-CSS -->
+    <link rel="stylesheet" href="/Content/css/bootstrap-select.css"><!-- bootstrap-select-CSS -->
+    <link href="/Content/css/style.css" rel="stylesheet" type="text/css" media="all" /><!-- style.css -->
+    <link rel="stylesheet" type="text/css" href="/Content/css/jquery-ui1.css">
+    <link rel="stylesheet" href="/Content/css/font-awesome.min.css" /><!-- fontawesome-CSS -->
+    <link rel="stylesheet" href="/Content/css/menu_sideslide.css" type="text/css" media="all"><!-- Navigation-CSS -->
+    <!-- meta tags -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!-- //meta tags -->
+    <!--fonts-->
+    <link href='//fonts.googleapis.com/css?family=Ubuntu+Condensed' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+    <!--//fonts-->
+    <!-- js -->
+    <script type="text/javascript" src="/Content/js/jquery.min.js"></script>
+    <!-- js -->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="/Content/js/bootstrap.js"></script>
+    <script src="/Content/js/bootstrap-select.js"></script>
+    <script>
+        $(document).ready(function () {
+            var mySelect = $('#first-disabled2');
+
+            $('#special').on('click', function () {
+                mySelect.find('option:selected').prop('disabled', true);
+                mySelect.selectpicker('refresh');
+            });
+
+            $('#special2').on('click', function () {
+                mySelect.find('option:disabled').prop('disabled', false);
+                mySelect.selectpicker('refresh');
+            });
+
+            $('#basic2').selectpicker({
+                liveSearch: true,
+                maxOptions: 1
+            });
+        });
+    </script>
+
+    <!-- switcher-grid and list alignment -->
+    <script src="/Content/js/tabs.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var elem = $('#container ul');
+            $('#viewcontrols a').on('click', function (e) {
+                if ($(this).hasClass('gridview')) {
+                    elem.fadeOut(1000, function () {
+                        $('#container ul').removeClass('list').addClass('grid');
+                        $('#viewcontrols').removeClass('view-controls-list').addClass('view-controls-grid');
+                        $('#viewcontrols .gridview').addClass('active');
+                        $('#viewcontrols .listview').removeClass('active');
+                        elem.fadeIn(1000);
+                    });
+                }
+                else if ($(this).hasClass('listview')) {
+                    elem.fadeOut(1000, function () {
+                        $('#container ul').removeClass('grid').addClass('list');
+                        $('#viewcontrols').removeClass('view-controls-grid').addClass('view-controls-list');
+                        $('#viewcontrols .gridview').removeClass('active');
+                        $('#viewcontrols .listview').addClass('active');
+                        elem.fadeIn(1000);
+                    });
+                }
+            });
+        });
+    </script>
+    <!-- //switcher-grid and list alignment -->
+</head>
+<body>
+    <!-- Navigation -->
+    <div class="agiletopbar">
+        <div class="wthreenavigation">
+            <div class="menu-wrap">
+                <nav class="menu">
+                    <div class="icon-list">
+                        <a href="DienThoai.html"><i class="fa fa-fw fa-mobile"></i><span>Điện thoại</span></a>
+                        <a href="DienTuVaDoGiaDung.html"><i class="fa fa-fw fa-laptop"></i><span>Điện tử & Đồ gia dụng</span></a>
+                        <a href="Oto.html"><i class="fa fa-fw fa-car"></i><span>Ô tô</span></a>
+                        <a href="XeMayXeDap.html"><i class="fa fa-fw fa-motorcycle"></i><span>Xe máy & Xe đạp</span></a>
+                        <a href="NoiThat.html"><i class="fa fa-fw fa-wheelchair"></i><span>Nội thất</span></a>
+                        <a href="ThuCung.html"><i class="fa fa-fw fa-paw"></i><span>Thú Cưng</span></a>
+                        <a href="SachVaSoThich.html"><i class="fa fa-fw fa-book"></i><span>Sách & Sở thích</span></a>
+                        <a href="ThoiTrang.html"><i class="fa fa-fw fa-asterisk"></i><span>Thời trang</span></a>
+                        <a href="TreEm.html"><i class="fa fa-fw fa-child"></i><span>Trẻ em</span></a>
+                        <a href="DichVu.html"><i class="fa fa-fw fa-wrench"></i><span>Dịch vụ</span></a>
+                        <a href="BatDongSan.html"><i class="fa fa-fw fa-home"></i><span>Bất động sản</span></a>
+                        <a href="ViecLam.html"><i class="fa fa-fw fa-smile-o"></i><span>Việc làm</span></a>
+                    </div>
+                </nav>
+                <button class="close-button" id="close-button">Tắt menu</button>
+            </div>
+            <button class="menu-button" id="open-button"> </button>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <!-- //Navigation -->
+    <!-- header -->
+    <header>
+        <div class="w3ls-header">
+            <!--header-one-->
+            <div class="w3ls-header-right">
+                <ul>
+                    @{
+                        var session = (UserLogin)Session[WebsiteRaoVat.Common.CommonConstants.USER_SESSION];
+                    }
+                    @if (session == null)
+                    {
+                        <li class="dropdown head-dpdn">
+                            <a href="/DangNhap" aria-expanded="false"><i class="fa fa-user" aria-hidden="true"></i> Đăng Nhập </a>
+                        </li>
+                        <li class="dropdown head-dpdn">
+                            <a href="/DangKy" aria-expanded="false"><i class="fa fa-user-plus" aria-hidden="true"></i> Đăng ký </a>
+                        </li>
+
+                    }
+                    else
+                    {
+                        <li class="dropdown head-dpdn">
+                            <a href="/TrangCaNhan/@session.SDT" aria-expanded="false"><i class="fa fa-user" aria-hidden="true"></i> Xin chào: @session.SDT </a>
+                        </li>
+                        <li class="dropdown head-dpdn">
+                            <a class="DS Chuong" aria-expanded="false"><span class="SLTB">3</span><i class="fa fa-bell" aria-hidden="true"></i> Thông báo </a>
+                            <div class="ThongBao">
+                                <ul class="list-group">
+                                    <a href="#"><li class="list-group-item DSTB"><img src="/Content/images/user.jpg"> Nội dung thông báo</li></a>
+                                    <a href="#"><li class="list-group-item DSTB"><img src="/Content/images/user.jpg"> Nội dung thông báo</li></a>
+                                    <a href="#"><li class="list-group-item DSTB"><img src="/Content/images/user.jpg"> Nội dung thông báo</li></a>
+                                    <a href="#"><li class="list-group-item DSTB"> <h4> Tất cả thông báo </h4></li></a>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="dropdown head-dpdn">
+                            <a class="DS MuiTenXuong"><i class="fa fa-caret-down" aria-hidden="true"></i></a>
+                            <div class="danhsach MuiTen">
+                                <ul class="list-group">
+                                    <a href="#"><li class="list-group-item"><i class="fa fa-bookmark"></i> Tin đang lưu</li></a>
+                                    <a href="#"><li class="list-group-item"><i class="fa fa-heart "></i> Danh sách thích</li></a>
+                                    <a href="/DangXuat"><li class="list-group-item"><i class="fa fa-sign-out "></i> Đăng xuất</li></a>
+                                </ul>
+                            </div>
+                        </li>
+                    }
+
+                    <li class="dropdown head-dpdn">
+                        <a href="/TroGiup"><i class="fa fa-question-circle" aria-hidden="true"></i> Trợ giúp</a>
+                    </li>
+                    <li class="dropdown head-dpdn">
+                        <div class="header-right">
+                            <!-- Large modal -->
+                            <div class="agile-its-selectregion">
+                                <button class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                                    <i class="fa fa-globe" aria-hidden="true"></i>Thành phố
+                                </button>
+                                <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+                                     aria-hidden="true">
+                                    <div class="modal-dialog modal-lg">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                                    &times;
+                                                </button>
+                                                <h4 class="modal-title" id="myModalLabel">
+                                                    Chọn thành phố của bạn
+                                                </h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form class="form-horizontal" action="#" method="get">
+                                                    <div class="form-group">
+                                                        <select id="basic2" class="show-tick form-control" multiple>
+                                                            <optgroup label="Các tỉnh/thành lớn">
+                                                                @{
+                                                                    List<TinhThanh> dsTinhThanh = vpa.LayTinhThanh();
+                                                                    foreach (TinhThanh item in dsTinhThanh)
+                                                                    {
+                                                                        <option value="@item.MaTinhThanh">@item.TenTinhThanh</option>
+                                                                    }
+                                                                }
+                                                            </optgroup>
+                                                        </select>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="clearfix"> </div>
+        </div>
+        <div class="container">
+            <div class="agile-its-header">
+                <div class="logo">
+                    <h1><a href="/Home"><span>Chợ</span>Tốt</a></h1>
+                </div>
+                <div class="agileits_search">
+                    <form action="#" method="post">
+                        <input name="Search" type="text" placeholder="Tìm kiếm của bạn?" required="" />
+                        <select id="agileinfo_search" name="DanhMucTimKiem" required="">
+                            <option value="0">Tất cả danh mục</option>
+                            @{
+                                List<DanhMuc> temp = vpa.LayDanhMuc();
+                                foreach (DanhMuc item in temp)
+                                {
+                                    <option value="@item.MaDanhMuc">@item.TenDanhMuc</option>
+                                }
+                            }
+                        </select>
+                        <button type="submit" class="btn btn-default" aria-label="Left Align">
+                            <i class="fa fa-search" aria-hidden="true"> </i>
+                        </button>
+                    </form>
+                    @if (session == null)
+                    {
+                        <a class="post-w3layouts-ad" href="/DangNhap">Đăng tin miễn phí</a>
+                    }
+                    else
+                    {
+                        <a class="post-w3layouts-ad" href="/DangTinBan/@session.SDT">Đăng tin miễn phí</a>
+                    }
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </header>
+    <!-- //header -->
+    <!-- breadcrumbs -->
+    <div class="w3layouts-breadcrumbs text-center">
+        <div class="container">
+            <span class="agile-breadcrumbs">
+                <a href="/Home"><i class="fa fa-home home_1"></i></a> /
+                @RenderSection("TruyVet", required: false)
+            </span>
+        </div>
+    </div>
+    <!-- //breadcrumbs -->
+    <!-- Products -->
+    <div class="total-ads main-grid-border">
+        <div class="container">
+            <div class="select-box">
+                <div class="select-city-for-local-ads ads-list">
+                    <label>Chọn Tỉnh/Thành Phố</label>
+                    <select>
+                        <optgroup>
+                            <option selected style="display:none;color:#eee;">Chọn tỉnh/thành phố</option>
+                            <option>Hà Nội</option>
+                            <option>Hồ Chí Minh</option>
+                            <option>Đà Nẵng</option>
+                            <option>Thanh Hóa</option>
+                            <option>Hải Phòng</option>
+                            <option>Cần Thơ</option>
+                        </optgroup>
+                    </select>
+                </div>
+                <div class="browse-category ads-list">
+                    <label>Chọn danh mục</label>
+                    <select class="selectpicker show-tick" data-live-search="true">
+                        @RenderSection("DanhMuc", required: false)
+                    </select>
+                </div>
+                <div class="search-product ads-list">
+                    <label>Tìm kiếm sản phẩm cụ thể</label>
+                    <div class="search">
+                        <div id="custom-search-input">
+                            <div class="input-group">
+                                <input type="text" class="form-control input-lg" />
+                                <span class="input-group-btn">
+                                    <button class="btn btn-info btn-lg" type="button">
+                                        <i class="glyphicon glyphicon-search"></i>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="all-categories">
+                <h3> Chọn danh mục và tìm kiếm lựa chọn hoàn hảo</h3>
+                <ul class="all-cat-list">
+                    <li><a href="DienThoai.html">Điện thoại <span class="num-of-ads">(500)</span></a></li>
+                    <li><a href="DienTuVaDoGiaDung.html">Điện tử & Đồ gia dụng  <span class="num-of-ads">(495)</span></a></li>
+                    <li><a href="BatDongSan.html">Bất động sản  <span class="num-of-ads">(469)</span></a></li>
+                    <li><a href="ThoiTrang.html">Thời trang   <span class="num-of-ads">(456)</span></a></li>
+                    <li><a href="ThuCung.html">Thú cưng   <span class="num-of-ads">(450)</span></a></li>
+                    <li><a href="NoiThat.html">Nội thất    <span class="num-of-ads">(430)</span></a></li>
+                    <li><a href="SachVaSoThich.html">Sách & Sở thích    <span class="num-of-ads">(400)</span></a></li>
+
+                    <li><a href="TreEm.html">Trẻ em   <span class="num-of-ads">(388)</span></a></li>
+                    <li><a href="DichVu.html">Dịch Vụ   <span class="num-of-ads">(325)</span></a></li>
+                    <li><a href="Oto.html">Ô tô   <span class="num-of-ads">(233)</span></a></li>
+                </ul>
+            </div>
+            <div class="ads-grid">
+                <div class="side-bar col-md-3">
+                    <div class="search-hotel">
+                        <h3 class="agileits-sear-head">Tên chứa</h3>
+                        <form>
+                            <input type="text" value="Product name..." onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Nhập tên...';}" required="">
+                            <input type="submit" value=" ">
+                        </form>
+                    </div>
+                    @RenderSection("TamGia", required: false)
+                    @RenderSection("BoLoc", required: false)
+                    <div class="w3ls-featured-ads">
+                        <h2 class="sear-head fer">Mặt hàng nổi bật</h2>
+                        <div class="w3l-featured-ad">
+                            <a href="ThongTinCuThe.html">
+                                <div class="w3-featured-ad-left">
+                                    <img src="/Content/images/f1.jpg" title="ad image" alt="" />
+                                </div>
+                                <div class="w3-featured-ad-right">
+                                    <h4>Tên sản phẩm</h4>
+                                    <p>Giá</p>
+                                </div>
+                                <div class="clearfix"></div>
+                            </a>
+                        </div>
+                        <div class="w3l-featured-ad">
+                            <a href="ThongTinCuThe.html">
+                                <div class="w3-featured-ad-left">
+                                    <img src="/Content/images/f2.jpg" title="ad image" alt="" />
+                                </div>
+                                <div class="w3-featured-ad-right">
+                                    <h4>Tên sản phẩm</h4>
+                                    <p>Giá</p>
+                                </div>
+                                <div class="clearfix"></div>
+                            </a>
+                        </div>
+                        <div class="w3l-featured-ad">
+                            <a href="ThongTinCuThe.html">
+                                <div class="w3-featured-ad-left">
+                                    <img src="/Content/images/f3.jpg" title="ad image" alt="" />
+                                </div>
+                                <div class="w3-featured-ad-right">
+                                    <h4>Tên sản phẩm</h4>
+                                    <p>Giá</p>
+                                </div>
+                                <div class="clearfix"></div>
+                            </a>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+
+                @RenderBody()
+
+                <footer>
+                    <div class="w3-agileits-footer-top">
+                        <div class="container">
+                            <div class="wthree-foo-grids">
+                                <div class="col-md-3 wthree-footer-grid">
+                                    <h4 class="footer-head">Chúng tôi là ai?</h4>
+                                    <p>
+                                        “Nếu các người thành tâm muôn biết,thì chúng tôi sẵn lòng trả lời.
+                                        Để đề phòng thế giới bị phá hoại, để bảo vệ nền hòa bình thế giới.
+                                        Chúng tôi đại diện cho những nhân vật phản diện, đầy khả ái và ngây ngất lòng người.”
+                                        <br />Bùi Trung Tú - HaChiKo
+                                    </p>
+                                </div>
+                                <div class="col-md-3 wthree-footer-grid">
+                                    <h4 class="footer-head">Trợ giúp</h4>
+                                    <ul>
+                                        <li><a href="/CachHoatDong"><i class="fa fa-long-arrow-right" aria-hidden="true"></i>Cách hoạt động</a></li>
+                                        <li><a href="/PhanHoi"><i class="fa fa-long-arrow-right" aria-hidden="true"></i>Phản hồi</a></li>
+                                        <li><a href="/LienHe"><i class="fa fa-long-arrow-right" aria-hidden="true"></i>Liên hệ</a></li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-3 wthree-footer-grid">
+                                    <h4 class="footer-head">Thông tin</h4>
+                                    <ul>
+                                        <li><a href="/DieuKhoanSuDung"><i class="fa fa-long-arrow-right" aria-hidden="true"></i>Điều khoản sử dụng</a></li>
+                                        <li><a href="/ChinhSachBaoMat"><i class="fa fa-long-arrow-right" aria-hidden="true"></i>Chính sách bảo mật</a></li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-3 wthree-footer-grid">
+                                    <h4 class="footer-head">Liên hệ trực tiếp</h4>
+                                    <span class="hq">8:00 Sáng - 17:30 Chiều</span>
+                                    <address>
+                                        <ul class="location">
+                                            <li><span class="glyphicon glyphicon-map-marker"></span></li>
+                                            <li>234 - Hoàng Quốc Việt</li>
+                                        </ul>
+                                        <div class="clearfix"> </div>
+                                        <ul class="location">
+                                            <li><span class="glyphicon glyphicon-earphone"></span></li>
+                                            <li>+84 113</li>
+                                        </ul>
+                                        <div class="clearfix"> </div>
+                                        <ul class="location">
+                                            <li><span class="glyphicon glyphicon-envelope"></span></li>
+                                            <li><a href="#">hachiko07021999@gmail.com</a></li>
+                                        </ul>
+                                    </address>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="agileits-footer-bottom text-center">
+                        <div class="container">
+                            <div class="w3-footer-logo">
+                                <h1><a href="index.html"><span>Chợ</span>Tốt</a></h1>
+                            </div>
+                            <div class="w3-footer-social-icons">
+                                <ul>
+                                    <li><a class="facebook" href="#"><i class="fa fa-facebook" aria-hidden="true"></i><span>Facebook</span></a></li>
+                                    <li><a class="twitter" href="#"><i class="fa fa-twitter" aria-hidden="true"></i><span>Twitter</span></a></li>
+                                    <li><a class="googleplus" href="#"><i class="fa fa-google-plus" aria-hidden="true"></i><span>Google+</span></a></li>
+                                </ul>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </footer>
+</body>
+<!-- Navigation-JavaScript -->
+<script src="/Content/js/classie.js"></script>
+<script src="/Content/js/main.js"></script>
+<!-- //Navigation-JavaScript -->
+<!-- here stars scrolling icon -->
+<script type="text/javascript">
+    $(document).ready(function () {
+        /*
+            var defaults = {
+            containerID: 'toTop', // fading element id
+            containerHoverID: 'toTopHover', // fading element hover id
+            scrollSpeed: 1200,
+            easingType: 'linear'
+            };
+            */
+
+        $().UItoTop({ easingType: 'easeOutQuart' });
+
+    });
+</script>
+<!-- start-smoth-scrolling -->
+<script type="text/javascript" src="/Content/js/move-top.js"></script>
+<script type="text/javascript" src="/Content/js/easing.js"></script>
+<script type="text/javascript">
+    jQuery(document).ready(function ($) {
+        $(".scroll").click(function (event) {
+            event.preventDefault();
+            $('html,body').animate({ scrollTop: $(this.hash).offset().top }, 1000);
+        });
+    });
+</script>
+<!-- start-smoth-scrolling -->
+<!-- //here ends scrolling icon -->
+<script type="text/javascript" src="/Content/js/btt.js"></script>
+</html>

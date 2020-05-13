@@ -1,31 +1,447 @@
-﻿@{
-    ViewBag.Title = "Home Page";
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+<!-- Slider -->
+<div class="slider">
+    <ul class="rslides" id="slider">
+        <li>
+            <div class="w3ls-slide-text">
+                <h3>Bán gì cũng mua, mua gì cũng bán</h3>
+                <a href="/TatCaDanhMuc" class="w3layouts-explore-all">Tất cả các danh mục</a>
+            </div>
+        </li>
+        <li>
+            <div class="w3ls-slide-text">
+                <h3>Các đơn hàng tốt nhất</h3>
+                <a href="/TatCaDanhMuc" class="w3layouts-explore">Khám phá</a>
+            </div>
+        </li>
+        <li>
+            <div class="w3ls-slide-text">
+                <h3>Ngôi nhà trong mơ</h3>
+                <a href="/TatCaDanhMuc" class="w3layouts-explore">Khám phá</a>
+            </div>
+        </li>
+        <li>
+            <div class="w3ls-slide-text">
+                <h3>Những chiếc xe đình đám nhất mọi thời đại</h3>
+                <a href="/TatCaDanhMuc" class="w3layouts-explore">Khám phá</a>
+            </div>
+        </li>
+        <li>
+            <div class="w3ls-slide-text">
+                <h3>Tìm một công việc ưng ý</h3>
+                <a href="/TatCaDanhMuc" class="w3layouts-explore">Tìm việc</a>
+            </div>
+        </li>
+    </ul>
 </div>
+<!-- //Slider -->
+<!-- content-starts-here -->
+<div class="main-content">
+    <div class="w3-categories">
+        <h3>Danh Mục</h3>
+        <div class="container">
+            <div class="col-md-3">
+                <div class="focus-grid w3layouts-boder12">
+                    <a class="btn-8" href="/TatCaDanhMuc">
+                        <div class="focus-border">
+                            <div class="focus-layout">
+                                <div class="focus-image"><i class="fa fa-home"></i></div>
+                                <h4 class="clrchg">Bất động sản</h4>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="focus-grid w3layouts-boder3">
+                    <a class="btn-8" href="/TatCaDanhMuc">
+                        <div class="focus-border">
+                            <div class="focus-layout">
+                                <div class="focus-image"><i class="fa fa-car"></i></div>
+                                <h4 class="clrchg">Xe cộ</h4>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="focus-grid w3layouts-boder2">
+                    <a class="btn-8" href="/TatCaDanhMuc">
+                        <div class="focus-border">
+                            <div class="focus-layout">
+                                <div class="focus-image"><i class="fa fa-laptop"></i></div>
+                                <h4 class="clrchg"> Điện tử & Đồ gia dụng</h4>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+            <div class="col-md-3">
+                <div class="focus-grid w3layouts-boder4">
+                    <a class="btn-8" href="/TatCaDanhMuc">
+                        <div class="focus-border">
+                            <div class="focus-layout">
+                                <div class="focus-image"><i class="fa fa-spoon"></i></div>
+                                <h4 class="clrchg">Đồ ăn</h4>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="focus-grid w3layouts-boder5">
+                    <a class="btn-8" href="/TatCaDanhMuc">
+                        <div class="focus-border">
+                            <div class="focus-layout">
+                                <div class="focus-image"><i class="fa fa-wheelchair"></i></div>
+                                <h4 class="clrchg">Nội thất</h4>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="focus-grid w3layouts-boder6">
+                    <a class="btn-8" href="/TatCaDanhMuc">
+                        <div class="focus-border">
+                            <div class="focus-layout">
+                                <div class="focus-image"><i class="fa fa-paw"></i></div>
+                                <h4 class="clrchg">Thú cưng</h4>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="focus-grid w3layouts-boder7">
+                    <a class="btn-8" href="/TatCaDanhMuc">
+                        <div class="focus-border">
+                            <div class="focus-layout">
+                                <div class="focus-image"><i class="fa fa-book"></i></div>
+                                <h4 class="clrchg">Sách & Sở thích</h4>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="focus-grid w3layouts-boder8">
+                    <a class="btn-8" href="/TatCaDanhMuc">
+                        <div class="focus-border">
+                            <div class="focus-layout">
+
+                                <div class="focus-image"><i class="fa fa-black-tie"></i></div>
+                                <h4 class="clrchg">Thời trang</h4>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="focus-grid w3layouts-boder9">
+                    <a class="btn-8" href="/TatCaDanhMuc">
+                        <div class="focus-border">
+                            <div class="focus-layout">
+                                <div class="focus-image"><i class="fa fa-child"></i></div>
+                                <h4 class="clrchg">Trẻ em</h4>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="focus-grid w3layouts-boder10">
+                    <a class="btn-8" href="/TatCaDanhMuc">
+                        <div class="focus-border">
+                            <div class="focus-layout">
+                                <div class="focus-image"><i class="fa fa-wrench"></i></div>
+                                <h4 class="clrchg">Dịch vụ</h4>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="focus-grid w3layouts-boder11">
+                    <a class="btn-8" href="/TatCaDanhMuc">
+                        <div class="focus-border">
+                            <div class="focus-layout">
+                                <div class="focus-image"><i class="fa fa-smile-o"></i></div>
+                                <h4 class="clrchg">Việc làm</h4>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="focus-grid w3layouts-boder12">
+                    <a class="btn-8" href="/TatCaDanhMuc">
+                        <div class="focus-border">
+                            <div class="focus-layout">
+                                <div class="focus-image"><i class="fa fa-pagelines"></i></div>
+                                <h4 class="clrchg">Nông nghiệp</h4>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+    <!-- most-popular-ads -->
+
+    <div class="w3l-popular-ads">
+        <h3>Chủ đề phổ biến</h3>
+        <div class="w3l-popular-ads-info">
+            <div class="col-md-4 w3ls-portfolio-left">
+                <div class="portfolio-img event-img">
+                    <img src="/Content/images/ad1.jpg" class="img-responsive" alt="" />
+                    <div class="over-image"></div>
+                </div>
+                <div class="portfolio-description">
+                    <h4><a href="/TatCaDanhMuc">Xe lướt</a></h4>
+                    <p>Xe sang đã qua sử dụng</p>
+                    <a href="/TatCaDanhMuc">
+                        <span>Khám phá</span>
+                    </a>
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+            <div class="col-md-4 w3ls-portfolio-left">
+                <div class="portfolio-img event-img">
+                    <img src="/Content/images/ad2.jpg" class="img-responsive" alt="" />
+                    <div class="over-image"></div>
+                </div>
+                <div class="portfolio-description">
+                    <h4><a href="/TatCaDanhMuc">Căn hộ hạ giá</a></h4>
+                    <p>Viết cái gì giới thiệu ở đây</p>
+                    <a href="/TatCaDanhMuc">
+                        <span>Khám phá</span>
+                    </a>
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+            <div class="col-md-4 w3ls-portfolio-left">
+                <div class="portfolio-img event-img">
+                    <img src="/Content/images/ad3.jpg" class="img-responsive" alt="" />
+                    <div class="over-image"></div>
+                </div>
+                <div class="portfolio-description">
+                    <h4><a href="/TatCaDanhMuc">Việc làm parttime</a></h4>
+                    <p>Viết cái gì giới thiệu ở đây</p>
+                    <a href="/TatCaDanhMuc">
+                        <span>Khám phá</span>
+                    </a>
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+            <div class="col-md-4 w3ls-portfolio-left">
+                <div class="portfolio-img event-img">
+                    <img src="/Content/images/ad4.jpg" class="img-responsive" alt="" />
+                    <div class="over-image"></div>
+                </div>
+                <div class="portfolio-description">
+                    <h4><a href="/TatCaDanhMuc">Linh kiện điện tử</a></h4>
+                    <p>Viết cái gì giới thiệu ở đây</p>
+                    <a href="/TatCaDanhMuc">
+                        <span>Khám phá</span>
+                    </a>
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+            <div class="col-md-4 w3ls-portfolio-left">
+                <div class="portfolio-img event-img">
+                    <img src="/Content/images/ad5.jpg" class="img-responsive" alt="" />
+                    <div class="over-image"></div>
+                </div>
+                <div class="portfolio-description">
+                    <h4><a href="/TatCaDanhMuc">Thiết bị gia dụng</a></h4>
+                    <p>Viết cái gì giới thiệu ở đây</p>
+                    <a href="/TatCaDanhMuc">
+                        <span>Khám phá</span>
+                    </a>
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+            <div class="col-md-4 w3ls-portfolio-left">
+                <div class="portfolio-img event-img">
+                    <img src="/Content/images/ad6.jpg" class="img-responsive" alt="" />
+                    <div class="over-image"></div>
+                </div>
+                <div class="portfolio-description">
+                    <h4><a href="/TatCaDanhMuc">Quần áo</a></h4>
+                    <p>Viết cái gì giới thiệu ở đây</p>
+                    <a href="/TatCaDanhMuc">
+                        <span>Khám phá</span>
+                    </a>
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
     </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+    <!-- most-popular-ads -->
+    <div class="trending-ads">
+        <div class="container">
+            <!-- slider -->
+            <div class="agile-trend-ads">
+                <h2>Mặt hàng mới nhất</h2>
+                <ul id="flexiselDemo3">
+                    <li>
+                        <div class="col-md-3 biseller-column">
+                            <a href="ThongTinCuThe.html">
+                                <img src="/Content/images/p1.jpg" alt="" />
+                                <span class="price">Giá tiền</span>
+                            </a>
+                            <div class="w3-ad-info">
+                                <h5>Tên sản phẩm</h5>
+                                <span>1 giờ trước</span>
+                            </div>
+                        </div>
+                        <div class="col-md-3 biseller-column">
+                            <a href="ThongTinCuThe.html">
+                                <img src="/Content/images/p2.jpg" alt="" />
+                                <span class="price">Giá tiền</span>
+                            </a>
+                            <div class="w3-ad-info">
+                                <h5>Tên sản phẩm</h5>
+                                <span>2 giờ trước</span>
+                            </div>
+                        </div>
+                        <div class="col-md-3 biseller-column">
+                            <a href="ThongTinCuThe.html">
+                                <img src="/Content/images/p3.jpg" alt="" />
+                                <span class="price">Giá tiền</span>
+                            </a>
+                            <div class="w3-ad-info">
+                                <h5>Tên sản phẩm</h5>
+                                <span>3 giờ trước</span>
+                            </div>
+                        </div>
+                        <div class="col-md-3 biseller-column">
+                            <a href="ThongTinCuThe.html">
+                                <img src="/Content/images/p4.jpg" alt="" />
+                                <span class="price">Giá tiền</span>
+                            </a>
+                            <div class="w3-ad-info">
+                                <h5>Tên sản phẩm</h5>
+                                <span>4 giờ trước</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="col-md-3 biseller-column">
+                            <a href="ThongTinCuThe.html">
+                                <img src="/Content/images/p5.jpg" alt="" />
+                                <span class="price">Giá tiền</span>
+                            </a>
+                            <div class="w3-ad-info">
+                                <h5>Tên sản phẩm</h5>
+                                <span>5 giờ trước</span>
+                            </div>
+                        </div>
+                        <div class="col-md-3 biseller-column">
+                            <a href="ThongTinCuThe.html">
+                                <img src="/Content/images/p6.jpg" alt="" />
+                                <span class="price">Giá tiền</span>
+                            </a>
+                            <div class="w3-ad-info">
+                                <h5>Tên sản phẩm</h5>
+                                <span>6 giờ trước</span>
+                            </div>
+                        </div>
+                        <div class="col-md-3 biseller-column">
+                            <a href="ThongTinCuThe.html">
+                                <img src="/Content/images/p7.jpg" alt="" />
+                                <span class="price">Giá tiền</span>
+                            </a>
+                            <div class="w3-ad-info">
+                                <h5>Tên sản phẩm</h5>
+                                <span>7 giờ trước</span>
+                            </div>
+                        </div>
+                        <div class="col-md-3 biseller-column">
+                            <a href="ThongTinCuThe.html">
+                                <img src="/Content/images/p8.jpg" alt="" />
+                                <span class="price">Giá tiền</span>
+                            </a>
+                            <div class="w3-ad-info">
+                                <h5>Tên sản phẩm</h5>
+                                <span>8 giờ trước</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="col-md-3 biseller-column">
+                            <a href="ThongTinCuThe.html">
+                                <img src="/Content/images/p9.jpg" alt="" />
+                                <span class="price">Giá tiền</span>
+                            </a>
+                            <div class="w3-ad-info">
+                                <h5>Tên sản phẩm</h5>
+                                <span>9 giờ trước</span>
+                            </div>
+                        </div>
+                        <div class="col-md-3 biseller-column">
+                            <a href="ThongTinCuThe.html">
+                                <img src="/Content/images/p10.jpg" alt="" />
+                                <span class="price">Giá tiền</span>
+                            </a>
+                            <div class="w3-ad-info">
+                                <h5>Tên sản phẩm</h5>
+                                <span>10 giờ trước</span>
+                            </div>
+                        </div>
+                        <div class="col-md-3 biseller-column">
+                            <a href="ThongTinCuThe.html">
+                                <img src="/Content/images/p11.jpg" alt="" />
+                                <span class="price">Giá tiền</span>
+                            </a>
+                            <div class="w3-ad-info">
+                                <h5>Tên sản phẩm</h5>
+                                <span>11 giờ trước</span>
+                            </div>
+                        </div>
+                        <div class="col-md-3 biseller-column">
+                            <a href="ThongTinCuThe.html">
+                                <img src="/Content/images/p12.jpg" alt="" />
+                                <span class="price">Giá tiền</span>
+                            </a>
+                            <div class="w3-ad-info">
+                                <h5>Tên sản phẩm</h5>
+                                <span>12 giờ trước</span>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- //slider -->
     </div>
+    <!--partners-->
+    <div class="w3layouts-partners">
+        <h3>Đối tác liên kết</h3>
+        <div class="container">
+            <ul>
+                <li><a href="#"><img class="img-responsive" src="/Content/images/p-1.png" alt=""></a></li>
+                <li><a href="#"><img class="img-responsive" src="/Content/images/p-2.png" alt=""></a></li>
+                <li><a href="#"><img class="img-responsive" src="/Content/images/p-3.png" alt=""></a></li>
+                <li><a href="#"><img class="img-responsive" src="/Content/images/p-4.png" alt=""></a></li>
+                <li><a href="#"><img class="img-responsive" src="/Content/images/p-5.png" alt=""></a></li>
+                <li><a href="#"><img class="img-responsive" src="/Content/images/p-6.png" alt=""></a></li>
+                <li><a href="#"><img class="img-responsive" src="/Content/images/p-7.png" alt=""></a></li>
+                <li><a href="#"><img class="img-responsive" src="/Content/images/p-8.png" alt=""></a></li>
+                <li><a href="#"><img class="img-responsive" src="/Content/images/p-9.png" alt=""></a></li>
+                <li><a href="#"><img class="img-responsive" src="/Content/images/p-10.png" alt=""></a></li>
+            </ul>
+        </div>
+    </div>
+    <!--//partners-->
 </div>
+<!--end-->

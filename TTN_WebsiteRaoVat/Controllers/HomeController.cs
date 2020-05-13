@@ -12,19 +12,32 @@ namespace TTN_WebsiteRaoVat.Controllers
         {
             return View();
         }
-
-        public ActionResult About()
+        public ActionResult TroGiup()
         {
-            ViewBag.Message = "Your application description page.";
-
             return View();
         }
-
-        public ActionResult Contact()
+        public ActionResult CachHoatDong()
         {
-            ViewBag.Message = "Your contact page.";
-
             return View();
         }
-    }
+        public ActionResult PhanHoi()
+        {
+            return View();
+        }
+        public ActionResult LienHe()
+        {
+            return View();
+        }
+        public ActionResult DieuKhoanSuDung()
+        {
+            return View();
+        }
+        public ActionResult ChinhSachBaoMat()
+        {
+            return View();
+        }
+        //------------------------------------------------------------
+
+        
+    }   
 }

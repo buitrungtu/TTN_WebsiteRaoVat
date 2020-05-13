@@ -1,0 +1,136 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout_Product.cshtml";
+}
+
+@model List<WebsiteRaoVat.Models.VatPham>
+@section TruyVet{
+    <a href="/TatCaDanhMuc">Tất cả danh mục</a>
+}
+@section DanhMuc{
+    <option data-tokens="All">Tất cả</option>
+    <option data-tokens="Real Estate">Bất động sản</option>
+    <option data-tokens="Electronics & Appliances">Điện tử & Đồ gia dụng</option>
+    <option data-tokens="Mobiles">Điện thoại</option>
+    <option data-tokens="Cars">Ô tô</option>
+    <option data-tokens="Bikes">Xe máy & Xe đạp</option>
+    <option data-tokens="Furniture">Nội Thất</option>
+    <option data-tokens="Pets">Thú cưng</option>
+    <option data-tokens="Books, Sports & Hobbies">Sách & Sở thích</option>
+    <option data-tokens="Fashion">Thời trang</option>
+    <option data-tokens="Kids">Trẻ em</option>
+    <option data-tokens="Services">Dịch Vụ</option>
+    <option data-tokens="Jobs">Việc Làm</option>
+}
+@section TamGia{
+
+}
+<!-- Products -->
+<div class="agileinfo-ads-display col-md-9">
+    <div class="wrapper">
+        <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
+            <ul id="myTab" class="nav nav-tabs nav-tabs-responsive" role="tablist">
+                <li role="presentation" class="active">
+                    <a href="#home" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">
+                        <span class="text">Tất cả</span>
+                    </a>
+                </li>
+                <li role="presentation" class="next">
+                    <a href="#profile" role="tab" id="profile-tab" data-toggle="tab" aria-controls="profile">
+                        <span class="text">Cá nhân</span>
+                    </a>
+                </li>
+                <li role="presentation">
+                    <a href="#samsa" role="tab" id="samsa-tab" data-toggle="tab" aria-controls="samsa">
+                        <span class="text">Bán chuyên</span>
+                    </a>
+                </li>
+            </ul>
+            <div id="myTabContent" class="tab-content">
+                <div role="tabpanel" class="tab-pane fade in active" id="home" aria-labelledby="home-tab">
+                    <div>
+                        <div id="container">
+                            <div class="view-controls-list" id="viewcontrols">
+                                <label>Chế độ xem:</label>
+                                <a class="gridview"><i class="glyphicon glyphicon-th"></i></a>
+                                <a class="listview active"><i class="glyphicon glyphicon-th-list"></i></a>
+                            </div>
+                            <div class="sort">
+                                <div class="sort-by">
+                                    <label>Sắp xếp theo : </label>
+                                    <select>
+                                        <option value="">Mới nhất</option>
+                                        <option value="">Giá: Thấp tới cao</option>
+                                        <option value="">Giá: Cao xuống thấp</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                            @{Html.RenderAction("DanhSachVatPham", "VatPham");}
+                        </div>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="profile" aria-labelledby="profile-tab">
+                    <div>
+                        <div id="container">
+                            <div class="view-controls-list" id="viewcontrols">
+                                <label>Chế độ xem :</label>
+                                <a class="gridview"><i class="glyphicon glyphicon-th"></i></a>
+                                <a class="listview active"><i class="glyphicon glyphicon-th-list"></i></a>
+                            </div>
+                            <div class="sort">
+                                <div class="sort-by">
+                                    <label>Sắp xếp theo : </label>
+                                    <select>
+                                        <option value="">Mới nhất</option>
+                                        <option value="">Giá: Thấp tới cao</option>
+                                        <option value="">Giá: Cao xuống thấp</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                            @{Html.RenderAction("DanhSachVatPham", "VatPham");}
+
+                        </div>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="samsa" aria-labelledby="samsa-tab">
+                    <div>
+                        <div id="container">
+                            <div class="view-controls-list" id="viewcontrols">
+                                <label>Chế độ xem :</label>
+                                <a class="gridview"><i class="glyphicon glyphicon-th"></i></a>
+                                <a class="listview active"><i class="glyphicon glyphicon-th-list"></i></a>
+                            </div>
+                            <div class="sort">
+                                <div class="sort-by">
+                                    <label>Sắp xếp theo : </label>
+                                    <select>
+                                        <option value="">Mới nhất</option>
+                                        <option value="">Giá: Thấp tới cao</option>
+                                        <option value="">Giá: Cao xuống thấp</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                            @{Html.RenderAction("DanhSachVatPham", "VatPham");}
+                        </div>
+                    </div>
+                </div>
+                <ul class="pagination pagination-sm">
+                    <li><a href="#">Prev</a></li>
+                    <li><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">Next</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="clearfix"></div>
+        </div>
+    </div>
+</div>

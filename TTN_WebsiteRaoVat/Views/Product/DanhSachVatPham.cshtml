@@ -1,0 +1,25 @@
+﻿@model List<TTN_WebsiteRaoVat.Models.VatPham>
+
+<ul class="list">
+    @foreach (var item in Model)
+    {
+        <a href="/ChiTietVatPham/@item.MaVP">
+            <li>
+
+                <img src="/Content/uploads/@item.LinkHinhAnh[0]" title="" alt="" />
+                <section class="list-left">
+                    <h5 class="title">@item.TenVP</h5>
+                    <span class="adprice">@String.Format("{0:0,0 vnđ}", item.GiaTien)</span>
+                    <p class="catpath">@item.TheLoai</p>
+                </section>
+                <section class="list-right">
+                    <span class="date">@item.NgayDang</span>
+                    <span class="cityname">@item.ThanhPho</span>
+                </section>
+                <div class="clearfix"></div>
+            </li>
+        </a>
+    }
+</ul>
+
+
