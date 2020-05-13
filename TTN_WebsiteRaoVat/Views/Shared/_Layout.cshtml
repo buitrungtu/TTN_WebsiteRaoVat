@@ -1,5 +1,5 @@
-﻿@using WebsiteRaoVat.Common;
-@using WebsiteRaoVat.Models;
+﻿@using TTN_WebsiteRaoVat.Common;
+@using TTN_WebsiteRaoVat.Models;
 @{
     VatPhamAccess vpa = new VatPhamAccess();
 }
@@ -62,7 +62,7 @@
             <div class="w3ls-header-right">
                 <ul>
                     @{
-                        var session = (UserLogin)Session[WebsiteRaoVat.Common.CommonConstants.USER_SESSION];
+                        var session = (UserLogin)Session[TTN_WebsiteRaoVat.Common.CommonConstants.USER_SESSION];
                     }
                     @if (session == null)
                     {

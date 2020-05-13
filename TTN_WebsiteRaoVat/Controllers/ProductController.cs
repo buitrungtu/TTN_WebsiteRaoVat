@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using TTN_WebsiteRaoVat.Models;
 
 namespace TTN_WebsiteRaoVat.Controllers
 {
@@ -34,12 +36,30 @@ namespace TTN_WebsiteRaoVat.Controllers
             (string SDT, string TheLoai, string TieuDe, string MoTa, string TinhTrang, string GiaTien,
                 string HoTen, string ThanhPho, string QuanHuyen, string Email, ImageFile objImage)
         {
-
-            return View();
-        }
-        public class ImageFile
-        {
-            public List<HttpPostedFileBase> files { get; set; }
-        }
+            string strLink = "";
+            VatPhamAccess vpa = new VatPhamAccess();
+            foreach (var file in objImage.files)
+            {
+                if (file != null && file.ContentLength > 0)
+                {
+                    string fileName = Path.Combine(Server.MapPath("/Content/uploads"), Guid.NewGuid() + Path.GetExtension(file.FileName));
+                    strLink += fileName + ',';
+                    file.SaveAs(fileName);
+                }
+            }
+            string[] temp = strLink.Split(',');
+            int MaTinhThanh = Int32.Parse(ThanhPho);
+            long giaTien = long.Parse(GiaTien);
+            int theloai = Int32.Parse(TheLoai);
+            if (vpa.ThemVatPham(SDT, HoTen, MaTinhThanh, QuanHuyen, TieuDe, MoTa, TinhTrang, giaTien, theloai, temp[0], strLink))
+            {
+                return View("Index");
+            }
+            return View("DangTinBan");
+        }    
+    }
+    public class ImageFile
+    {
+        public List<HttpPostedFileBase> files { get; set; }
     }
 }
