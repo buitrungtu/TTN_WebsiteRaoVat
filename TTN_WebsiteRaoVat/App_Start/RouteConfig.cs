@@ -56,7 +56,11 @@ namespace TTN_WebsiteRaoVat
                 url: "DangTinBan/{SDT}",
                 defaults: new { controller = "Product", action = "DangTinBan", id = UrlParameter.Optional }
             );
-
+            routes.MapRoute(
+                 name: "Like san pham",
+                 url: "ThichVatPham",
+                 defaults: new { controller = "Product", action = "ThichVatPham"}
+             );
             // Hết điều hướng sản phẩm
 
             // Điều hướng của trang Home

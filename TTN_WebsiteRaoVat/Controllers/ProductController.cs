@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 using TTN_WebsiteRaoVat.Models;
 
 namespace TTN_WebsiteRaoVat.Controllers
@@ -27,6 +28,21 @@ namespace TTN_WebsiteRaoVat.Controllers
             VatPham vp = vpa.ThongTinChiTietVatPham(MaVP);
             return View(vp);
         }
+        [HttpPost]
+        public JsonResult ThichVatPham(ThichVatPham temp)
+        {
+            if (temp.SDT == "1234567810" && temp.MaVP == "4")
+            {
+                return Json(new
+                {
+                    status = true
+                });
+            }
+            return Json(new {           
+                status = false
+            });
+        }
+        
         public ActionResult DangTinBan(string SDT)
         {
             return View();

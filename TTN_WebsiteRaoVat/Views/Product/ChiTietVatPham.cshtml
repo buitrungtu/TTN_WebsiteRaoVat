@@ -4,6 +4,9 @@
 @{
     ViewBag.Title = "ChiTietVatPham";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var session = (UserLogin)Session[TTN_WebsiteRaoVat.Common.CommonConstants.USER_SESSION];
+    string sdt;
 }
 
 <!-- breadcrumbs -->
@@ -75,9 +78,19 @@
                         </ul>
                     </div>
 
+                    @if(session == null)
+                    {
+                        sdt = "";
+                    }
+                    else
+                    {
+                        sdt = session.SDT;
+                    }
                     <a href="#" class="btn-Thich ChiaSe">Chia sẻ  <i class="fa fa-facebook-square"></i></a>
-                    <a href="/ThichSanPham/@Model.MaVP" class="btn-Thich">Thích  <i class="fa fa-heart"></i></a>
-                    <h4><span class="w3layouts-agileinfo">Quan tâm</span>: <strong>150</strong></h4>
+                    
+                    <div class="btn-Thich" data-id="@Model.MaVP.ToString()" data-sdt="@sdt">Thích  <i class="fa fa-heart"></i></div>
+                    
+                    <h4><span class="w3layouts-agileinfo">Lượt thích</span>: <strong>150</strong></h4>
                     <h4>
                         <span class="w3layouts-agileinfo">Mô tả:</span><p>
                             @Model.MoTa
@@ -143,3 +156,4 @@
     </div>
 </div>
 <!--//single-page-->
+<script src="/Scripts/ChiTietVatPham.js"></script>

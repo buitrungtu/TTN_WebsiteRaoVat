@@ -168,7 +168,8 @@ namespace TTN_WebsiteRaoVat.Models
             }
             return false;
         }
-        public bool ThichVatPham(string sdt, int MaVP)
+        
+        public int ThichVatPham(ThichVatPham temp)
         {
             OpenConnection();
             SqlCommand command = new SqlCommand();
@@ -176,15 +177,13 @@ namespace TTN_WebsiteRaoVat.Models
             command.CommandText = "ThichSanPham";
             command.Connection = conn;
 
-            command.Parameters.Add("@sdt", SqlDbType.NChar).Value = sdt;
-            command.Parameters.Add("@mavp", SqlDbType.Int).Value = MaVP;
+            command.Parameters.Add("@sdt", SqlDbType.NChar).Value = temp.SDT;
+            command.Parameters.Add("@mavp", SqlDbType.Int).Value = Int32.Parse(temp.MaVP);
+
             int ret = command.ExecuteNonQuery();
 
-            if (ret > 0)
-            {
-                return true;
-            }
-            return false;
+            return ret;
+           
         }
         string ChuyenThoiGian(int gio)
         {
