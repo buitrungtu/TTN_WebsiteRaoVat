@@ -28,19 +28,30 @@ namespace TTN_WebsiteRaoVat.Controllers
             VatPham vp = vpa.ThongTinChiTietVatPham(MaVP);
             return View(vp);
         }
-        [HttpPost]
+       
         public JsonResult ThichVatPham(ThichVatPham temp)
         {
-            if (temp.SDT == "1234567810" && temp.MaVP == "4")
+            if (vpa.DaThich(temp.SDT,Int32.Parse(temp.MaVP)) == false  && vpa.ThichVatPham(temp)==true)
             {
                 return Json(new
                 {
                     status = true
                 });
             }
-            return Json(new {           
-                status = false
-            });
+            else if(vpa.BoThich(temp))
+            {
+                return Json(new
+                {
+                    status = true
+                });
+            }
+            else
+            {
+                return Json(new
+                {
+                    status = false
+                });
+            }            
         }
         
         public ActionResult DangTinBan(string SDT)

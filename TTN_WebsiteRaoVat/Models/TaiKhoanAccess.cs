@@ -84,5 +84,27 @@ namespace TTN_WebsiteRaoVat.Models
             }
             return false;
         }
+        public List<ThongBao> GetThongBao(string sdt)
+        {
+            List<ThongBao> kq = new List<ThongBao>();
+            OpenConnection();
+            SqlCommand command = new SqlCommand();
+            command.CommandType = CommandType.Text;
+            command.CommandText = "select * from ThongBao where SDT = @sdt";
+            command.Connection = conn;
+            command.Parameters.Add("@sdt", SqlDbType.NChar).Value = sdt;
+            SqlDataReader reader = command.ExecuteReader();
+            while(reader.Read())
+            {
+                ThongBao tb = new ThongBao();
+                tb.HinhAnh = reader.GetString(1);
+                tb.NoiDung = reader.GetString(2);
+                tb.DaDoc = reader.GetInt32(4);
+                tb.Link = reader.GetString(5);
+                kq.Add(tb);
+            }
+            reader.Close();
+            return kq;
+        }
     }
 }

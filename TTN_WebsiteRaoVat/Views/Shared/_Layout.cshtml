@@ -2,6 +2,7 @@
 @using TTN_WebsiteRaoVat.Models;
 @{
     VatPhamAccess vpa = new VatPhamAccess();
+    TaiKhoanAccess tka = new TaiKhoanAccess();
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -72,20 +73,23 @@
                         <li class="dropdown head-dpdn">
                             <a href="/DangKy" aria-expanded="false"><i class="fa fa-user-plus" aria-hidden="true"></i> Đăng ký </a>
                         </li>
-
                     }
                     else
                     {
+
                         <li class="dropdown head-dpdn">
                             <a href="/TrangCaNhan/@session.SDT" aria-expanded="false"><i class="fa fa-user" aria-hidden="true"></i> Xin chào: @session.SDT </a>
                         </li>
+                        List<ThongBao> ltb = tka.GetThongBao(session.SDT);
                         <li class="dropdown head-dpdn">
-                            <a class="DS Chuong" aria-expanded="false"><span class="SLTB">3</span><i class="fa fa-bell" aria-hidden="true"></i> Thông báo </a>
+                            <a class="DS Chuong" aria-expanded="false"><span class="SLTB">@ltb.Count</span><i class="fa fa-bell" aria-hidden="true"></i> Thông báo </a>
                             <div class="ThongBao">
                                 <ul class="list-group">
-                                    <a href="#"><li class="list-group-item DSTB"><img src="/Content/images/user.jpg"> Nội dung thông báo</li></a>
-                                    <a href="#"><li class="list-group-item DSTB"><img src="/Content/images/user.jpg"> Nội dung thông báo</li></a>
-                                    <a href="#"><li class="list-group-item DSTB"><img src="/Content/images/user.jpg"> Nội dung thông báo</li></a>
+
+                                    @foreach (ThongBao i in ltb)
+                                    {
+                                        <a href="@i.Link"><li class="list-group-item DSTB"><img src="/Content/uploads/@i.HinhAnh"> @i.NoiDung</li></a>
+                                    }
                                     <a href="#"><li class="list-group-item DSTB"> <h4> Tất cả thông báo </h4></li></a>
                                 </ul>
                             </div>

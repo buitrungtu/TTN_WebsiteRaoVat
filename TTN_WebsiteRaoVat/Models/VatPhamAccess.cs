@@ -169,21 +169,61 @@ namespace TTN_WebsiteRaoVat.Models
             return false;
         }
         
-        public int ThichVatPham(ThichVatPham temp)
+        
+        public bool ThichVatPham(ThichVatPham temp)
         {
             OpenConnection();
             SqlCommand command = new SqlCommand();
-            command.CommandType = CommandType.StoredProcedure;
-            command.CommandText = "ThichSanPham";
-            command.Connection = conn;
-
+            command.CommandType = CommandType.Text;
+            command.CommandText = "insert into YeuThich(SDT,MaVP) values (@sdt,@mavp)";            
             command.Parameters.Add("@sdt", SqlDbType.NChar).Value = temp.SDT;
             command.Parameters.Add("@mavp", SqlDbType.Int).Value = Int32.Parse(temp.MaVP);
-
+            command.Connection = conn;
             int ret = command.ExecuteNonQuery();
 
-            return ret;
-           
+            SqlCommand comm = new SqlCommand();
+            comm.CommandType = CommandType.StoredProcedure;
+            comm.CommandText = "ThongBaoTaiKhoan";
+            comm.Connection = conn;
+            comm.Parameters.Add("@sdt", SqlDbType.NChar).Value = temp.SDT;
+            comm.Parameters.Add("@mavp", SqlDbType.Int).Value = Int32.Parse(temp.MaVP);
+            comm.Parameters.Add("@noidungtb", SqlDbType.NVarChar).Value = "Có người thích sản phẩm của bạn";
+            int ret2 = comm.ExecuteNonQuery();
+            if (ret > 0 && ret2 > 0) return true;
+
+            return false;
+
+        }
+        public bool DaThich(String SDT,int MaVP)
+        {
+            OpenConnection();
+            SqlCommand command = new SqlCommand();
+            command.CommandType = CommandType.Text;
+            command.CommandText = "select * from YeuThich where MaVP = @mavp and SDT= @sdt";
+            command.Parameters.Add("@sdt", SqlDbType.NChar).Value = SDT;
+            command.Parameters.Add("@mavp", SqlDbType.Int).Value = MaVP;
+            command.Connection = conn;
+            SqlDataReader reader = command.ExecuteReader();
+            if (reader.Read())
+            {
+                reader.Close();
+                return true;
+            }
+            reader.Close();
+            return false;
+        }
+        public bool BoThich(ThichVatPham temp)
+        {
+            OpenConnection();
+            SqlCommand command = new SqlCommand();
+            command.CommandType = CommandType.Text;
+            command.CommandText = "delete from YeuThich where MaVP = @mavp and SDT= @sdt";
+            command.Parameters.Add("@sdt", SqlDbType.NChar).Value = temp.SDT;
+            command.Parameters.Add("@mavp", SqlDbType.Int).Value = Int32.Parse(temp.MaVP);
+            command.Connection = conn;
+            int ret = command.ExecuteNonQuery();
+            if (ret > 0) return true;
+            return false;
         }
         string ChuyenThoiGian(int gio)
         {

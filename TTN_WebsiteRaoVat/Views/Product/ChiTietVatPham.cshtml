@@ -4,9 +4,9 @@
 @{
     ViewBag.Title = "ChiTietVatPham";
     Layout = "~/Views/Shared/_Layout.cshtml";
-
     var session = (UserLogin)Session[TTN_WebsiteRaoVat.Common.CommonConstants.USER_SESSION];
     string sdt;
+    VatPhamAccess vpa = new VatPhamAccess();
 }
 
 <!-- breadcrumbs -->
@@ -78,7 +78,7 @@
                         </ul>
                     </div>
 
-                    @if(session == null)
+                    @if (session == null)
                     {
                         sdt = "";
                     }
@@ -87,9 +87,15 @@
                         sdt = session.SDT;
                     }
                     <a href="#" class="btn-Thich ChiaSe">Chia sẻ  <i class="fa fa-facebook-square"></i></a>
-                    
-                    <div class="btn-Thich" data-id="@Model.MaVP.ToString()" data-sdt="@sdt">Thích  <i class="fa fa-heart"></i></div>
-                    
+                    @if (vpa.DaThich(sdt, Model.MaVP))
+                    {
+                        <div class="btn-Thich Thich DaThich" data-id="@Model.MaVP.ToString()" data-sdt="@sdt">Thích  <i class="fa fa-heart"></i></div>
+                    }
+                    else
+                    {
+                        <div class="btn-Thich Thich" data-id="@Model.MaVP.ToString()" data-sdt="@sdt">Thích  <i class="fa fa-heart"></i></div>
+                    }
+
                     <h4><span class="w3layouts-agileinfo">Lượt thích</span>: <strong>150</strong></h4>
                     <h4>
                         <span class="w3layouts-agileinfo">Mô tả:</span><p>
@@ -156,4 +162,4 @@
     </div>
 </div>
 <!--//single-page-->
-<script src="/Scripts/ChiTietVatPham.js"></script>
+<script src="/Scripts/Ajax.js"></script>

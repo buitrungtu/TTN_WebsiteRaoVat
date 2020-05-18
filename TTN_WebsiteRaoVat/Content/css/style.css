@@ -8328,7 +8328,7 @@ a.btnSuaXoa {
             background: #f44f00;
         }
 
-    .btn-Thich:hover {
+    .btn-Thich:hover, .DaThich {
         background: #c90927;
         color: white;
     }

@@ -53,3 +53,4 @@ D:\Học Web\TTN_WebsiteRaoVat\TTN_WebsiteRaoVat\bin\Microsoft.CodeDom.Providers
 D:\Học Web\TTN_WebsiteRaoVat\TTN_WebsiteRaoVat\obj\Debug\TTN_WebsiteRaoVat.csproj.CopyComplete
 D:\Học Web\TTN_WebsiteRaoVat\TTN_WebsiteRaoVat\obj\Debug\TTN_WebsiteRaoVat.dll
 D:\Học Web\TTN_WebsiteRaoVat\TTN_WebsiteRaoVat\obj\Debug\TTN_WebsiteRaoVat.pdb
+D:\Học Web\TTN_WebsiteRaoVat\TTN_WebsiteRaoVat\obj\Debug\TTN_WebsiteRaoVat.csprojAssemblyReference.cache
