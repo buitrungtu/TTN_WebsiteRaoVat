@@ -41,7 +41,7 @@ namespace TTN_WebsiteRaoVat.Models
                 tk.SDT = reader.GetString(0);
                 tk.MatKhau = reader.GetString(1);
                 tk.LoaiTaiKhoan = reader.GetInt32(2);
-                if (!reader.IsDBNull(9))
+                if (!reader.IsDBNull(3))
                 {
                     tk.NgayTao = reader.GetDateTime(3).ToString("dd/MM/yyyy");
                 }
@@ -51,9 +51,31 @@ namespace TTN_WebsiteRaoVat.Models
                 }
                 tk.HoTen = reader.GetString(4);
                 tk.Email = reader.GetString(5);
-                tk.QueQuan = reader.GetString(6);
-                tk.GioiTinh = reader.GetString(7);
-                tk.AnhDaiDien = reader.GetString(8);
+                if (!reader.IsDBNull(6))
+                {
+                    tk.QueQuan = reader.GetString(6);
+                }
+                else
+                {
+                    tk.QueQuan = "Chưa có";
+                }
+                if (!reader.IsDBNull(7))
+                {
+                    tk.GioiTinh = reader.GetString(7);
+                }
+                else
+                {
+                    tk.GioiTinh = "Chưa có";
+                }
+                if (!reader.IsDBNull(8))
+                {
+                    tk.AnhDaiDien = reader.GetString(8);
+                }
+                else
+                {
+                    tk.AnhDaiDien = "user.jpg";
+                }
+                
                 if (!reader.IsDBNull(9))
                 {
                     tk.NgaySinh = reader.GetDateTime(8).ToString("dd/MM/yyyy");

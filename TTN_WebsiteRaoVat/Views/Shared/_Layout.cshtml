@@ -3,6 +3,7 @@
 @{
     VatPhamAccess vpa = new VatPhamAccess();
     TaiKhoanAccess tka = new TaiKhoanAccess();
+    List<DanhMuc> LDM = vpa.LayDanhMuc();
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -27,6 +28,7 @@
     <!-- js -->
     <script type="text/javascript" src="/Content/js/jquery.min.js"></script>
     <!-- js -->
+    @RenderSection("HeadJS",required:false)
 </head>
 <body>
     <!-- Navigation -->
@@ -35,18 +37,10 @@
             <div class="menu-wrap">
                 <nav class="menu">
                     <div class="icon-list">
-                        <a href="DienThoai.html"><i class="fa fa-fw fa-mobile"></i><span>Điện thoại</span></a>
-                        <a href="DienTuVaDoGiaDung.html"><i class="fa fa-fw fa-laptop"></i><span>Điện tử & Đồ gia dụng</span></a>
-                        <a href="Oto.html"><i class="fa fa-fw fa-car"></i><span>Ô tô</span></a>
-                        <a href="XeMayXeDap.html"><i class="fa fa-fw fa-motorcycle"></i><span>Xe máy & Xe đạp</span></a>
-                        <a href="NoiThat.html"><i class="fa fa-fw fa-wheelchair"></i><span>Nội thất</span></a>
-                        <a href="ThuCung.html"><i class="fa fa-fw fa-paw"></i><span>Thú Cưng</span></a>
-                        <a href="SachVaSoThich.html"><i class="fa fa-fw fa-book"></i><span>Sách & Sở thích</span></a>
-                        <a href="ThoiTrang.html"><i class="fa fa-fw fa-asterisk"></i><span>Thời trang</span></a>
-                        <a href="TreEm.html"><i class="fa fa-fw fa-child"></i><span>Trẻ em</span></a>
-                        <a href="DichVu.html"><i class="fa fa-fw fa-wrench"></i><span>Dịch vụ</span></a>
-                        <a href="/BatDongSan"><i class="fa fa-fw fa-home"></i><span>Bất động sản</span></a>
-                        <a href="ViecLam.html"><i class="fa fa-fw fa-smile-o"></i><span>Việc làm</span></a>
+                        @foreach(DanhMuc i in LDM)
+                        {
+                            <a href="/TatCaDanhMuc"><i class="@i.Icon"></i><span>@i.TenDanhMuc</span></a>
+                        }                                          
                     </div>
                 </nav>
                 <button class="close-button" id="close-button">Tắt menu</button>

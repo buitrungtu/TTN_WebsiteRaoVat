@@ -13,32 +13,34 @@ namespace TTN_WebsiteRaoVat.Controllers
     {
         VatPhamAccess vpa = new VatPhamAccess();
 
-        public ActionResult Index()
+        public ActionResult Index(int MaDM)
         {
-            return View();
+            List<VatPham> dsvp = vpa.LayVatPham(MaDM);
+            return View(dsvp);
         }
-        [ChildActionOnly]
-        public ActionResult DanhSachVatPham()
+        
+        public ActionResult ShowVatPham(int MaDM)
         {
-            List<VatPham> dsvp = vpa.LayToanBoVatPham();
+            List<VatPham> dsvp = vpa.LayVatPham(MaDM);
             return PartialView(dsvp);
         }
+        
         public ActionResult ChiTietVatPham(int MaVP)
         {
             VatPham vp = vpa.ThongTinChiTietVatPham(MaVP);
             return View(vp);
         }
-       
+
         public JsonResult ThichVatPham(ThichVatPham temp)
         {
-            if (vpa.DaThich(temp.SDT,Int32.Parse(temp.MaVP)) == false  && vpa.ThichVatPham(temp)==true)
+            if (vpa.DaThich(temp.SDT, Int32.Parse(temp.MaVP)) == false && vpa.ThichVatPham(temp) == true)
             {
                 return Json(new
                 {
                     status = true
                 });
             }
-            else if(vpa.BoThich(temp))
+            else if (vpa.BoThich(temp))
             {
                 return Json(new
                 {
@@ -51,9 +53,9 @@ namespace TTN_WebsiteRaoVat.Controllers
                 {
                     status = false
                 });
-            }            
+            }
         }
-        
+
         public ActionResult DangTinBan(string SDT)
         {
             return View();

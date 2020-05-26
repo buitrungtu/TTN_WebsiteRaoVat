@@ -120,6 +120,8 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\AdminController.cs" />
     <Compile Include="Common\CommonConstants.cs" />
     <Compile Include="Common\UserLogin.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -140,6 +142,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\css\bootstrap-responsive.min.css" />
     <Content Include="Content\css\bootstrap-select.css" />
     <Content Include="Content\css\bootstrap.min.css" />
     <Content Include="Content\css\easy-responsive-tabs.css" />
@@ -151,6 +154,7 @@
     <Content Include="Content\css\jquery.uls.lcd.css" />
     <Content Include="Content\css\menu_sideslide.css" />
     <Content Include="Content\css\style.css" />
+    <Content Include="Content\css\theme.css" />
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\images\1.jpg" />
@@ -177,6 +181,7 @@
     <Content Include="Content\images\b8.jpg" />
     <Content Include="Content\images\b9.jpg" />
     <Content Include="Content\images\banner.jpg" />
+    <Content Include="Content\images\bg.png" />
     <Content Include="Content\images\bk1.jpg" />
     <Content Include="Content\images\bk10.jpg" />
     <Content Include="Content\images\bk11.jpg" />
@@ -327,7 +332,7 @@
     <Content Include="Content\images\p7.jpg" />
     <Content Include="Content\images\p8.jpg" />
     <Content Include="Content\images\p9.jpg" />
-    <Content Include="Content\images\partner.png" />
+    <Content Include="Content\uploads\partner.png" />
     <Content Include="Content\images\r1.jpg" />
     <Content Include="Content\images\r10.jpg" />
     <Content Include="Content\images\r11.jpg" />
@@ -353,6 +358,9 @@
     <Content Include="Content\images\top-arrow.png" />
     <Content Include="Content\images\user.jpg" />
     <Content Include="Content\images\user.png" />
+    <Content Include="Content\js Admin\bootstrap.min.js" />
+    <Content Include="Content\js Admin\jquery-1.9.1.min.js" />
+    <Content Include="Content\js Admin\jquery-ui-1.10.1.custom.min.js" />
     <Content Include="Content\js\bootstrap-select.js" />
     <Content Include="Content\js\bootstrap.js" />
     <Content Include="Content\js\btt.js" />
@@ -501,7 +509,6 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Shared\_Layout_Product.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\TroGiup.cshtml" />
     <Content Include="Views\Home\CachHoatDong.cshtml" />
@@ -515,18 +522,22 @@
     <Content Include="Views\User\ThayDoiThongTinCaNhan.cshtml" />
     <Content Include="Views\Product\Index.cshtml" />
     <Content Include="Views\Product\ChiTietVatPham.cshtml" />
-    <Content Include="Views\Product\DanhSachVatPham.cshtml" />
     <Content Include="Views\Product\DangTinBan.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Admin\Views\Shared\_LayoutAdmin.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\Index.cshtml" />
     <None Include="packages.config" />
+    <Content Include="Views\Product\ShowVatPham.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

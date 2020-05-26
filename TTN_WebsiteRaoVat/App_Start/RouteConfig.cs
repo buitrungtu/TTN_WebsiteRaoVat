@@ -40,11 +40,11 @@ namespace TTN_WebsiteRaoVat
                 defaults: new { controller = "User", action = "DangXuat" }
             );
 
-            // Điều hướng vat phẩm
+            // Điều hướng vật phẩm
             routes.MapRoute(
                 name: "Tất cả danh mục",
-                url: "TatCaDanhMuc",
-                defaults: new { controller = "Product", action = "Index" }
+                url: "TatCaDanhMuc/{MaDM}",
+                defaults: new { controller = "Product", action = "Index", id = UrlParameter.Optional }
             );
             routes.MapRoute(
                 name: "Chi tiết vật phẩm",

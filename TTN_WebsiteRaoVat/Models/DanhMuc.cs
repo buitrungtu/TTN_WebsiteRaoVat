@@ -9,5 +9,6 @@ namespace TTN_WebsiteRaoVat.Models
     {
         public int MaDanhMuc { get; set; }
         public string TenDanhMuc { get; set; }
+        public string Icon { get; set; }
     }
 }

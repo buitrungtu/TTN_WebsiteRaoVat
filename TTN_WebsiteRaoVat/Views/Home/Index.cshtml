@@ -1,7 +1,9 @@
-﻿
+﻿@using TTN_WebsiteRaoVat.Models;
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    VatPhamAccess vpa = new VatPhamAccess();
+    List<DanhMuc> LDM = vpa.LayDanhMuc();
 }
 
 <!-- Slider -->
@@ -10,31 +12,31 @@
         <li>
             <div class="w3ls-slide-text">
                 <h3>Bán gì cũng mua, mua gì cũng bán</h3>
-                <a href="/TatCaDanhMuc" class="w3layouts-explore-all">Tất cả các danh mục</a>
+                <a href="/TatCaDanhMuc/0" class="w3layouts-explore-all">Tất cả các danh mục</a>
             </div>
         </li>
         <li>
             <div class="w3ls-slide-text">
                 <h3>Các đơn hàng tốt nhất</h3>
-                <a href="/TatCaDanhMuc" class="w3layouts-explore">Khám phá</a>
+                <a href="/TatCaDanhMuc/0" class="w3layouts-explore">Khám phá</a>
             </div>
         </li>
         <li>
             <div class="w3ls-slide-text">
                 <h3>Ngôi nhà trong mơ</h3>
-                <a href="/TatCaDanhMuc" class="w3layouts-explore">Khám phá</a>
+                <a href="/TatCaDanhMuc/0" class="w3layouts-explore">Khám phá</a>
             </div>
         </li>
         <li>
             <div class="w3ls-slide-text">
                 <h3>Những chiếc xe đình đám nhất mọi thời đại</h3>
-                <a href="/TatCaDanhMuc" class="w3layouts-explore">Khám phá</a>
+                <a href="/TatCaDanhMuc/0" class="w3layouts-explore">Khám phá</a>
             </div>
         </li>
         <li>
             <div class="w3ls-slide-text">
                 <h3>Tìm một công việc ưng ý</h3>
-                <a href="/TatCaDanhMuc" class="w3layouts-explore">Tìm việc</a>
+                <a href="/TatCaDanhMuc/0" class="w3layouts-explore">Tìm việc</a>
             </div>
         </li>
     </ul>
@@ -45,152 +47,22 @@
     <div class="w3-categories">
         <h3>Danh Mục</h3>
         <div class="container">
-            <div class="col-md-3">
-                <div class="focus-grid w3layouts-boder12">
-                    <a class="btn-8" href="/TatCaDanhMuc">
-                        <div class="focus-border">
-                            <div class="focus-layout">
-                                <div class="focus-image"><i class="fa fa-home"></i></div>
-                                <h4 class="clrchg">Bất động sản</h4>
+            @foreach (DanhMuc a in LDM)
+            {
+                string css = "focus-grid w3layouts-boder" + a.MaDanhMuc.ToString(); 
+                <div class="col-md-3">
+                    <div class="@css">
+                        <a class="btn-8" href="/TatCaDanhMuc/@a.MaDanhMuc">
+                            <div class="focus-border">
+                                <div class="focus-layout">
+                                    <div class="focus-image"><i class="@a.Icon"></i></div>
+                                    <h4 class="clrchg">@a.TenDanhMuc</h4>
+                                </div>
                             </div>
-                        </div>
-                    </a>
+                        </a>
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-3">
-                <div class="focus-grid w3layouts-boder3">
-                    <a class="btn-8" href="/TatCaDanhMuc">
-                        <div class="focus-border">
-                            <div class="focus-layout">
-                                <div class="focus-image"><i class="fa fa-car"></i></div>
-                                <h4 class="clrchg">Xe cộ</h4>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="focus-grid w3layouts-boder2">
-                    <a class="btn-8" href="/TatCaDanhMuc">
-                        <div class="focus-border">
-                            <div class="focus-layout">
-                                <div class="focus-image"><i class="fa fa-laptop"></i></div>
-                                <h4 class="clrchg"> Điện tử & Đồ gia dụng</h4>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-
-            <div class="col-md-3">
-                <div class="focus-grid w3layouts-boder4">
-                    <a class="btn-8" href="/TatCaDanhMuc">
-                        <div class="focus-border">
-                            <div class="focus-layout">
-                                <div class="focus-image"><i class="fa fa-spoon"></i></div>
-                                <h4 class="clrchg">Đồ ăn</h4>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="focus-grid w3layouts-boder5">
-                    <a class="btn-8" href="/TatCaDanhMuc">
-                        <div class="focus-border">
-                            <div class="focus-layout">
-                                <div class="focus-image"><i class="fa fa-wheelchair"></i></div>
-                                <h4 class="clrchg">Nội thất</h4>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="focus-grid w3layouts-boder6">
-                    <a class="btn-8" href="/TatCaDanhMuc">
-                        <div class="focus-border">
-                            <div class="focus-layout">
-                                <div class="focus-image"><i class="fa fa-paw"></i></div>
-                                <h4 class="clrchg">Thú cưng</h4>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="focus-grid w3layouts-boder7">
-                    <a class="btn-8" href="/TatCaDanhMuc">
-                        <div class="focus-border">
-                            <div class="focus-layout">
-                                <div class="focus-image"><i class="fa fa-book"></i></div>
-                                <h4 class="clrchg">Sách & Sở thích</h4>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="focus-grid w3layouts-boder8">
-                    <a class="btn-8" href="/TatCaDanhMuc">
-                        <div class="focus-border">
-                            <div class="focus-layout">
-
-                                <div class="focus-image"><i class="fa fa-black-tie"></i></div>
-                                <h4 class="clrchg">Thời trang</h4>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="focus-grid w3layouts-boder9">
-                    <a class="btn-8" href="/TatCaDanhMuc">
-                        <div class="focus-border">
-                            <div class="focus-layout">
-                                <div class="focus-image"><i class="fa fa-child"></i></div>
-                                <h4 class="clrchg">Trẻ em</h4>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="focus-grid w3layouts-boder10">
-                    <a class="btn-8" href="/TatCaDanhMuc">
-                        <div class="focus-border">
-                            <div class="focus-layout">
-                                <div class="focus-image"><i class="fa fa-wrench"></i></div>
-                                <h4 class="clrchg">Dịch vụ</h4>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="focus-grid w3layouts-boder11">
-                    <a class="btn-8" href="/TatCaDanhMuc">
-                        <div class="focus-border">
-                            <div class="focus-layout">
-                                <div class="focus-image"><i class="fa fa-smile-o"></i></div>
-                                <h4 class="clrchg">Việc làm</h4>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="focus-grid w3layouts-boder12">
-                    <a class="btn-8" href="/TatCaDanhMuc">
-                        <div class="focus-border">
-                            <div class="focus-layout">
-                                <div class="focus-image"><i class="fa fa-pagelines"></i></div>
-                                <h4 class="clrchg">Nông nghiệp</h4>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
+            }                                                
             <div class="clearfix"></div>
         </div>
     </div>

@@ -43,6 +43,7 @@ namespace TTN_WebsiteRaoVat.Models
                 DanhMuc temp = new DanhMuc();
                 temp.MaDanhMuc = reader.GetInt32(0);
                 temp.TenDanhMuc = reader.GetString(1);
+                temp.Icon = reader.GetString(2);
                 kq.Add(temp);
             }
             reader.Close();
@@ -56,6 +57,39 @@ namespace TTN_WebsiteRaoVat.Models
             command.CommandType = CommandType.Text;
             command.CommandText = "select * from dbo.ThongTinVatPham(0)";
             command.Connection = conn;
+            SqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                VatPham vp = new VatPham();
+                vp.MaVP = reader.GetInt32(0);
+                vp.TenVP = reader.GetString(1);
+                vp.TenNguoiBan = reader.GetString(2);
+                vp.SDT = reader.GetString(3);
+                vp.ThanhPho = reader.GetString(4);
+                vp.MoTa = reader.GetString(5);
+                vp.TinhTrang = reader.GetString(6);
+                vp.GiaTien = reader.GetInt64(7);
+                vp.TheLoai = reader.GetString(8);
+                int temp = reader.GetInt32(9);
+                vp.NgayDang = ChuyenThoiGian(temp);
+                vp.LinkHinhAnh = new List<string>();
+                vp.LinkHinhAnh.Add(reader.GetString(10));
+                vp.ChatLuong = reader.GetInt32(11);
+                vp.DiaDiem = reader.GetString(12);
+                dsvp.Add(vp);
+            }
+            reader.Close();
+            return dsvp;
+        }
+        public List<VatPham> LayVatPham(int MaDM)
+        {
+            List<VatPham> dsvp = new List<VatPham>();
+            OpenConnection();
+            SqlCommand command = new SqlCommand();
+            command.CommandType = CommandType.Text;
+            command.CommandText = "select * from dbo.DanhSachVatPham(@MaDM)";
+            command.Connection = conn;
+            command.Parameters.Add("@MaDM", SqlDbType.Int).Value = MaDM;
             SqlDataReader reader = command.ExecuteReader();
             while (reader.Read())
             {
@@ -168,14 +202,14 @@ namespace TTN_WebsiteRaoVat.Models
             }
             return false;
         }
-        
-        
+
+
         public bool ThichVatPham(ThichVatPham temp)
         {
             OpenConnection();
             SqlCommand command = new SqlCommand();
             command.CommandType = CommandType.Text;
-            command.CommandText = "insert into YeuThich(SDT,MaVP) values (@sdt,@mavp)";            
+            command.CommandText = "insert into YeuThich(SDT,MaVP) values (@sdt,@mavp)";
             command.Parameters.Add("@sdt", SqlDbType.NChar).Value = temp.SDT;
             command.Parameters.Add("@mavp", SqlDbType.Int).Value = Int32.Parse(temp.MaVP);
             command.Connection = conn;
@@ -194,7 +228,7 @@ namespace TTN_WebsiteRaoVat.Models
             return false;
 
         }
-        public bool DaThich(String SDT,int MaVP)
+        public bool DaThich(String SDT, int MaVP)
         {
             OpenConnection();
             SqlCommand command = new SqlCommand();
