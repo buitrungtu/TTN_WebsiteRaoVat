@@ -7,6 +7,8 @@
     var session = (UserLogin)Session[TTN_WebsiteRaoVat.Common.CommonConstants.USER_SESSION];
     string sdt;
     VatPhamAccess vpa = new VatPhamAccess();
+    int MaDM = 0;
+       
 }
 
 <!-- breadcrumbs -->
@@ -14,9 +16,8 @@
     <div class="container">
         <span class="agile-breadcrumbs">
             <a href="/Home"><i class="fa fa-home home_1"></i></a> /
-            <a href="/TatCaDanhMuc">Tất cả</a> /
-            <a href="cars.html">Thể loại</a> /
-            <span>Chi tiết</span>
+            <a href="/TatCaDanhMuc/@MaDM">@Model.TheLoai</a> /            
+            <span>@Model.TenVP</span>
         </span>
     </div>
 </div>
@@ -89,11 +90,11 @@
                     <a href="#" class="btn-Thich ChiaSe">Chia sẻ  <i class="fa fa-facebook-square"></i></a>
                     @if (vpa.DaThich(sdt, Model.MaVP))
                     {
-                        <div class="btn-Thich Thich DaThich" data-id="@Model.MaVP.ToString()" data-sdt="@sdt">Thích  <i class="fa fa-heart"></i></div>
+                        <div id="btnThich" class="btn-Thich Thich DaThich" data-id="@Model.MaVP.ToString()" data-sdt="@sdt">Thích  <i class="fa fa-heart"></i></div>
                     }
                     else
                     {
-                        <div class="btn-Thich Thich" data-id="@Model.MaVP.ToString()" data-sdt="@sdt">Thích  <i class="fa fa-heart"></i></div>
+                        <div id="btnThich" class="btn-Thich Thich" data-id="@Model.MaVP.ToString()" data-sdt="@sdt">Thích  <i class="fa fa-heart"></i></div>
                     }
 
                     <h4><span class="w3layouts-agileinfo">Lượt thích</span>: <strong>150</strong></h4>

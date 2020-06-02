@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -56,6 +57,7 @@ namespace TTN_WebsiteRaoVat.Controllers
             }
             return View("/DangKy");
         }
+
         public ActionResult TrangCaNhan(string sdt)
         {
             TaiKhoan tk = tka.LayThongTinTaiKhoan(sdt);
@@ -66,10 +68,12 @@ namespace TTN_WebsiteRaoVat.Controllers
             TaiKhoan tk = tka.LayThongTinTaiKhoan(sdt);
             return View(tk);
         }
+       
         public ActionResult DangXuat()
         {
             Session[CommonConstants.USER_SESSION] = null;
             return Redirect("/Home");
         }    
-    }
+    }   
+    
 }

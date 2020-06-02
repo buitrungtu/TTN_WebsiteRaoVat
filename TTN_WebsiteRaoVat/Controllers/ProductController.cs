@@ -16,9 +16,16 @@ namespace TTN_WebsiteRaoVat.Controllers
         public ActionResult Index(int MaDM)
         {
             List<VatPham> dsvp = vpa.LayVatPham(MaDM);
+            // mặc định là mới nhất lên đầu
+            dsvp = dsvp.OrderBy(x => x.NgayDang).ToList();
             return View(dsvp);
         }
-        
+        public ActionResult SapXepTheoGiaTangDan(int MaDM)
+        {
+            List<VatPham> dsvp = vpa.LayVatPham(MaDM);          
+            dsvp = dsvp.OrderBy(x => x.GiaTien).ToList();
+            return PartialView(dsvp);
+        }
         public ActionResult ShowVatPham(int MaDM)
         {
             List<VatPham> dsvp = vpa.LayVatPham(MaDM);

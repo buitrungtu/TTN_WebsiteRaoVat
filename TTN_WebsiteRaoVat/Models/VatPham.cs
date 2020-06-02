@@ -5,7 +5,7 @@ using System.Web;
 
 namespace TTN_WebsiteRaoVat.Models
 {
-    public class VatPham
+    public class VatPham 
     {
         public int MaVP { get; set; }
         public string TenVP { get; set; }
@@ -20,5 +20,6 @@ namespace TTN_WebsiteRaoVat.Models
         public string DiaDiem { get; set; }
         public string NgayDang { get; set; }
         public int ChatLuong { get; set; }
-    }
+      
+    }   
 }

@@ -16,39 +16,52 @@
 </div>
 <div class="submit-ad main-grid-border">
     <div class="container">
-        <div class="VienBao col-md-3">
-
-            <div class="AnhDaiDien">
-                <img src="/Content/images/user.jpg" alt="" />
+        <form>
+            <div class="VienBao col-md-3">
+                <div class="AnhDaiDien">
+                    <img src="/Content/images/user.jpg" alt="" />
+                </div>
+                <div class="photos-upload-view">
+                    <div>
+                        <input type="file" id="files" name="files" onchange="loadAnh(event)" multiple accept="image/jpeg,image/png" required />
+                    </div>
+                </div>
+                <script>
+                    var loadAnh = function (event) {
+                        var files = event.target.files;
+                        for (var i = 0; i < files.length; i++) {
+                            $(".AnhDaiDien").append("<img src='" + URL.createObjectURL(event.target.files[i]) + "'class='AnhDaiDien' />");
+                        }
+                    }
+                </script>
             </div>
-            <a class="btnSuaThongTin" href="#">Tải ảnh lên</a>
-
-        </div>
-        <div class="Trai col-md-9">
-            <div class="post-ad-form">
-                <form>
-                    <label>Họ và tên: </label>
-                    <input type="text" class="phone" placeholder="">
-                    <div class="clearfix"></div>
-                    <div class="clearfix"></div>
-                    <label>Email: </label>
-                    <input type="text" class="phone" placeholder="">
-                    <div class="clearfix"></div>
-                    <label>Địa chỉ: </label>
-                    <input type="text" class="phone" placeholder="">
-                    <div class="clearfix"></div>
-                    <label>Giới tính: </label>
-                    <input type="text" class="phone" placeholder="">
-                    <div class="clearfix"></div>
-                    <label>Ngày sinh: </label>
-                    <input type="text" class="phone" placeholder="">
-                    <div class="clearfix"></div>
-                    <input type="submit" value="Lưu thay đổi">
-                    <div class="clearfix"></div>
-                </form>
+            <div class="Trai col-md-9">
+                <div class="post-ad-form">
+                    <form>
+                        <label>Họ và tên: </label>
+                        <input type="text" class="phone" placeholder="">
+                        <div class="clearfix"></div>
+                        <div class="clearfix"></div>
+                        <label>Email: </label>
+                        <input type="text" class="phone" placeholder="">
+                        <div class="clearfix"></div>
+                        <label>Địa chỉ: </label>
+                        <input type="text" class="phone" placeholder="">
+                        <div class="clearfix"></div>
+                        <label>Giới tính: </label>
+                        <input type="text" class="phone" placeholder="">
+                        <div class="clearfix"></div>
+                        <label>Ngày sinh: </label>
+                        <input type="text" class="phone" placeholder="">
+                        <div class="clearfix"></div>
+                        <input type="submit" value="Lưu thay đổi">
+                        <div class="clearfix"></div>
+                    </form>
+                </div>
             </div>
-        </div>
+        </form>
         <div class="clearfix"></div>
     </div>
+    
 </div>
 

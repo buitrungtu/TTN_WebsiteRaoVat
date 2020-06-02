@@ -1,4 +1,3 @@
-D:\Học Web\TTN_WebsiteRaoVat\TTN_WebsiteRaoVat\obj\Debug\TTN_WebsiteRaoVat.csproj.CoreCompileInputs.cache
 D:\Học Web\TTN_WebsiteRaoVat\TTN_WebsiteRaoVat\bin\TTN_WebsiteRaoVat.dll.config
 D:\Học Web\TTN_WebsiteRaoVat\TTN_WebsiteRaoVat\bin\TTN_WebsiteRaoVat.dll
 D:\Học Web\TTN_WebsiteRaoVat\TTN_WebsiteRaoVat\bin\TTN_WebsiteRaoVat.pdb
@@ -50,6 +49,7 @@ D:\Học Web\TTN_WebsiteRaoVat\TTN_WebsiteRaoVat\bin\System.Web.WebPages.Razor.x
 D:\Học Web\TTN_WebsiteRaoVat\TTN_WebsiteRaoVat\bin\Newtonsoft.Json.xml
 D:\Học Web\TTN_WebsiteRaoVat\TTN_WebsiteRaoVat\bin\Antlr3.Runtime.pdb
 D:\Học Web\TTN_WebsiteRaoVat\TTN_WebsiteRaoVat\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\Học Web\TTN_WebsiteRaoVat\TTN_WebsiteRaoVat\obj\Debug\TTN_WebsiteRaoVat.csproj.CoreCompileInputs.cache
 D:\Học Web\TTN_WebsiteRaoVat\TTN_WebsiteRaoVat\obj\Debug\TTN_WebsiteRaoVat.csproj.CopyComplete
 D:\Học Web\TTN_WebsiteRaoVat\TTN_WebsiteRaoVat\obj\Debug\TTN_WebsiteRaoVat.dll
 D:\Học Web\TTN_WebsiteRaoVat\TTN_WebsiteRaoVat\obj\Debug\TTN_WebsiteRaoVat.pdb

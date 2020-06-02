@@ -1,9 +1,9 @@
 ﻿$(document).ready(function () {
-    $(".btn-Thich").click(function () {
+    $("#btnThich").click(function () {
         MaVP= $(this).data('id');
         SDT = $(this).data('sdt');
-        if (SDT == null) {
-            alert('Bạn chưa đăng nhập');
+        if (SDT == "") {
+            alert("Bạn phải đăng nhập để thực hiện chức năng này!");
         } else {
             ThichVatPham(MaVP, SDT); 
         }             
@@ -11,6 +11,10 @@
     $(".DanhMuc").click(function () {
         maDM = $(this).data('id');
         HienVatPham(maDM);
+    })
+    $("#ThapToiCao").click(function () {
+        maDM = $(this).data('madm');
+        GiaThapToiCao(maDM);
     })
 });  
 function ThichVatPham(mavp, sdt) {
@@ -38,6 +42,16 @@ function HienVatPham(maDM) {
         data: { MaDM: maDM },
         success: function (response) {
             $("#DanhSachVatPham").html(response);            
+        }
+    });
+}
+function GiaThapToiCao(maDM) {
+    $.ajax({
+        type: "POST",
+        url: "/Product/SapXepTheoGiaTangDan",
+        data: { MaDM: maDM },
+        success: function (response) {
+            $("#DanhSachVatPham").html(response);
         }
     });
 }

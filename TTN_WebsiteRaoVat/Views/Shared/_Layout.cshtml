@@ -174,7 +174,12 @@
                     </form>
                     @if (session == null)
                     {
-                        <a class="post-w3layouts-ad" href="/DangNhap">Đăng tin miễn phí</a>
+                        <a id="DangTin" class="post-w3layouts-ad" href="#">Đăng tin miễn phí</a>
+                        <script>
+                            $("#DangTin").click(function(){
+                                alert("Bạn phải đăng nhập để thực hiện chức năng này!");
+                            });
+                        </script>
                     }
                     else
                     {
