@@ -78,11 +78,11 @@ namespace TTN_WebsiteRaoVat.Models
                 
                 if (!reader.IsDBNull(9))
                 {
-                    tk.NgaySinh = reader.GetDateTime(8).ToString("dd/MM/yyyy");
+                    tk.NgaySinh = reader.GetDateTime(9);
                 }
                 else
                 {
-                    tk.NgaySinh = "Chưa có";
+                    tk.NgaySinh = new DateTime();
                 }
             }
             return tk;
@@ -127,6 +127,93 @@ namespace TTN_WebsiteRaoVat.Models
             }
             reader.Close();
             return kq;
+        }
+        public bool ThayDoiAnhDaiDien(string sdt, string tenanh)
+        {
+            OpenConnection();
+            SqlCommand command = new SqlCommand();
+            command.CommandType = CommandType.Text;
+            command.CommandText = "update ThongTinTaiKhoan set AnhDaiDien = @anhdaidien where SDT = @sdt";
+            command.Connection = conn;
+            command.Parameters.Add("@anhdaidien", SqlDbType.NChar).Value = tenanh;
+            command.Parameters.Add("@sdt", SqlDbType.NChar).Value = sdt;
+            int ret = command.ExecuteNonQuery();
+            if (ret > 0)
+            {
+                return true;
+            }
+            return false;
+        }
+        public bool ThayDoiThongTinTaiKhoan(TaiKhoan temp)
+        {
+            OpenConnection();
+            SqlCommand command = new SqlCommand();
+            command.CommandType = CommandType.StoredProcedure;
+            command.CommandText = "SuaThongTinTaiKhoan";
+            command.Connection = conn;
+
+            command.Parameters.Add("@sdt", SqlDbType.NChar).Value = temp.SDT;
+            command.Parameters.Add("@hoten", SqlDbType.NVarChar).Value = temp.HoTen;
+            command.Parameters.Add("@email", SqlDbType.NChar).Value = temp.Email;
+            command.Parameters.Add("@quequan", SqlDbType.NVarChar).Value = temp.QueQuan;
+            command.Parameters.Add("@gioitinh", SqlDbType.NVarChar).Value = temp.GioiTinh;
+            command.Parameters.Add("@ngaysinh", SqlDbType.DateTime).Value = temp.NgaySinh;
+            int ret = command.ExecuteNonQuery();
+            if (ret > 0)
+            {
+                return true;
+            }
+            return false;
+        }
+        public List<VatPham> LayVatPhamDangBan(string sdt)
+        {
+            List<VatPham> dsvp = new List<VatPham>();
+            OpenConnection();
+            SqlCommand command = new SqlCommand();
+            command.CommandType = CommandType.Text;
+            command.CommandText = "select * from dbo.VatPhamDaDangCua(@sdt)";
+            command.Connection = conn;
+            command.Parameters.Add("@sdt", SqlDbType.NChar).Value = sdt;
+            SqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                VatPham vp = new VatPham();
+                vp.MaVP = reader.GetInt32(0);
+                vp.TenVP = reader.GetString(1);                
+                vp.GiaTien = reader.GetInt64(2);              
+                int temp = reader.GetInt32(3);
+                vp.NgayDang = ChuyenThoiGian(temp);
+                vp.LinkHinhAnh = new List<string>();
+                vp.LinkHinhAnh.Add(reader.GetString(4));
+                vp.KiemDuyet = reader.GetInt32(5);
+                vp.NgungBan = reader.GetInt32(6);
+                dsvp.Add(vp);
+            }
+            reader.Close();
+            return dsvp;
+        }
+        string ChuyenThoiGian(int gio)
+        {
+            if (gio < 24)
+            {
+                return gio.ToString() + " giờ trước";
+            }
+            else if (gio >= 24 && gio < 168)
+            {
+                return (gio / 24).ToString() + " ngày trước";
+            }
+            else if (gio >= 168 && gio < 672)
+            {
+                return (gio / 168).ToString() + " tuần trước";
+            }
+            else if (gio >= 672 && gio < 8064)
+            {
+                return (gio / 672).ToString() + " tháng trước";
+            }
+            else
+            {
+                return (gio / 8064).ToString() + " năm trước";
+            }
         }
     }
 }

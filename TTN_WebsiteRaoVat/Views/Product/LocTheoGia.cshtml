@@ -1,6 +1,5 @@
 ﻿@model List<TTN_WebsiteRaoVat.Models.VatPham>
 <script src="/Content/js/tabs.js"></script>
-<script src="/Scripts/Ajax.js"></script>
 <script type="text/javascript">
         $(document).ready(function () {
             var elem = $('#container ul');
@@ -86,7 +85,7 @@
                                     }
                                 </div>
 
-                                <a href="#@ViewBag.MaDM" id="SapXep" data-madm="@ViewBag.MaDM">Áp dụng</a>
+                                <a href="#@ViewBag.MaDM" id="SapXep" data-min="@ViewBag.min" data-max="@ViewBag.min" data-madm="@ViewBag.MaDM">Áp dụng</a>
                             </div>
                             <div class="clearfix"></div>
                             <ul class="list">
@@ -266,10 +265,31 @@
                         </div>
                     </div>
                 </div>
-                
+
             </div>
         </div>
     </div>
 </div>
 <div class="clearfix"></div>
-    
+<script>
+    $(document).ready(function () {
+        $("#SapXep").click(function () {
+            tieuchi = $('#TieuChi').val();
+            MaDM = $(this).data('madm');
+            Min = $(this).data('min');
+            Max = $(this).data('max');
+            SapXep(MaDM, Min,Max,tieuchi);
+        })
+    });
+    function SapXep(maDM, min,max,tc) {
+        $.ajax({
+            async: true,
+            type: "POST",
+            url: "/Product/LocTheoGia",
+            data: { MaDM: maDM,min : min,max:max, tieuchi: tc },
+            success: function (response) {
+                $("#DanhSachVatPham").html(response);
+            }
+        });
+    }
+</script>

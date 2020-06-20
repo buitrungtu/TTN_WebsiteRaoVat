@@ -18,20 +18,63 @@ namespace TTN_WebsiteRaoVat.Controllers
             List<VatPham> dsvp = vpa.LayVatPham(MaDM);
             // mặc định là mới nhất lên đầu
             dsvp = dsvp.OrderBy(x => x.NgayDang).ToList();
+            ViewBag.MaDM = MaDM; 
             return View(dsvp);
         }
-        public ActionResult SapXepTheoGiaTangDan(int MaDM)
-        {
-            List<VatPham> dsvp = vpa.LayVatPham(MaDM);          
-            dsvp = dsvp.OrderBy(x => x.GiaTien).ToList();
-            return PartialView(dsvp);
-        }
-        public ActionResult ShowVatPham(int MaDM)
+        
+        public ActionResult ShowVatPham(int MaDM, int tieuchi)
         {
             List<VatPham> dsvp = vpa.LayVatPham(MaDM);
+            ViewBag.MaDM = MaDM;
+            ViewBag.TieuChi = tieuchi;
+            if (tieuchi == 0)
+            {                               
+                dsvp = dsvp.OrderBy(x => x.NgayDang).ToList();                
+            }
+            else if(tieuchi == 1)
+            {               
+                dsvp = dsvp.OrderBy(x => x.GiaTien).ToList();                               
+            }
+            else
+            {               
+                dsvp = dsvp.OrderBy(x => x.GiaTien).ToList();
+                dsvp.Reverse();               
+            }
             return PartialView(dsvp);
         }
         
+        public ActionResult LocTheoGia(int MaDM,long min,long max,int tieuchi)
+        {
+            List<VatPham> dsvp = vpa.LayVatPham(MaDM);
+            ViewBag.MaDM = MaDM;
+            ViewBag.TieuChi = tieuchi;
+            ViewBag.min = min;
+            ViewBag.max = max;
+            min = min * 1000000;
+            if (max < 1500)
+            {                
+                max = max * 1000000;
+                dsvp = dsvp.Where(x => x.GiaTien > min && x.GiaTien < max).ToList();
+            }
+            else
+            {
+                dsvp = dsvp.Where(x => x.GiaTien > min).ToList();
+            }
+            if (tieuchi == 0)
+            {
+                dsvp = dsvp.OrderBy(x => x.NgayDang).ToList();
+            }
+            else if (tieuchi == 1)
+            {
+                dsvp = dsvp.OrderBy(x => x.GiaTien).ToList();
+            }
+            else
+            {
+                dsvp = dsvp.OrderBy(x => x.GiaTien).ToList();
+                dsvp.Reverse();
+            }
+            return PartialView(dsvp);
+        }
         public ActionResult ChiTietVatPham(int MaVP)
         {
             VatPham vp = vpa.ThongTinChiTietVatPham(MaVP);
@@ -89,7 +132,7 @@ namespace TTN_WebsiteRaoVat.Controllers
             int theloai = Int32.Parse(TheLoai);
             if (vpa.ThemVatPham(SDT, HoTen, MaTinhThanh, QuanHuyen, TieuDe, MoTa, TinhTrang, giaTien, theloai, temp[0], strLink))
             {
-                return View("Index");
+                return RedirectToAction("Index", "Product", new {MaDM = theloai});
             }
             return View("DangTinBan");
         }    

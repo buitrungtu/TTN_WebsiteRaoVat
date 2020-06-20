@@ -10,12 +10,15 @@
     })
     $(".DanhMuc").click(function () {
         maDM = $(this).data('id');
-        HienVatPham(maDM);
+        HienVatPham(maDM,0);
     })
-    $("#ThapToiCao").click(function () {
-        maDM = $(this).data('madm');
-        GiaThapToiCao(maDM);
+
+    $("#SapXep").click(function () {
+        tieuchi = $('#TieuChi').val();
+        MaDM = $(this).data('madm');
+        HienVatPham(MaDM, tieuchi);     
     })
+    
 });  
 function ThichVatPham(mavp, sdt) {
     var ThichVatPham = {
@@ -35,23 +38,14 @@ function ThichVatPham(mavp, sdt) {
         },
     });
 }
-function HienVatPham(maDM) {
+function HienVatPham(maDM, tc) {
     $.ajax({
+        async: true,
         type: "POST",
         url: "/Product/ShowVatPham",
-        data: { MaDM: maDM },
-        success: function (response) {
+        data: { MaDM: maDM, tieuchi: tc},
+        success: function (response) {        
             $("#DanhSachVatPham").html(response);            
-        }
-    });
-}
-function GiaThapToiCao(maDM) {
-    $.ajax({
-        type: "POST",
-        url: "/Product/SapXepTheoGiaTangDan",
-        data: { MaDM: maDM },
-        success: function (response) {
-            $("#DanhSachVatPham").html(response);
         }
     });
 }

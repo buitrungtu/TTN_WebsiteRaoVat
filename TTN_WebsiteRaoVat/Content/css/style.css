@@ -8275,15 +8275,17 @@ a.btnSuaThongTin:hover {
 }
 
 a.btnSuaXoa {
-    margin: 30px;
+    width: 150px;
+    margin: 10px;
     display: block;
     text-decoration: none;
     color: #fff;
     font-size: 15px;
     background-color: #0099e5;
-    padding: 11px 24px;
+    padding: 14px 15px;
     border-radius: 3px;
     -webkit-border-radius: 3px;
+    text-align: center;
 }
 
     a.btnSuaXoa:hover {
@@ -8537,4 +8539,20 @@ a.btn-Thich.ChiaSe {
     width: 0;
     top: 35%;
     border-right-width: 14px;
+}
+h3.ThongBaoKhiKhongCoSanPham {
+    text-align: center;
+    color: darkolivegreen;
+    margin: 25px 20px;
+}
+.sort-by {
+    position: absolute;
+    top: 30px;
+    right: 12%;
+}
+
+a#Loc {
+    position: absolute;
+    top: 32px;
+    right: 3%;
 }
