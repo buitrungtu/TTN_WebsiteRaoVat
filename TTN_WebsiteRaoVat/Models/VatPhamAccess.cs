@@ -282,5 +282,85 @@ namespace TTN_WebsiteRaoVat.Models
                 return (gio / 8064).ToString() + " năm trước";
             }
         }
+        public List<VatPhamAdmin> DanhSachVP()
+        {
+            List<VatPhamAdmin> kq = new List<VatPhamAdmin>();
+            OpenConnection();
+            SqlCommand command = new SqlCommand();
+            command.CommandType = CommandType.Text;
+            command.CommandText = "select * from VatPhamAdmin";
+            command.Connection = conn;
+            SqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                VatPhamAdmin temp = new VatPhamAdmin();
+                temp.MaVP = reader.GetInt32(0);
+                temp.TenNguoiBan = reader.GetString(1);
+                temp.TenVatPham = reader.GetString(2);
+                temp.Mota = reader.GetString(3);
+                temp.TinhTrang = reader.GetString(4);
+                temp.GiaTien = reader.GetInt64(5);
+                temp.TenTL = reader.GetString(6);
+                temp.LinkHinhAnh = reader.GetString(7);
+                temp.NgayDang = reader.GetDateTime(8).ToString("dd/MM/yyyy");
+                kq.Add(temp);
+            }
+            reader.Close();
+            return kq;
+        }
+        public List<DuyetVP> DuyetVP()
+        {
+            List<DuyetVP> kq = new List<DuyetVP>();
+            OpenConnection();
+            SqlCommand command = new SqlCommand();
+            command.CommandType = CommandType.Text;
+            command.CommandText = "select * from VatPhamChoDuyet";
+            command.Connection = conn;
+            SqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                DuyetVP temp = new DuyetVP();
+                temp.MaVP = reader.GetInt32(0);
+                temp.TenNguoiBan = reader.GetString(1);
+                temp.TenVatPham = reader.GetString(2);
+                temp.Mota = reader.GetString(3);
+                temp.TinhTrang = reader.GetString(4);
+                temp.GiaTien = reader.GetInt64(5);
+                temp.TenTL = reader.GetString(6);
+                temp.LinkHinhAnh = reader.GetString(7);
+                temp.DaDuyet = reader.GetInt32(8);
+                temp.NgayDang = reader.GetDateTime(9).ToString("dd/MM/yyyy");
+                kq.Add(temp);
+            }
+            reader.Close();
+            return kq;
+        }
+        public List<VatPhamBiKhoa> VPBiKhoa()
+        {
+            List<VatPhamBiKhoa> kq = new List<VatPhamBiKhoa>();
+            OpenConnection();
+            SqlCommand command = new SqlCommand();
+            command.CommandType = CommandType.Text;
+            command.CommandText = "select * from VatPhamBiKhoa";
+            command.Connection = conn;
+            SqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                VatPhamBiKhoa temp = new VatPhamBiKhoa();
+                temp.MaVP = reader.GetInt32(0);
+                temp.TenNguoiBan = reader.GetString(1);
+                temp.TenVatPham = reader.GetString(2);
+                temp.Mota = reader.GetString(3);
+                temp.TinhTrang = reader.GetString(4);
+                temp.GiaTien = reader.GetInt64(5);
+                temp.TenTL = reader.GetString(6);
+                temp.LinkHinhAnh = reader.GetString(7);
+                temp.BiKhoa = reader.GetInt32(8);
+                temp.NgayDang = reader.GetDateTime(9).ToString("dd/MM/yyyy");
+                kq.Add(temp);
+            }
+            reader.Close();
+            return kq;
+        }
     }
 }
