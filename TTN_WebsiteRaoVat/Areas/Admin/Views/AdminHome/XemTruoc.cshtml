@@ -1,0 +1,104 @@
+﻿
+@{
+    ViewBag.Title = "Xem Truoc";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+
+}
+@using TTN_WebsiteRaoVat.Models;
+@model TTN_WebsiteRaoVat.Models.VatPham
+<div class="single-page main-grid-border">
+    <div class="container">
+        <div class="product-desc">
+            <div class="col-md-7 product-view">
+                <h2>@Model.TenVP</h2>
+
+                <p> <i class="glyphicon glyphicon-map-marker"></i><a href="#">@Model.DiaDiem</a>, <a href="#">@Model.ThanhPho</a> | @Model.NgayDang</p>
+                <div class="flexslider">
+                    <ul class="slides">
+                        @foreach (string link in Model.LinkHinhAnh)
+                        {
+                            <li data-thumb="/Content/uploads/@link">
+                                <img src="/Content/uploads/@link" />
+                            </li>
+                        }
+                    </ul>
+                </div>
+                <!-- FlexSlider -->
+                <script defer src="/Content/js/jquery.flexslider.js"></script>
+
+                <script>
+                    // Can also be used with $(document).ready()
+                    $(window).load(function () {
+                        $('.flexslider').flexslider({
+                            animation: "slide",
+                            controlNav: "thumbnails"
+                        });
+                    });
+                </script>
+                <!-- //FlexSlider -->
+
+                <div class="product-details">
+                    <div class="btn-Thich BaoXau">Báo xấu <i class="fa fa-flag"></i></div>
+                    <div class="DS-BaoXau">
+                        <ul class="list-group">
+                            <a href="#"><li class="list-group-item"><i class="fa fa-bullhorn "></i>: Báo hết hàng</li></a>
+                            <a href="#"><li class="list-group-item"><i class="fa fa-bullhorn "></i>: Báo giá sai</li></a>
+                            <a href="#"><li class="list-group-item"><i class="fa fa-bullhorn "></i>: Báo hàng giả, hàng nhái</li></a>
+                        </ul>
+                    </div>
+
+
+                    <a href="#" class="btn-Thich ChiaSe">Chia sẻ  <i class="fa fa-facebook-square"></i></a>
+
+
+                    <h4><span class="w3layouts-agileinfo">Lượt thích</span>: <strong>150</strong></h4>
+                    <h4>
+                        <span class="w3layouts-agileinfo">Mô tả:</span><p>
+                            @Model.MoTa
+                        </p><div class="clearfix"></div>
+                    </h4>
+
+                </div>
+            </div>
+            <div class="col-md-5 product-details-grid">
+                <div class="item-price">
+                    <div class="product-price">
+                        <p class="p-price">Giá bán:</p>
+                        <h3 class="rate">@String.Format("{0:0,0 vnđ}", Model.GiaTien)</h3>
+                        <div class="clearfix"></div>
+                    </div>
+
+                    <div class="condition">
+                        <p class="p-price">Tình trạng:</p>
+                        <h4>@Model.TinhTrang</h4>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="itemtype">
+                        <p class="p-price">Người bán:</p>
+                        <a href="">@Model.TenNguoiBan</a>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="interested text-center">
+                    <h4>Liên hệ qua số điện thoại:</h4>
+
+                    <p><i class="glyphicon glyphicon-earphone"></i>@Model.SDT</p>
+                </div>
+                <div class="interested text-center">
+                    <h4>Liên hệ qua mạng xã hội:</h4>
+                    <div class="w3-footer-social-icons">
+                        <ul>
+                            <li><a class="facebook" href="#"><i class="fa fa-facebook" aria-hidden="true"></i><span>Facebook</span></a></li>
+                            <li><a class="twitter" href="#"><i class="fa fa-twitter" aria-hidden="true"></i><span>Twitter</span></a></li>
+                            <li><a class="googleplus" href="#"><i class="fa fa-google-plus" aria-hidden="true"></i><span>Google+</span></a></li>
+                        </ul>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    </
+</div>
