@@ -538,6 +538,7 @@
     <Content Include="Areas\Admin\Views\Admin\Index.cshtml" />
     <None Include="packages.config" />
     <Content Include="Views\Product\ShowVatPham.cshtml" />
+    <Content Include="Views\Product\LocTheoGia.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

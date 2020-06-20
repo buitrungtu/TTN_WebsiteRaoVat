@@ -20,6 +20,8 @@ namespace TTN_WebsiteRaoVat.Models
         public string DiaDiem { get; set; }
         public string NgayDang { get; set; }
         public int ChatLuong { get; set; }
-      
+        public int MaDM { get; set; }
+        public int KiemDuyet { get; set; }
+        public int NgungBan { get; set; }
     }   
 }

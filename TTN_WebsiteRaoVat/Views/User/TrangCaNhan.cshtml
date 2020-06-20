@@ -1,6 +1,9 @@
-﻿@{
-    ViewBag.Title = "TrangCaNhan";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+﻿@using TTN_WebsiteRaoVat.Models;
+@{
+                /**/
+
+                ViewBag.Title = "TrangCaNhan";
+                Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @model TTN_WebsiteRaoVat.Models.TaiKhoan
 
@@ -28,10 +31,17 @@
                     }
                 </div>
                 <div class="client-info">
-                    <h3>@Model.SDT</h3>
+                    <h3>@Model.HoTen</h3>
                     <h4>0 Người theo dõi</h4>
                     <h4>0 Người đang theo dõi</h4>
-                    <h4>Loại tài khoản: @Model.LoaiTaiKhoan</h4>
+                    @if (Model.LoaiTaiKhoan == 0)
+                    {
+                        <h4>Loại tài khoản: Cá nhân</h4>
+                    }
+                    else
+                    {
+                        <h4>Loại tài khoản: Bán chuyên</h4>
+                    }
                 </div>
                 <a class="btnSuaThongTin" href="/ThayDoiThongTinCaNhan/@Model.SDT">Chỉnh sửa thông tin</a>
             </div>
@@ -43,7 +53,14 @@
                     <li><i class="fa fa-map" aria-hidden="true"></i>&emsp;&ensp;&nbsp; Địa chỉ: @Model.QueQuan</li>
                     <li><i class="fa fa-envelope-o" aria-hidden="true"></i>&emsp;&ensp;Email: @Model.Email</li>
                     <li><i class="fa fa-male" aria-hidden="true"></i>/<i class="fa fa-female" aria-hidden="true"></i>&emsp;Giới tính: @Model.GioiTinh</li>
-                    <li><i class="fa fa-birthday-cake" aria-hidden="true"></i>&emsp;&ensp;&nbsp; Ngày sinh: @Model.NgaySinh</li>
+                    @if(Model.NgaySinh.ToString("dd/MM/yyyy") == "01/01/0001")
+                    {
+                        <li><i class="fa fa-birthday-cake" aria-hidden="true"></i>&emsp;&ensp;&nbsp; Ngày sinh: Chưa có</li>
+                    }
+                    else
+                    {
+                        <li><i class="fa fa-birthday-cake" aria-hidden="true"></i>&emsp;&ensp;&nbsp; Ngày sinh: @Model.NgaySinh.ToString("dd/MM/yyyy")</li>
+                    }
                 </ul>
             </div>
         </div>
@@ -65,51 +82,48 @@
                                 <div id="container">
                                     <div class="clearfix"></div>
                                     <ul class="list">
-                                        <a href="single.html">
-                                            <li>
-                                                <img src="/Content/images/r1.jpg" title="" alt="" />
-                                                <section class="list-left">
-                                                    <h5 class="title">Tên sản phẩm</h5>
-                                                    <span class="adprice">Giá</span>
-                                                    <p class="catpath">Hôm nay, 17:55</p>
-                                                </section>
-                                                <section class="list-right">
-                                                    <a class="btnSuaXoa" href="#"><i class="fa fa-edit" aria-hidden="true"></i>  Sửa</a>
-                                                    <a class="btnSuaXoa" href="#"><i class="fa fa-remove" aria-hidden="true"></i>  Xóa</a>
-                                                </section>
-                                                <div class="clearfix"></div>
-                                            </li>
-                                        </a>
-                                        <a href="single.html">
-                                            <li>
-                                                <img src="/Content/images/r2.jpg" title="" alt="" />
-                                                <section class="list-left">
-                                                    <h5 class="title">Tên sản phẩm</h5>
-                                                    <span class="adprice">Giá</span>
-                                                    <p class="catpath">Hôm nay, 17:55</p>
-                                                </section>
-                                                <section class="list-right">
-                                                    <a class="btnSuaXoa" href="#"><i class="fa fa-edit" aria-hidden="true"></i>  Sửa</a>
-                                                    <a class="btnSuaXoa" href="#"><i class="fa fa-remove" aria-hidden="true"></i>  Xóa</a>
-                                                </section>
-                                                <div class="clearfix"></div>
-                                            </li>
-                                        </a>
-                                        <a href="single.html">
-                                            <li>
-                                                <img src="/Content/images/r4.jpg" title="" alt="" />
-                                                <section class="list-left">
-                                                    <h5 class="title">Tên sản phẩm</h5>
-                                                    <span class="adprice">Giá</span>
-                                                    <p class="catpath">Hôm nay, 17:55</p>
-                                                </section>
-                                                <section class="list-right">
-                                                    <a class="btnSuaXoa" href="#"><i class="fa fa-edit" aria-hidden="true"></i>  Sửa</a>
-                                                    <a class="btnSuaXoa" href="#"><i class="fa fa-remove" aria-hidden="true"></i>  Xóa</a>
-                                                </section>
-                                                <div class="clearfix"></div>
-                                            </li>
-                                        </a>
+                                        @{
+                                            TaiKhoanAccess tka = new TaiKhoanAccess();
+                                            List<VatPham> temp = tka.LayVatPhamDangBan(Model.SDT);
+                                        }
+                                        @foreach (var i in temp)
+                                        {
+                                            <a href="/ChiTietVatPham/@i.MaVP">
+                                                <li>
+                                                    <img src="/Content/uploads/@i.LinkHinhAnh[0]" title="" alt="" />
+                                                    <section class="list-left">
+                                                        @if (i.TenVP.Length < 22)
+                                                        {
+                                                            <h5 class="title">@i.TenVP</h5>
+                                                        }
+                                                        else
+                                                        {
+                                                            string ten = i.TenVP.Substring(0, 17) + "...";
+                                                            <h5 class="title">@ten</h5>
+                                                        }
+                                                        <span class="adprice">@String.Format("{0:0,0 vnđ}", i.GiaTien)</span>
+                                                        <p class="catpath">@i.TheLoai</p>
+                                                    </section>
+                                                    <section class="list-right">
+                                                        @if (i.NgungBan == 1)
+                                                        {
+                                                            <a class="btnSuaXoa" href="#"><i class="fa fa-unlock" aria-hidden="true"></i> Tiếp tục bán</a>
+                                                        }
+                                                        else
+                                                        {
+                                                            <a class="btnSuaXoa" href="#"><i class="fa fa-gavel" aria-hidden="true"></i> Ngừng bán</a>
+                                                        }
+
+                                                        <a class="btnSuaXoa" href="#"><i class="fa fa-remove" aria-hidden="true"></i>  Xóa</a>
+                                                    </section>
+                                                    <div class="clearfix"></div>
+                                                </li>
+                                            </a>
+                                        }
+                                        @if(temp.Count == 0)
+                                        {
+                                            <h3 class="ThongBaoKhiKhongCoSanPham">Bạn chưa đăng mặt hàng nào cả <i class="fa fa-frown-o" aria-hidden="true"></i> </h3>
+                                        }
                                     </ul>
                                 </div>
                             </div>

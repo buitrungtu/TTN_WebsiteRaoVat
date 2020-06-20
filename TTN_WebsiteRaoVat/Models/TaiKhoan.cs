@@ -16,6 +16,6 @@ namespace TTN_WebsiteRaoVat.Models
         public string QueQuan { get; set; }
         public string GioiTinh { get; set; }
         public string AnhDaiDien { get; set; }
-        public string NgaySinh { get; set; }
+        public DateTime NgaySinh { get; set; }
     }
 }

@@ -63,10 +63,56 @@ namespace TTN_WebsiteRaoVat.Controllers
             TaiKhoan tk = tka.LayThongTinTaiKhoan(sdt);
             return View(tk);
         }
+        string ChuyenDoiNgayThang(string s)
+        {
+            try
+            {
+                string[] temp = s.Split('/');
+                return temp[1] + '/' + temp[0] + '/' + temp[2];
+            }
+            catch
+            {
+                return "";
+            }
+
+        }
         public ActionResult ThayDoiThongTinCaNhan(string sdt)
         {
             TaiKhoan tk = tka.LayThongTinTaiKhoan(sdt);
             return View(tk);
+        }
+        [HttpPost]
+        public ActionResult ThayDoiThongTinCaNhan(TaiKhoan temp,string tempNgaySinh)
+        {
+            try
+            {
+                DateTime ngaysinh = new DateTime();
+                if(DateTime.TryParse(ChuyenDoiNgayThang(tempNgaySinh),out ngaysinh))
+                {
+                    temp.NgaySinh = ngaysinh;
+                }
+            }
+            catch
+            {
+                temp.NgaySinh = new DateTime();
+            }
+            if (tka.ThayDoiThongTinTaiKhoan(temp))
+            {
+                return RedirectToAction("TrangCaNhan","User",new {@sdt = temp.SDT });
+            }
+            return RedirectToAction("ThayDoiThongTinCaNhan", "User", new { @sdt = temp.SDT });
+        }
+        public string ThayDoiAnhDaiDien(HttpPostedFileBase file,string SDT)
+        {
+            SDT = SDT.Trim();
+            string tenanh = SDT + Path.GetExtension(file.FileName);
+            string duongdan = Path.Combine(Server.MapPath("/Content/images"), tenanh);
+            file.SaveAs(duongdan);
+            if(tka.ThayDoiAnhDaiDien(SDT, tenanh))
+            {
+                return tenanh;
+            }
+            return "";
         }
        
         public ActionResult DangXuat()

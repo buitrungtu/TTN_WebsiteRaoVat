@@ -7,8 +7,7 @@
     var session = (UserLogin)Session[TTN_WebsiteRaoVat.Common.CommonConstants.USER_SESSION];
     string sdt;
     VatPhamAccess vpa = new VatPhamAccess();
-    int MaDM = 0;
-       
+    
 }
 
 <!-- breadcrumbs -->
@@ -16,7 +15,7 @@
     <div class="container">
         <span class="agile-breadcrumbs">
             <a href="/Home"><i class="fa fa-home home_1"></i></a> /
-            <a href="/TatCaDanhMuc/@MaDM">@Model.TheLoai</a> /            
+            <a href="/TatCaDanhMuc/@Model.MaDM">@Model.TheLoai</a> /            
             <span>@Model.TenVP</span>
         </span>
     </div>

@@ -141,6 +141,7 @@ namespace TTN_WebsiteRaoVat.Models
                     vp.NgayDang = ChuyenThoiGian(temp);
                     vp.ChatLuong = reader.GetInt32(11);
                     vp.DiaDiem = reader.GetString(12);
+                    vp.MaDM = reader.GetInt32(13);
                     reader.Close();
                     vp.LinkHinhAnh = LayHinhAnh(vp.MaVP);
                 }
