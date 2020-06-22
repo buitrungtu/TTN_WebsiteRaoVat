@@ -363,6 +363,7 @@
     <Content Include="Areas\Admin\Contents\images\icons\avt.jpg" />
     <Content Include="Areas\Admin\Contents\images\icons\favicon.ico" />
     <Content Include="Areas\Admin\Contents\images\icons\map-marker.png" />
+    <Content Include="Areas\Admin\Contents\js\AjaxAdmin.js" />
     <Content Include="Areas\Admin\Contents\js\main.js" />
     <Content Include="Areas\Admin\Contents\js\map-custom.js" />
     <Content Include="Areas\Admin\Contents\vendor\animate\animate.css" />
