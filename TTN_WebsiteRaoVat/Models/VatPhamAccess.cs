@@ -363,5 +363,70 @@ namespace TTN_WebsiteRaoVat.Models
             reader.Close();
             return kq;
         }
+
+        public string RutGonTen(string temp)
+        {
+            string kq;
+            if(temp.Length > 13)
+            {
+                kq = temp.Substring(0, 13) + "...";
+            }
+            else
+            {
+                kq = temp;
+            }         
+            return kq;
+        }
+        public bool KhoaVatPham(int MaVP)
+        {
+            OpenConnection();
+            SqlCommand command = new SqlCommand();
+            command.CommandType = CommandType.Text;
+            command.CommandText = "update VatPham set BiKhoa = 1 where MaVP =@mavp";           
+            command.Parameters.Add("@mavp", SqlDbType.Int).Value = MaVP;
+            command.Connection = conn;
+            int ret = command.ExecuteNonQuery();
+            return ret > 0;
+        }
+        public bool MoKhoaVatPham(int MaVP)
+        {
+            OpenConnection();
+            SqlCommand command = new SqlCommand();
+            command.CommandType = CommandType.Text;
+            command.CommandText = "update VatPham set BiKhoa = 0 where MaVP =@mavp";
+            command.Parameters.Add("@mavp", SqlDbType.Int).Value = MaVP;
+            command.Connection = conn;
+            int ret = command.ExecuteNonQuery();
+            return ret > 0;
+        }
+        public bool DuyetVatPham(int MaVP)
+        {
+            OpenConnection();
+            SqlCommand command = new SqlCommand();
+            command.CommandType = CommandType.Text;
+            command.CommandText = "update VatPham set DaDuyet = 1 where MaVP =@mavp";
+            command.Parameters.Add("@mavp", SqlDbType.Int).Value = MaVP;
+            command.Connection = conn;
+            int ret = command.ExecuteNonQuery();
+            return ret > 0;
+        }
+        public bool XoaVatPham(int MaVP)
+        {
+            OpenConnection();
+            SqlCommand command = new SqlCommand();
+            command.CommandType = CommandType.StoredProcedure;
+            command.CommandText = "XoaVatPham";
+            command.Connection = conn;
+
+            command.Parameters.Add("@mavp", SqlDbType.Int).Value = MaVP;
+
+            int ret = command.ExecuteNonQuery();
+
+            if (ret > 0)
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }

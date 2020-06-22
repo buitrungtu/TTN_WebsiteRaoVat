@@ -18,7 +18,6 @@ namespace TTN_WebsiteRaoVat.Areas.Admin.Controllers
         }
         public ActionResult DuyetVatPham()
         {
-
             return View();
         }
         public ActionResult VatPhamBiKhoa()
@@ -28,7 +27,6 @@ namespace TTN_WebsiteRaoVat.Areas.Admin.Controllers
         }
         public ActionResult TaiKhoanBiKhoa()
         {
-
             return View();
         }
 
