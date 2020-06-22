@@ -11,6 +11,8 @@
             <h3>Đăng ký</h3>
             @using (Html.BeginForm("DangKy", "User"))
             {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, null, new { @class = "alert alert-danger" })
                 <div class="LoaiTaiKhoan">
                     <label style="margin:5px 66px">Chọn loại tài khoản</label>
                     <select class="selectpicker show-tick" name="LoaiTK" required>

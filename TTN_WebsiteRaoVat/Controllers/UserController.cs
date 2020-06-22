@@ -28,13 +28,13 @@ namespace TTN_WebsiteRaoVat.Controllers
                 var userSesstion = new UserLogin();
                 userSesstion.SDT = tk.SDT;
                 Session.Add(CommonConstants.USER_SESSION, userSesstion);
-                return Redirect("/Home");
+                return Redirect("Home");
             }
             else
             {
-                ModelState.AddModelError("", "Ôi bạn ơi, Sai cái gì đấy rồi bạn ạ.");
+                ModelState.AddModelError("", "Ôi bạn ơi, Thông tin đăng nhập sai rồi bạn ạ.");
             }
-            return View("/DangNhap");
+            return View("DangNhap");
         }
         [HttpGet]
         public ActionResult DangKy()
@@ -53,9 +53,13 @@ namespace TTN_WebsiteRaoVat.Controllers
 
             if (tka.DangKyTaiKhoan(tk))
             {
-                return Redirect("/DangNhap");
+                return RedirectToAction("DangNhap","User");
             }
-            return View("/DangKy");
+            else
+            {
+                ModelState.AddModelError("", "Số điện thoại đã tồn tại, Hãy dùng số điện thoại khác");
+            }
+            return View("DangKy");
         }
 
         public ActionResult TrangCaNhan(string sdt)
@@ -118,7 +122,7 @@ namespace TTN_WebsiteRaoVat.Controllers
         public ActionResult DangXuat()
         {
             Session[CommonConstants.USER_SESSION] = null;
-            return Redirect("/Home");
+            return Redirect("Home");
         }    
     }   
     

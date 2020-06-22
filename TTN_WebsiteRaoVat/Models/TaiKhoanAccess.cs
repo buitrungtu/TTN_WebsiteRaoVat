@@ -89,22 +89,30 @@ namespace TTN_WebsiteRaoVat.Models
         }
         public bool DangKyTaiKhoan(TaiKhoan tk)
         {
-            OpenConnection();
-            SqlCommand command = new SqlCommand();
-            command.CommandType = CommandType.StoredProcedure;
-            command.CommandText = "DangKy";
-            command.Connection = conn;
-            command.Parameters.Add("@HoTen", SqlDbType.NVarChar).Value = tk.HoTen;
-            command.Parameters.Add("@SDT", SqlDbType.NChar).Value = tk.SDT;
-            command.Parameters.Add("@LoaiTK", SqlDbType.Int).Value = tk.LoaiTaiKhoan;
-            command.Parameters.Add("@email", SqlDbType.NChar).Value = tk.Email;
-            command.Parameters.Add("@matkhau", SqlDbType.NChar).Value = tk.MatKhau;
-            int ret = command.ExecuteNonQuery();
-            if (ret > 0)
+            try
             {
-                return true;
+                OpenConnection();
+                SqlCommand command = new SqlCommand();
+                command.CommandType = CommandType.StoredProcedure;
+                command.CommandText = "DangKy";
+                command.Connection = conn;
+                command.Parameters.Add("@HoTen", SqlDbType.NVarChar).Value = tk.HoTen;
+                command.Parameters.Add("@SDT", SqlDbType.NChar).Value = tk.SDT;
+                command.Parameters.Add("@LoaiTK", SqlDbType.Int).Value = tk.LoaiTaiKhoan;
+                command.Parameters.Add("@email", SqlDbType.NChar).Value = tk.Email;
+                command.Parameters.Add("@matkhau", SqlDbType.NChar).Value = tk.MatKhau;
+                int ret = command.ExecuteNonQuery();
+                if (ret > 0)
+                {
+                    return true;
+                }
+                return false;
             }
-            return false;
+            catch
+            {
+                return false;
+            }
+            
         }
         public List<ThongBao> GetThongBao(string sdt)
         {
