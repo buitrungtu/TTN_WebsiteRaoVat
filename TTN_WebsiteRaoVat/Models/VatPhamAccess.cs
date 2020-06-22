@@ -145,6 +145,7 @@ namespace TTN_WebsiteRaoVat.Models
                     reader.Close();
                     vp.LinkHinhAnh = LayHinhAnh(vp.MaVP);
                 }
+                
             }
             catch
             {
@@ -367,14 +368,22 @@ namespace TTN_WebsiteRaoVat.Models
         public string RutGonTen(string temp)
         {
             string kq;
+<<<<<<< HEAD
             if(temp.Length > 13)
+=======
+            if (temp.Length > 13)
+>>>>>>> aca3bbe99b2ac1aec9c4c83b841df9954b9204ce
             {
                 kq = temp.Substring(0, 13) + "...";
             }
             else
             {
                 kq = temp;
+<<<<<<< HEAD
             }         
+=======
+            }
+>>>>>>> aca3bbe99b2ac1aec9c4c83b841df9954b9204ce
             return kq;
         }
         public bool KhoaVatPham(int MaVP)
@@ -382,7 +391,11 @@ namespace TTN_WebsiteRaoVat.Models
             OpenConnection();
             SqlCommand command = new SqlCommand();
             command.CommandType = CommandType.Text;
+<<<<<<< HEAD
             command.CommandText = "update VatPham set BiKhoa = 1 where MaVP =@mavp";           
+=======
+            command.CommandText = "update VatPham set BiKhoa = 1 where MaVP =@mavp";
+>>>>>>> aca3bbe99b2ac1aec9c4c83b841df9954b9204ce
             command.Parameters.Add("@mavp", SqlDbType.Int).Value = MaVP;
             command.Connection = conn;
             int ret = command.ExecuteNonQuery();

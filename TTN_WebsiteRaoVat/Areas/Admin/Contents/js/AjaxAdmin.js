@@ -16,7 +16,11 @@
         if (r == true) {
             MaVP = $(this).data('id');
             XoaVatPham(MaVP);
+<<<<<<< HEAD
         }       
+=======
+        }
+>>>>>>> aca3bbe99b2ac1aec9c4c83b841df9954b9204ce
     })
 });
 function KhoaVatPham(MaVP) {
@@ -24,7 +28,11 @@ function KhoaVatPham(MaVP) {
         async: true,
         type: "POST",
         url: "/XuLyAdmin/KhoaVatPham",
+<<<<<<< HEAD
         data: { MaVP: MaVP},
+=======
+        data: { MaVP: MaVP },
+>>>>>>> aca3bbe99b2ac1aec9c4c83b841df9954b9204ce
         success: function (response) {
             if (response.status) {
                 alert("Khóa thành công!")
