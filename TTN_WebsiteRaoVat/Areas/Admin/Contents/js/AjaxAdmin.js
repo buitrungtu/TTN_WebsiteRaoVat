@@ -16,6 +16,7 @@
         if (r == true) {
             MaVP = $(this).data('id');
             XoaVatPham(MaVP);
+
         }
     })
 });
@@ -24,6 +25,7 @@ function KhoaVatPham(MaVP) {
         async: true,
         type: "POST",
         url: "/XuLyAdmin/KhoaVatPham",
+
         data: { MaVP: MaVP },
         success: function (response) {
             if (response.status) {

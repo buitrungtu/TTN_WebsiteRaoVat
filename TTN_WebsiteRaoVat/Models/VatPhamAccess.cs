@@ -376,14 +376,15 @@ namespace TTN_WebsiteRaoVat.Models
             else
             {
                 kq = temp;
-            }
+            }         
+            
             return kq;
         }
         public bool KhoaVatPham(int MaVP)
         {
             OpenConnection();
             SqlCommand command = new SqlCommand();
-            command.CommandType = CommandType.Text;
+            command.CommandType = CommandType.Text;         
             command.CommandText = "update VatPham set BiKhoa = 1 where MaVP =@mavp";
             command.Parameters.Add("@mavp", SqlDbType.Int).Value = MaVP;
             command.Connection = conn;

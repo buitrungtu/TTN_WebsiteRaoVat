@@ -9,20 +9,24 @@ namespace TTN_WebsiteRaoVat.Models
 {
     public class NhanVienAccess : DatabaseAccess
     {
-        public bool KiemTraDangNhap(string username, string password)
+        public bool KiemTraDangNhap(string username, string password,string check)
         {
-            OpenConnection();
-            SqlCommand command = new SqlCommand();
-            command.CommandType = CommandType.Text;
-            command.CommandText = "select * from NhanVien where username = @username and password = @password";
-            command.Connection = conn;
-            command.Parameters.Add("@username", SqlDbType.NChar).Value = username;
-            command.Parameters.Add("@password", SqlDbType.NChar).Value = password;
-            SqlDataReader reader = command.ExecuteReader();
-            if (reader.Read())
+            if(check == "Admin")
             {
-                reader.Close();
-                return true;
+                OpenConnection();
+                SqlCommand command = new SqlCommand();
+                command.CommandType = CommandType.Text;
+                command.CommandText = "select * from NhanVien where username = @username and password = @password";
+                command.Connection = conn;
+                command.Parameters.Add("@username", SqlDbType.NChar).Value = username;
+                command.Parameters.Add("@password", SqlDbType.NChar).Value = password;
+                SqlDataReader reader = command.ExecuteReader();
+                if (reader.Read())
+                {
+                    reader.Close();
+                    return true;
+                }
+                return false;
             }
             return false;
         }

@@ -128,9 +128,9 @@
             <ul class="all-cat-list">
                 @foreach (DanhMuc a in LDM)
                 {
-                    <li><a class="DanhMuc" href="#@a.MaDanhMuc" data-id="@a.MaDanhMuc"> @a.TenDanhMuc <span class="num-of-ads">(500)</span></a></li>
+                    <li><a class="DanhMuc" href="#@a.MaDanhMuc" data-id="@a.MaDanhMuc"> @a.TenDanhMuc </a></li>
                 }
-                <li><a class="DanhMuc" href="#0" data-id="@ViewBag.MaDM"> Tất cả <span class="num-of-ads">(@LVP.Count)</span></a></li>
+                <li><a class="DanhMuc TatCa" href="#0" data-id="@ViewBag.MaDM"> Tất cả danh mục<span class="num-of-ads">(@LVP.Count)</span></a></li>
             </ul>
         </div>
         <div class="ads-grid">

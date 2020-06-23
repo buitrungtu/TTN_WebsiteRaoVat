@@ -16,6 +16,7 @@
         <div class="table-responsive table-responsive-data2">
             <table class="table table-data2">
                 <thead>
+
                     <tr>
                         <th>Tên Người Bán</th>
                         <th>Tên Vật Phẩm</th>
@@ -32,6 +33,7 @@
                 <tbody>
                     @foreach (var i in vpam)
                     {
+
                         <tr class="tr-shadow">
                             <td class="desc" title="@i.TenNguoiBan">@vp.RutGonTen(i.TenNguoiBan)</td>
                             <td title="@i.TenVatPham">@vp.RutGonTen(i.TenVatPham)</td>
