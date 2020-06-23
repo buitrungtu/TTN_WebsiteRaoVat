@@ -293,6 +293,7 @@ namespace TTN_WebsiteRaoVat.Models
             command.CommandText = "select * from VatPhamAdmin";
             command.Connection = conn;
             SqlDataReader reader = command.ExecuteReader();
+            
             while (reader.Read())
             {
                 VatPhamAdmin temp = new VatPhamAdmin();

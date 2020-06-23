@@ -9,9 +9,7 @@ namespace TTN_WebsiteRaoVat.Models
 {
     public class DatabaseAccess
     {
-
-        string strConn = "Data Source=./SQLEXPRESS;Database=Website_RaoVat;Integrated Security=True";
-        //string strConn = "Data Source=./SQLEXPRESS;Database=Website_RaoVat;Integrated Security=True";
+        string strConn = @"Data Source=.\SQLEXPRESS;Database=Website_RaoVat;Integrated Security=True";
         protected SqlConnection conn = null;
         public void OpenConnection()
         {
@@ -30,7 +28,7 @@ namespace TTN_WebsiteRaoVat.Models
             {
                 // ket noi that bai
             }
-            
+
         }
 
         public void CloseConnection()
@@ -45,7 +43,7 @@ namespace TTN_WebsiteRaoVat.Models
             catch
             {
                 // dong that bai
-            }          
+            }
         }
     }
 }
