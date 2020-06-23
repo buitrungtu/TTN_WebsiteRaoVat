@@ -21,7 +21,11 @@ namespace TTN_WebsiteRaoVat.Controllers
             ViewBag.MaDM = MaDM; 
             return View(dsvp);
         }
-        
+        public ActionResult TimKiem(string str, int Matl)
+        {
+
+            return View();
+        }
         public ActionResult ShowVatPham(int MaDM, int tieuchi)
         {
             List<VatPham> dsvp = vpa.LayVatPham(MaDM);

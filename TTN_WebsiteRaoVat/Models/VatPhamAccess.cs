@@ -473,5 +473,39 @@ namespace TTN_WebsiteRaoVat.Models
             reader.Close();
             return kq;
         }
+        public List<VatPham> TimKiemVP(string str, int MaTL)
+        {
+            List<VatPham> dsvp = new List<VatPham>();
+            OpenConnection();
+            SqlCommand command = new SqlCommand();
+            command.CommandType = CommandType.Text;
+            command.CommandText = "select * from dbo.TimKiem(@str,@MaTL)";
+            command.Connection = conn;
+            command.Parameters.Add("@MaTL", SqlDbType.Int).Value = MaTL;
+            command.Parameters.Add("@str", SqlDbType.NVarChar).Value = str;
+            SqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                VatPham vp = new VatPham();
+                vp.MaVP = reader.GetInt32(0);
+                vp.TenVP = reader.GetString(1);
+                vp.TenNguoiBan = reader.GetString(2);
+                vp.SDT = reader.GetString(3);
+                vp.ThanhPho = reader.GetString(4);
+                vp.MoTa = reader.GetString(5);
+                vp.TinhTrang = reader.GetString(6);
+                vp.GiaTien = reader.GetInt64(7);
+                vp.TheLoai = reader.GetString(8);
+                int temp = reader.GetInt32(9);
+                vp.NgayDang = ChuyenThoiGian(temp);
+                vp.LinkHinhAnh = new List<string>();
+                vp.LinkHinhAnh.Add(reader.GetString(10));
+                vp.ChatLuong = reader.GetInt32(11);
+                vp.DiaDiem = reader.GetString(12);
+                dsvp.Add(vp);
+            }
+            reader.Close();
+            return dsvp;
+        }
     }
 }

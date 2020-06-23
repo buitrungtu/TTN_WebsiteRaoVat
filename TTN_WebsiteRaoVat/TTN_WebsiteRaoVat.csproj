@@ -133,6 +133,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\PhanHoi.cs" />
     <Compile Include="Models\VatPhamMoiNhat.cs" />
     <Compile Include="Models\DanhMuc.cs" />
     <Compile Include="Models\DatabaseAccess.cs" />
@@ -961,8 +962,8 @@
     <Content Include="Areas\Admin\Views\AdminHome\LoginAdmin.cshtml" />
     <Content Include="Areas\Admin\Views\AdminHome\DuyetVatPham.cshtml" />
     <Content Include="Areas\Admin\Views\AdminHome\VatPhamBiKhoa.cshtml" />
-    <Content Include="Areas\Admin\Views\AdminHome\XemTruoc.cshtml" />
     <Content Include="Areas\Admin\Views\AdminHome\TaiKhoanBiKhoa.cshtml" />
+    <Content Include="Areas\Admin\Views\AdminHome\NhanPhanHoi.cshtml" />
     <None Include="packages.config" />
     <Content Include="Views\Product\ShowVatPham.cshtml" />
     <Content Include="Views\Product\LocTheoGia.cshtml" />

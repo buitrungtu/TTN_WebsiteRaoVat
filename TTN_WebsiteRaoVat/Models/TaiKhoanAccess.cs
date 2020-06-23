@@ -223,5 +223,27 @@ namespace TTN_WebsiteRaoVat.Models
                 return (gio / 8064).ToString() + " năm trước";
             }
         }
+         public List<PhanHoi> NhanPhanHoi()
+        {
+            List<PhanHoi> dsph = new List<PhanHoi>();
+            OpenConnection();
+            SqlCommand command = new SqlCommand();
+            command.CommandType = CommandType.Text;
+            command.CommandText = "select * from NhanPhanHoi";
+            command.Connection = conn;
+            SqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                PhanHoi ph = new PhanHoi();
+                ph.TenTK = reader.GetString(0);
+                ph.MaVP = reader.GetInt32(1);
+                ph.TenVP = reader.GetString(2);
+                ph.LyDo = reader.GetString(3);
+                ph.GhiChu = reader.GetString(4);
+                dsph.Add(ph);
+            }
+            reader.Close();
+            return dsph;
+        }
     }
 }

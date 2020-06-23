@@ -40,7 +40,7 @@
             <div class="logo">
                 <a href="">
                     
-                    <img src="~/Areas/Admin/Contents/images/icons/avt.jpg" alt=" TH Admin" />
+                    <img src="" alt=" TH Admin" />
                 </a>
             </div>
             <div class="menu-sidebar__content js-scrollbar1">
@@ -69,13 +69,9 @@
 
 
                         </li>
+                       
                         <li>
-                            <a href="">
-                                <i class="fas fa-table"></i>Quản Lý Tài Khoản
-                            </a>
-                        </li>
-                        <li>
-                            <a href="calendar.html">
+                            <a href="@Url.Action("NhanPhanHoi","AdminHome")">
                                 <i class="fas fa-calendar-alt"></i> Quản Lý Phản Hồi
                             </a>
                         </li>
@@ -91,12 +87,7 @@
                 <div class="section__content section__content--p30">
                     <div class="container-fluid">
                         <div class="header-wrap">
-                            <form class="form-header" action="" method="POST">
-                                <input class="au-input au-input--xl" type="text" name="search" placeholder="Search for datas..." />
-                                <button class="au-btn--submit" type="submit">
-                                    <i class="zmdi zmdi-search"></i>
-                                </button>
-                            </form>
+                           
                             <div class="header-button">
                                 <div class="noti-wrap">
                                     <div class="noti__item js-item-menu">

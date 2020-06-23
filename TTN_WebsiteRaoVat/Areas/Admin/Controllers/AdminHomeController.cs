@@ -25,16 +25,17 @@ namespace TTN_WebsiteRaoVat.Areas.Admin.Controllers
             
             return View();
         }
+        public ActionResult NhanPhanHoi()
+        {
+
+            return View();
+        }
         public ActionResult VatPhamBiKhoa()
         {
             
             return View();
         }
-        public ActionResult TaiKhoanBiKhoa()
-        {
-            
-            return View();
-        }
+       
 
         public ActionResult LoginAdmin()
         {
@@ -53,14 +54,8 @@ namespace TTN_WebsiteRaoVat.Areas.Admin.Controllers
             }
             return View("LoginAdmin");
         }
-        public ActionResult XemTruoc()
-        {
-            return View();
-        }
-        public ActionResult Xoa(int id)
-        {
-            return RedirectToAction("Index");
-        }
+       
+        
 
     }
 }
