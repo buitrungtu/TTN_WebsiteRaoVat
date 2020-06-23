@@ -8,6 +8,7 @@
     TaiKhoanAccess tka = new TaiKhoanAccess();
     List<DanhMuc> LDM = vpa.LayDanhMuc();
     List<TinhThanh> dsTinhThanh = vpa.LayTinhThanh();
+    List<VatPhamMoiNhat> VPH = vpa.MatHangNoiBat();
 }
 
 
@@ -183,42 +184,24 @@
                 </div>
                 <div class="w3ls-featured-ads">
                     <h2 class="sear-head fer">Mặt hàng nổi bật</h2>
-                    <div class="w3l-featured-ad">
-                        <a href="ThongTinCuThe.html">
-                            <div class="w3-featured-ad-left">
-                                <img src="/Content/images/f1.jpg" title="ad image" alt="" />
-                            </div>
-                            <div class="w3-featured-ad-right">
-                                <h4>Tên sản phẩm</h4>
-                                <p>Giá</p>
-                            </div>
-                            <div class="clearfix"></div>
-                        </a>
-                    </div>
-                    <div class="w3l-featured-ad">
-                        <a href="ThongTinCuThe.html">
-                            <div class="w3-featured-ad-left">
-                                <img src="/Content/images/f2.jpg" title="ad image" alt="" />
-                            </div>
-                            <div class="w3-featured-ad-right">
-                                <h4>Tên sản phẩm</h4>
-                                <p>Giá</p>
-                            </div>
-                            <div class="clearfix"></div>
-                        </a>
-                    </div>
-                    <div class="w3l-featured-ad">
-                        <a href="ThongTinCuThe.html">
-                            <div class="w3-featured-ad-left">
-                                <img src="/Content/images/f3.jpg" title="ad image" alt="" />
-                            </div>
-                            <div class="w3-featured-ad-right">
-                                <h4>Tên sản phẩm</h4>
-                                <p>Giá</p>
-                            </div>
-                            <div class="clearfix"></div>
-                        </a>
-                    </div>
+                    @foreach (var i in VPH)
+                    {
+                        <div class="w3l-featured-ad">
+                            <a href="/ChiTietVatPham/@i.MaVP">
+                                <div class="w3-featured-ad-left">
+                                    <img class="AnhVPHot" src="~/Content/uploads/@i.LinkAnh" alt="" />
+                                </div>
+                                <div class="w3-featured-ad-right">
+                                    <h4 title="@i.TenVP">@vpa.RutGonTen(i.TenVP)</h4>
+                                    <p>@String.Format("{0:0,0 vnđ}", i.GiaTien)</p>
+                                </div>
+                                <div class="clearfix"></div>
+                            </a>
+                        </div>
+                    }
+
+                  
+                    
                     <div class="clearfix"></div>
                 </div>
             </div>

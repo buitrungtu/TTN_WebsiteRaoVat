@@ -5,7 +5,6 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 
-
 namespace TTN_WebsiteRaoVat.Models
 {
     public class VatPhamAccess : DatabaseAccess
@@ -429,6 +428,49 @@ namespace TTN_WebsiteRaoVat.Models
                 return true;
             }
             return false;
+        }
+        public List<VatPhamMoiNhat> LayVatPhamMoiNhat()
+        {
+            List<VatPhamMoiNhat> kq = new List<VatPhamMoiNhat>();
+            OpenConnection();
+            SqlCommand command = new SqlCommand();
+            command.CommandType = CommandType.Text;
+            command.CommandText = "select * from MatHangMoiNhat";
+            command.Connection = conn;
+            SqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                VatPhamMoiNhat temp = new VatPhamMoiNhat();
+                temp.MaVP = reader.GetInt32(0);
+                temp.TenVP = reader.GetString(1);
+                temp.GiaTien = reader.GetInt64(2);                
+                temp.LinkAnh = reader.GetString(3);
+                temp.NgayDang = ChuyenThoiGian(reader.GetInt32(4));
+                kq.Add(temp);
+            }
+            reader.Close();
+            return kq;
+        }
+        public List<VatPhamMoiNhat> MatHangNoiBat()
+        {
+            List<VatPhamMoiNhat> kq = new List<VatPhamMoiNhat>();
+            OpenConnection();
+            SqlCommand command = new SqlCommand();
+            command.CommandType = CommandType.Text;
+            command.CommandText = "select * from VatPhamHotNhat";
+            command.Connection = conn;
+            SqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                VatPhamMoiNhat temp = new VatPhamMoiNhat();
+                temp.MaVP = reader.GetInt32(0);
+                temp.TenVP = reader.GetString(1);
+                temp.GiaTien = reader.GetInt64(2);
+                temp.LinkAnh = reader.GetString(3);                
+                kq.Add(temp);
+            }
+            reader.Close();
+            return kq;
         }
     }
 }
