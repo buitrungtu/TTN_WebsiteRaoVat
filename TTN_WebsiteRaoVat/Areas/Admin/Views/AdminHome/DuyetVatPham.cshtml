@@ -5,6 +5,8 @@
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
     VatPhamAccess vp = new VatPhamAccess();
     List<DuyetVP> dvp = vp.DuyetVP();
+    dvp = dvp.OrderBy(x => x.NgayDang).ToList();
+    dvp.Reverse();
 
 }
 @using TTN_WebsiteRaoVat.Models;

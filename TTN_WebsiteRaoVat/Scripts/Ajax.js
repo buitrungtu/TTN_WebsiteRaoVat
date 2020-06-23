@@ -18,8 +18,22 @@
         MaDM = $(this).data('madm');
         HienVatPham(MaDM, tieuchi);     
     })
-    
+    $("#TimKiem").click(function () {
+        strTen = $('#strTim').val();
+        MaTL = $(this).data('id');
+        TimKiemVP(strTen, MaTL);
+    })
 });  
+function TimKiemVP(strTen,MaTL) {
+    $.ajax({
+        type: 'POST',
+        url: "/Product/TimKiemVPAJ",
+        data: { TenVP: strTen, MaTL: MaTL},
+        success: function (response) {
+            $("#DanhSachVatPham").html(response);
+        }
+    });
+}
 function ThichVatPham(mavp, sdt) {
     var ThichVatPham = {
         MaVP: mavp,

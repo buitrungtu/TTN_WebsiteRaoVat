@@ -21,11 +21,19 @@ namespace TTN_WebsiteRaoVat.Controllers
             ViewBag.MaDM = MaDM; 
             return View(dsvp);
         }
-        public ActionResult TimKiem(string strTimKiem, string TheLoai)
+        public ActionResult TimKiem(string strTimKiem, int TheLoai)
         {
-            List<VatPham> dsvp = vpa.TimKiemVP(strTimKiem, Int32.Parse(TheLoai));
+            List<VatPham> dsvp = vpa.TimKiemVP(strTimKiem, TheLoai);
             dsvp = dsvp.OrderBy(x => x.NgayDang).ToList();
+            ViewBag.MaDM = TheLoai;
             return View(dsvp);
+        }
+        public ActionResult TimKiemVPAJ(string TenVP,int MaTL)
+        {
+            List<VatPham> dsvp = vpa.TimKiemVP(TenVP, MaTL);            
+            ViewBag.MaDM = MaTL;
+            ViewBag.TieuChi = 0;          
+            return PartialView(dsvp);
         }
         public ActionResult ShowVatPham(int MaDM, int tieuchi)
         {
@@ -156,8 +164,38 @@ namespace TTN_WebsiteRaoVat.Controllers
                 return RedirectToAction("Index", "Product", new {MaDM = theloai});
             }
             return View("DangTinBan");
-        }    
+        }
+        int XauConChungDaiNhat(string s1, string s2)
+        {
+            string[] t1 = s1.Split(' ');
+            string[] t2 = s2.Split(' ');
+            int[,] kq = new int[100, 100];
+            for (int i = 0; i < t1.Length; i++)
+            {
+                kq[i, 0] = 0;
+            }
+            for (int i = 0; i < t2.Length; i++)
+            {
+                kq[0, i] = 0;
+            }
+            for (int i = 1; i < t1.Length; i++)
+            {
+                for (int j = 1; j < t2.Length; j++)
+                {
+                    if (t1[i].ToLower().CompareTo(t2[j].ToLower()) == 0)
+                    {
+                        kq[i, j] = kq[i - 1, j - 1] + 1;
+                    }
+                    else
+                    {
+                        kq[i, j] = (kq[i, j - 1] > kq[i - 1, j]) ? kq[i, j - 1] : kq[i - 1, j];
+                    }
+                }
+            }
+            return kq[t1.Length, t2.Length];
+        }
     }
+    
     public class ImageFile
     {
         public List<HttpPostedFileBase> files { get; set; }

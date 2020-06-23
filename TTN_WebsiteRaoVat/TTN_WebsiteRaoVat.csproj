@@ -968,6 +968,7 @@
     <Content Include="Views\Product\ShowVatPham.cshtml" />
     <Content Include="Views\Product\LocTheoGia.cshtml" />
     <Content Include="Views\Product\TimKiem.cshtml" />
+    <Content Include="Views\Product\TimKiemVPAJ.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

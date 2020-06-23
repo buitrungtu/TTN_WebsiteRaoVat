@@ -83,45 +83,7 @@
 <div class="total-ads main-grid-border">
     <div class="container">
         <div class="select-box">
-            <div class="select-city-for-SapXepal-ads ads-list">
-                <label>Chọn Tỉnh/Thành Phố</label>
-                <select>
-                    <optgroup>
-                        <option selected style="display:none;color:#eee;">Chọn tỉnh/thành phố</option>
-                        @{
-
-                            foreach (TinhThanh item in dsTinhThanh)
-                            {
-                                <option data-matt="@item.MaTinhThanh">@item.TenTinhThanh</option>
-                            }
-                        }
-                    </optgroup>
-                </select>
-            </div>
-            <div class="browse-category ads-list">
-                <label>Chọn danh mục</label>
-                <select class="selectpicker show-tick" data-live-search="true">
-                    @foreach (DanhMuc a in LDM)
-                    {
-                        <option data-madm="@a.MaDanhMuc"> @a.TenDanhMuc </option>
-                    }
-                </select>
-            </div>
-            <div class="search-product ads-list">
-                <label>Tìm kiếm sản phẩm cụ thể</label>
-                <div class="search">
-                    <div id="custom-search-input">
-                        <div class="input-group">
-                            <input type="text" class="form-control input-lg" />
-                            <span class="input-group-btn">
-                                <button class="btn btn-info btn-lg" type="button">
-                                    <i class="glyphicon glyphicon-search"></i>
-                                </button>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <h3 class="TieuDe">Happy Shopping tại TH - Market</h3>
             <div class="clearfix"></div>
         </div>
         <div class="all-categories">
@@ -137,11 +99,11 @@
         <div class="ads-grid">
             <div class="side-bar col-md-3">
                 <div class="search-hotel">
-                    <h3 class="agileits-sear-head">Tên chứa</h3>
-                    <form>
-                        <input type="text" value="Product name..." onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Nhập tên...';}" required="">
-                        <input type="submit" value=" ">
-                    </form>
+                    <h3 class="agileits-sear-head">Tìm kiếm</h3>
+                    
+                        <input type="text" id="strTim" placeholder="Tên vật phẩm" required="">                   
+                        <button id="TimKiem" data-id="@ViewBag.MaDM">Tìm</button>  
+                    
                 </div>
                 <div class="range">
                     <h3 class="agileits-sear-head">Tầm giá</h3>
