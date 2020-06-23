@@ -118,7 +118,36 @@ namespace TTN_WebsiteRaoVat.Controllers
             }
             return "";
         }
-       
+        public JsonResult NgungBan(int MaVP)
+        {
+            VatPhamAccess vpa = new VatPhamAccess();
+            if (vpa.NgungBan(MaVP))
+            {
+                return Json(new
+                {
+                    status = true
+                });
+            }
+            return Json(new
+            {
+                status = false
+            });
+        }
+        public JsonResult TiepTucBan(int MaVP)
+        {
+            VatPhamAccess vpa = new VatPhamAccess();
+            if (vpa.BanTiep(MaVP))
+            {
+                return Json(new
+                {
+                    status = true
+                });
+            }
+            return Json(new
+            {
+                status = false
+            });
+        }
         public ActionResult DangXuat()
         {
             Session[CommonConstants.USER_SESSION] = null;

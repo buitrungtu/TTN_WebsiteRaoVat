@@ -8457,7 +8457,7 @@ i.fa.fa-caret-down {
 .DS-BaoXau {
     position: absolute;
     right: -24%;
-    bottom: 18%;
+    bottom: 2%;
     width: 162px;
     z-index: 2;
     opacity: 0;
@@ -8556,5 +8556,14 @@ a#Loc {
     top: 32px;
     right: 3%;
 }
-a.AnhMoiNhat{height:300px;}
+img.AnhMoiNhat {height: 300px;}
 img.AnhVPHot{height:150px;}
+.FormBaoXau {
+    position: fixed;
+    top: 10%;
+    left: 35%;
+    z-index: 3;
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(0.3);
+}

@@ -1,7 +1,7 @@
 ﻿@using TTN_WebsiteRaoVat.Common;
 @using TTN_WebsiteRaoVat.Models;
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "TimKiem";
     Layout = "~/Views/Shared/_Layout.cshtml";
     VatPhamAccess vpa = new VatPhamAccess();
     List<VatPham> LVP = vpa.LayVatPham(0);
@@ -10,7 +10,6 @@
     List<TinhThanh> dsTinhThanh = vpa.LayTinhThanh();
     List<VatPhamMoiNhat> VPH = vpa.MatHangNoiBat();
 }
-
 
 @model List<TTN_WebsiteRaoVat.Models.VatPham>
 @section HeadJS{
@@ -131,7 +130,7 @@
                 {
                     <li><a class="DanhMuc" href="#@a.MaDanhMuc" data-id="@a.MaDanhMuc"> @a.TenDanhMuc </a></li>
                 }
-                <li><a class="DanhMuc TatCa" href="#0" data-id="@ViewBag.MaDM"> Tất cả danh mục<span class="num-of-ads">(@LVP.Count)</span></a></li>
+                <li><a class="DanhMuc TatCa" href="#0" data-id="0"> Tất cả danh mục<span class="num-of-ads">(@LVP.Count)</span></a></li>
             </ul>
         </div>
         <div class="ads-grid">
@@ -178,7 +177,7 @@
                                 });
                                 $("#amount").val($("#slider-range").slider("values", 0) + " Triệu" + " - " + $("#slider-range").slider("values", 1) + " Triệu +");
                             });
-                        });                       
+                        });
                     </script>
 
                 </div>
@@ -200,8 +199,8 @@
                         </div>
                     }
 
-                  
-                    
+
+
                     <div class="clearfix"></div>
                 </div>
             </div>
@@ -247,7 +246,7 @@
                                                     </select>
                                                 </div>
 
-                                                <a href="#@ViewBag.MaDM" id="SapXep" data-madm="@ViewBag.MaDM">Áp dụng</a>
+                                                <a href="#0" id="SapXep" data-madm="0">Áp dụng</a>
                                             </div>
                                             <div class="clearfix"></div>
                                             <ul class="list">
@@ -301,7 +300,7 @@
                                                     </select>
                                                 </div>
 
-                                                <a href="#@ViewBag.MaDM" id="SapXep" data-madm="@ViewBag.MaDM">Áp dụng</a>
+                                                <a href="#0" id="SapXep" data-madm="0">Áp dụng</a>
                                             </div>
                                             <div class="clearfix"></div>
                                             <ul class="list">
@@ -358,7 +357,7 @@
                                                     </select>
                                                 </div>
 
-                                                <a href="#@ViewBag.MaDM" id="SapXep" data-madm="@ViewBag.MaDM">Áp dụng</a>
+                                                <a href="#0" id="SapXep" data-madm="0">Áp dụng</a>
                                             </div>
                                             <div class="clearfix"></div>
                                             <ul class="list">

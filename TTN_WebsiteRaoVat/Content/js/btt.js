@@ -6,9 +6,9 @@ document.addEventListener("DOMContentLoaded",function() {
 		$('.ThongBao').removeClass('HienLen');
 	});
 
-	$('.BaoXau').click(function(event) {
-
-		$('.DS-BaoXau').toggleClass('HienLen');
+    $('.BaoXau').click(function (event) {
+        $('.FormBaoXau').addClass('HienLen');
+        $('.LamMo').addClass('HienLen');
 	});
 
 	$('.Chuong').click(function(event) {
@@ -30,7 +30,8 @@ document.addEventListener("DOMContentLoaded",function() {
 
 	$('.LamMo,.submit').click(function(event) {
 		$('.ThongTinMuaHang').removeClass('HienLen');
-		$('.LamMo').removeClass('HienLen');
+        $('.LamMo').removeClass('HienLen');
+        $('.FormBaoXau').removeClass('HienLen');
 	});
     
 },false)

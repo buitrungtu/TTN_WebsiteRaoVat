@@ -21,10 +21,11 @@ namespace TTN_WebsiteRaoVat.Controllers
             ViewBag.MaDM = MaDM; 
             return View(dsvp);
         }
-        public ActionResult TimKiem(string str, int Matl)
+        public ActionResult TimKiem(string strTimKiem, string TheLoai)
         {
-
-            return View();
+            List<VatPham> dsvp = vpa.TimKiemVP(strTimKiem, Int32.Parse(TheLoai));
+            dsvp = dsvp.OrderBy(x => x.NgayDang).ToList();
+            return View(dsvp);
         }
         public ActionResult ShowVatPham(int MaDM, int tieuchi)
         {
@@ -81,10 +82,26 @@ namespace TTN_WebsiteRaoVat.Controllers
         }
         public ActionResult ChiTietVatPham(int MaVP)
         {
+
             VatPham vp = vpa.ThongTinChiTietVatPham(MaVP);
             return View(vp);
         }
-
+        public ActionResult BaoXau(string SDT,int MaVP,string LyDo,string GhiChu)
+        {
+            if (vpa.BaoXauVatPham(SDT, MaVP, LyDo, GhiChu))
+            {
+                return RedirectToAction("ChiTietVatPham", "Product", new { MaVP = MaVP });
+            }
+            return RedirectToAction("ChiTietVatPham", "Product", new { MaVP = MaVP });
+        }
+        public ActionResult DatMua(string SDT, int MaVP, string TenNM,string Email,string DiaChi ,string GhiChu)
+        {
+            if (vpa.DatMuaSanPham(SDT, MaVP, TenNM,Email,DiaChi, GhiChu))
+            {
+                return RedirectToAction("ChiTietVatPham", "Product", new { MaVP = MaVP });
+            }
+            return RedirectToAction("ChiTietVatPham", "Product", new { MaVP = MaVP });
+        }
         public JsonResult ThichVatPham(ThichVatPham temp)
         {
             if (vpa.DaThich(temp.SDT, Int32.Parse(temp.MaVP)) == false && vpa.ThichVatPham(temp) == true)

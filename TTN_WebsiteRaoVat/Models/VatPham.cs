@@ -23,5 +23,6 @@ namespace TTN_WebsiteRaoVat.Models
         public int MaDM { get; set; }
         public int KiemDuyet { get; set; }
         public int NgungBan { get; set; }
+        public int LoaiTK { get; set; }
     }   
 }

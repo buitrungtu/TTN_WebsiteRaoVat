@@ -107,14 +107,14 @@
                                                     <section class="list-right">
                                                         @if (i.NgungBan == 1)
                                                         {
-                                                            <a class="btnSuaXoa" href="#"><i class="fa fa-unlock" aria-hidden="true"></i> Tiếp tục bán</a>
+                                                            <a class="TiepTucBan btnSuaXoa" data-id="@i.MaVP" href="#"><i class="fa fa-unlock" aria-hidden="true"></i> Tiếp tục bán</a>
                                                         }
                                                         else
                                                         {
-                                                            <a class="btnSuaXoa" href="#"><i class="fa fa-gavel" aria-hidden="true"></i> Ngừng bán</a>
+                                                            <a class="NgungBan btnSuaXoa" data-id="@i.MaVP" href="#"><i class="fa fa-gavel" aria-hidden="true"></i> Ngừng bán</a>
                                                         }
 
-                                                        <a class="btnSuaXoa" href="#"><i class="fa fa-remove" aria-hidden="true"></i>  Xóa</a>
+                                                        <a class="NutXoa btnSuaXoa" data-id="@i.MaVP" href="#"><i class="fa fa-remove" aria-hidden="true"></i>  Xóa</a>
                                                     </section>
                                                     <div class="clearfix"></div>
                                                 </li>
@@ -135,5 +135,54 @@
         <div class="clearfix"></div>
     </div>
 </div>
+<script>
+    $(document).ready(function () {
+        $(".NutXoa").click(function () {
+            MaVP = $(this).data('id');
+            XoaVatPham(MaVP);
+        })
+        $(".NgungBan").click(function () {
+            MaVP = $(this).data('id');
+            NgungBan(MaVP);
+        })
+        $(".TiepTucBan").click(function () {
+            MaVP = $(this).data('id');
+            TiepTucBan(MaVP);
+        })
+    });
+    function XoaVatPham(MaVP) {
+        $.ajax({
+            async: true,
+            type: "POST",
+            url: "/XuLyAdmin/XoaVatPham",
+            data: { MaVP: MaVP },
+            success: function (response) {
+                location.reload();
+            }
+        });
+    }
+    function NgungBan(MaVP) {
+        $.ajax({
+            async: true,
+            type: "POST",
+            url: "/User/NgungBan",
+            data: { MaVP: MaVP },
+            success: function (response) {
+                location.reload();
+            }
+        });
+    }
+    function TiepTucBan(MaVP) {
+        $.ajax({
+            async: true,
+            type: "POST",
+            url: "/User/TiepTucBan",
+            data: { MaVP: MaVP },
+            success: function (response) {
+                location.reload();
+            }
+        });
+    }
 
+</script>
 

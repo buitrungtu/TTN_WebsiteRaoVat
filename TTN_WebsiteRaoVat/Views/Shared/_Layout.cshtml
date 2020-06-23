@@ -156,27 +156,29 @@
                     <h1><a href="/Home"><span>TH</span>Market</a></h1>
                 </div>
                 <div class="agileits_search">
-                    <form action="#" method="post">
-                        <input name="Search" type="text" placeholder="Tìm kiếm của bạn?" required="" />
-                        <select id="agileinfo_search" name="DanhMucTimKiem" required="">
-                            <option value="0">Tất cả danh mục</option>
-                            @{
-                                List<DanhMuc> temp = vpa.LayDanhMuc();
-                                foreach (DanhMuc item in temp)
-                                {
-                                    <option value="@item.MaDanhMuc">@item.TenDanhMuc</option>
+                    @using (Html.BeginForm("TimKiem", "Product"))
+                    {                       
+                            <input name="strTimKiem" type="text" placeholder="Tìm kiếm của bạn?" required="" />
+                            <select id="agileinfo_search" name="TheLoai" required="">
+                                <option value="0">Tất cả danh mục</option>
+                                @{
+                                    List<DanhMuc> temp = vpa.LayDanhMuc();
+                                    foreach (DanhMuc item in temp)
+                                    {
+                                        <option value="@item.MaDanhMuc">@item.TenDanhMuc</option>
+                                    }
                                 }
-                            }
-                        </select>
-                        <button type="submit" class="btn btn-default" aria-label="Left Align">
-                            <i class="fa fa-search" aria-hidden="true"> </i>
-                        </button>
-                    </form>
+                            </select>
+                            <button type="submit" class="btn btn-default" aria-label="Left Align">
+                                <i class="fa fa-search" aria-hidden="true"> </i>
+                            </button>                     
+                    }
+
                     @if (session == null)
                     {
                         <a id="DangTin" class="post-w3layouts-ad" href="#">Đăng tin miễn phí</a>
                         <script>
-                            $("#DangTin").click(function(){
+                            $("#DangTin").click(function () {
                                 alert("Bạn phải đăng nhập để thực hiện chức năng này!");
                             });
                         </script>

@@ -164,30 +164,34 @@
                             <ul class="list">
                                 @foreach (var item in Model)
                                 {
-                                    <a href="/ChiTietVatPham/@item.MaVP">
-                                        <li>
+                                    if (item.LoaiTK == 0)
+                                    {
+                                        <a href="/ChiTietVatPham/@item.MaVP">
+                                            <li>
 
-                                            <img src="/Content/uploads/@item.LinkHinhAnh[0]" title="" alt="" />
-                                            <section class="list-left">
-                                                @if (item.TenVP.Length < 22)
-                                                {
-                                                    <h5 class="title">@item.TenVP</h5>
-                                                }
-                                                else
-                                                {
-                                                    string ten = item.TenVP.Substring(0, 17) + "...";
-                                                    <h5 class="title">@ten</h5>
-                                                }
-                                                <span class="adprice">@String.Format("{0:0,0 vnđ}", item.GiaTien)</span>
-                                                <p class="catpath">@item.TheLoai</p>
-                                            </section>
-                                            <section class="list-right">
-                                                <span class="date">@item.NgayDang</span>
-                                                <span class="cityname">@item.ThanhPho</span>
-                                            </section>
-                                            <div class="clearfix"></div>
-                                        </li>
-                                    </a>
+                                                <img src="/Content/uploads/@item.LinkHinhAnh[0]" title="" alt="" />
+                                                <section class="list-left">
+                                                    @if (item.TenVP.Length < 22)
+                                                    {
+                                                        <h5 class="title">@item.TenVP</h5>
+                                                    }
+                                                    else
+                                                    {
+                                                        string ten = item.TenVP.Substring(0, 17) + "...";
+                                                        <h5 class="title">@ten</h5>
+                                                    }
+                                                    <span class="adprice">@String.Format("{0:0,0 vnđ}", item.GiaTien)</span>
+                                                    <p class="catpath">@item.TheLoai</p>
+                                                </section>
+                                                <section class="list-right">
+                                                    <span class="date">@item.NgayDang</span>
+                                                    <span class="cityname">@item.ThanhPho</span>
+                                                </section>
+                                                <div class="clearfix"></div>
+                                            </li>
+                                        </a>
+                                    }
+
                                 }
                             </ul>
                         </div>
@@ -237,30 +241,34 @@
                             <ul class="list">
                                 @foreach (var item in Model)
                                 {
-                                    <a href="/ChiTietVatPham/@item.MaVP">
-                                        <li>
+                                    if (item.LoaiTK == 1)
+                                    {
+                                        <a href="/ChiTietVatPham/@item.MaVP">
+                                            <li>
 
-                                            <img src="/Content/uploads/@item.LinkHinhAnh[0]" title="" alt="" />
-                                            <section class="list-left">
-                                                @if (item.TenVP.Length < 22)
-                                                {
-                                                    <h5 class="title">@item.TenVP</h5>
-                                                }
-                                                else
-                                                {
-                                                    string ten = item.TenVP.Substring(0, 17) + "...";
-                                                    <h5 class="title">@ten</h5>
-                                                }
-                                                <span class="adprice">@String.Format("{0:0,0 vnđ}", item.GiaTien)</span>
-                                                <p class="catpath">@item.TheLoai</p>
-                                            </section>
-                                            <section class="list-right">
-                                                <span class="date">@item.NgayDang</span>
-                                                <span class="cityname">@item.ThanhPho</span>
-                                            </section>
-                                            <div class="clearfix"></div>
-                                        </li>
-                                    </a>
+                                                <img src="/Content/uploads/@item.LinkHinhAnh[0]" title="" alt="" />
+                                                <section class="list-left">
+                                                    @if (item.TenVP.Length < 22)
+                                                    {
+                                                        <h5 class="title">@item.TenVP</h5>
+                                                    }
+                                                    else
+                                                    {
+                                                        string ten = item.TenVP.Substring(0, 17) + "...";
+                                                        <h5 class="title">@ten</h5>
+                                                    }
+                                                    <span class="adprice">@String.Format("{0:0,0 vnđ}", item.GiaTien)</span>
+                                                    <p class="catpath">@item.TheLoai</p>
+                                                </section>
+                                                <section class="list-right">
+                                                    <span class="date">@item.NgayDang</span>
+                                                    <span class="cityname">@item.ThanhPho</span>
+                                                </section>
+                                                <div class="clearfix"></div>
+                                            </li>
+                                        </a>
+                                    }
+
                                 }
                             </ul>
                         </div>

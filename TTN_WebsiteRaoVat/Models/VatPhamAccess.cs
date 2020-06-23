@@ -108,6 +108,7 @@ namespace TTN_WebsiteRaoVat.Models
                 vp.LinkHinhAnh.Add(reader.GetString(10));
                 vp.ChatLuong = reader.GetInt32(11);
                 vp.DiaDiem = reader.GetString(12);
+                vp.LoaiTK = reader.GetInt32(13);
                 dsvp.Add(vp);
             }
             reader.Close();
@@ -203,8 +204,49 @@ namespace TTN_WebsiteRaoVat.Models
             }
             return false;
         }
+        public bool BaoXauVatPham(string SDT,int MaVP,string LyDo,string GhiChu)
+        {
+            OpenConnection();
+            SqlCommand command = new SqlCommand();
+            command.CommandType = CommandType.StoredProcedure;
+            command.CommandText = "BaoXauVatPham";
+            command.Connection = conn;
 
+            command.Parameters.Add("@sdt", SqlDbType.NChar).Value = SDT;
+            command.Parameters.Add("@mavp", SqlDbType.Int).Value = MaVP;
+            command.Parameters.Add("@LyDo", SqlDbType.NVarChar).Value = LyDo;
+            command.Parameters.Add("@ghichu", SqlDbType.NVarChar).Value = GhiChu;
 
+            int ret = command.ExecuteNonQuery();
+
+            if (ret > 0)
+            {
+                return true;
+            }
+            return false;
+        }
+        public bool DatMuaSanPham(string SDT, int MaVP, string TenNM, string Email,string DiaChi,string GhiChu)
+        {
+            OpenConnection();
+            SqlCommand command = new SqlCommand();
+            command.CommandType = CommandType.StoredProcedure;
+            command.CommandText = "DatMuaSanPham";
+            command.Connection = conn;
+
+            command.Parameters.Add("@sdt", SqlDbType.NChar).Value = SDT;
+            command.Parameters.Add("@mavp", SqlDbType.Int).Value = MaVP;
+            command.Parameters.Add("@tennm", SqlDbType.NVarChar).Value = TenNM;
+            command.Parameters.Add("@email", SqlDbType.NVarChar).Value = Email;
+            command.Parameters.Add("@diachi", SqlDbType.NVarChar).Value = DiaChi;
+            command.Parameters.Add("@ghichu", SqlDbType.NVarChar).Value = GhiChu;
+            int ret = command.ExecuteNonQuery();
+
+            if (ret > 0)
+            {
+                return true;
+            }
+            return false;
+        }
         public bool ThichVatPham(ThichVatPham temp)
         {
             OpenConnection();
@@ -412,6 +454,28 @@ namespace TTN_WebsiteRaoVat.Models
             int ret = command.ExecuteNonQuery();
             return ret > 0;
         }
+        public bool NgungBan(int MaVP)
+        {
+            OpenConnection();
+            SqlCommand command = new SqlCommand();
+            command.CommandType = CommandType.Text;
+            command.CommandText = "update VatPham set NgungBan = 1 where MaVP =@mavp";
+            command.Parameters.Add("@mavp", SqlDbType.Int).Value = MaVP;
+            command.Connection = conn;
+            int ret = command.ExecuteNonQuery();
+            return ret > 0;
+        }
+        public bool BanTiep(int MaVP)
+        {
+            OpenConnection();
+            SqlCommand command = new SqlCommand();
+            command.CommandType = CommandType.Text;
+            command.CommandText = "update VatPham set NgungBan = 0 where MaVP =@mavp";
+            command.Parameters.Add("@mavp", SqlDbType.Int).Value = MaVP;
+            command.Connection = conn;
+            int ret = command.ExecuteNonQuery();
+            return ret > 0;
+        }
         public bool XoaVatPham(int MaVP)
         {
             OpenConnection();
@@ -502,6 +566,7 @@ namespace TTN_WebsiteRaoVat.Models
                 vp.LinkHinhAnh.Add(reader.GetString(10));
                 vp.ChatLuong = reader.GetInt32(11);
                 vp.DiaDiem = reader.GetString(12);
+                vp.LoaiTK = reader.GetInt32(13);
                 dsvp.Add(vp);
             }
             reader.Close();
