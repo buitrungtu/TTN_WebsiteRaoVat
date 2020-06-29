@@ -69,32 +69,33 @@
                     else
                     {
                         sdt = session.SDT;
-                        <div class="agileinfo_signin FormBaoXau">
+                    <div class="agileinfo_signin ThongTinMuaHang">
 
+                        @using (Html.BeginForm("DatMua", "Product"))
+                        {
+                            <h3>Thông tin mua hàng</h3>
+                            <input type="hidden"  name="SDT" value="@sdt" />
+                            <input type="hidden"  name="MaVP" value="@Model.MaVP" />
+                            <input type="text" name="TenNM" placeholder="Tên bạn" required="">
+                            <input type="email" name="Email" placeholder="Email" required="">
+                            <input type="text" name="DiaChi" placeholder="Địa chỉ" required="">
+                            <input type="text" name="GhiChu" placeholder="Ghi chú" required="">
+                            <input type="submit" value="Đặt mua">
+                        }
+                    </div>
+
+                    <div class="agileinfo_signin FormBaoXau">
                         @using (Html.BeginForm("BaoXau", "Product"))
                         {
                             <h3>Báo cáo sản phẩm</h3>
-                                <input type="text" style="visibility:hidden" name="SDT" value="@sdt" />
-                                <input type="text" style="visibility:hidden" name="MaVP" value="@Model.MaVP" />
-                                <input type="text" name="LyDo" placeholder="Lý do" required="">
-                                <textarea class="mess" placeholder="Ghi chú thêm" name="GhiChu"></textarea>
-                                <input type="submit" value="Báo cáo">
+                            <input type="hidden"  name="SDT" value="@sdt" />
+                            <input type="hidden"  name="MaVP" value="@Model.MaVP" />                            
+                            <input type="text" name="LyDo" placeholder="Lý do" required="">
+                            <textarea class="GhiThem" placeholder="Ghi chú thêm" name="GhiChu"></textarea>
+                            <input type="submit" value="Báo cáo">
                         }
-                        <div class="agileinfo_signin ThongTinMuaHang">
-
-                            @using (Html.BeginForm("DatMua", "Product"))
-                            {
-                                <h3>Thông tin mua hàng</h3>
-                                <input type="text" style="visibility:hidden" name="SDT" value="@sdt" />
-                                <input type="text" style="visibility:hidden" name="MaVP" value="@Model.MaVP" />
-                                <input type="text" name="TenNM" placeholder="Tên bạn" required="">
-                                <input type="email" name="Email" placeholder="Email" required="">
-                                <input type="text" name="DiaChi" placeholder="Địa chỉ" required="">
-                                <input type="text" name="GhiChu" placeholder="Ghi chú" required="">
-                                <input type="submit" value="Đặt mua">
-                            }
-                        </div>
                     </div>
+
                     }
                     <a href="#" class="btn-Thich ChiaSe">Chia sẻ  <i class="fa fa-facebook-square"></i></a>
                     @if (vpa.DaThich(sdt, Model.MaVP))

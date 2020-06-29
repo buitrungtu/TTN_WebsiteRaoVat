@@ -274,7 +274,25 @@
                         </div>
                     </div>
                 </div>
-                
+                <ul class="pagination pagination-sm">
+                    @if (ViewBag.Trang > 0)
+                    {
+                        <li><a href="@Url.Action("Index", "Product", new { MaDM = ViewBag.MaDM, Trang = ViewBag.Trang - 1 })">Trước</a></li>
+                        <li><a href="@Url.Action("Index", "Product", new { MaDM = ViewBag.MaDM, Trang = 1})">1</a></li>
+                        <li><a href="@Url.Action("Index", "Product", new { MaDM = ViewBag.MaDM, Trang = 2})">2</a></li>
+                        <li><a href="@Url.Action("Index", "Product", new { MaDM = ViewBag.MaDM, Trang = 3})">3</a></li>
+                        <li><a href="@Url.Action("Index", "Product", new { MaDM = ViewBag.MaDM, Trang = 4})">4</a></li>
+                        <li><a href="@Url.Action("Index", "Product", new { MaDM = ViewBag.MaDM, Trang = ViewBag.Trang + 1})">Sau</a></li>
+                    }
+                    else
+                    {
+                        <li><a href="@Url.Action("Index", "Product", new { MaDM = ViewBag.MaDM, Trang = 1})">1</a></li>
+                        <li><a href="@Url.Action("Index", "Product", new { MaDM = ViewBag.MaDM, Trang = 2})">2</a></li>
+                        <li><a href="@Url.Action("Index", "Product", new { MaDM = ViewBag.MaDM, Trang = 3})">3</a></li>
+                        <li><a href="@Url.Action("Index", "Product", new { MaDM = ViewBag.MaDM, Trang = 4})">4</a></li>
+                        <li><a href="@Url.Action("Index", "Product", new { MaDM = ViewBag.MaDM, Trang = ViewBag.Trang + 1})">Sau</a></li>
+                    }
+                </ul>
             </div>
         </div>
     </div>

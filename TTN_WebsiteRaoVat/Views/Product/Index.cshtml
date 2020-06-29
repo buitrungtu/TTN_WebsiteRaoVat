@@ -4,7 +4,7 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
     VatPhamAccess vpa = new VatPhamAccess();
-    List<VatPham> LVP = vpa.LayVatPham(0);
+    List<VatPham> LVP = vpa.LayVatPham(0,1);
     TaiKhoanAccess tka = new TaiKhoanAccess();
     List<DanhMuc> LDM = vpa.LayDanhMuc();
     List<TinhThanh> dsTinhThanh = vpa.LayTinhThanh();
@@ -14,6 +14,7 @@
 
 @model List<TTN_WebsiteRaoVat.Models.VatPham>
 @section HeadJS{
+    <script type="text/javascript" src="/Content/js/btt.js"></script>
     <script src="/Scripts/Ajax.js"></script>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="/Content/js/bootstrap.js"></script>
@@ -100,10 +101,8 @@
             <div class="side-bar col-md-3">
                 <div class="search-hotel">
                     <h3 class="agileits-sear-head">Tìm kiếm</h3>
-                    
-                        <input type="text" id="strTim" placeholder="Tên vật phẩm" required="">                   
-                        <button id="TimKiem" data-id="@ViewBag.MaDM">Tìm</button>  
-                    
+                    <input type="text" id="strTim" placeholder="Tên vật phẩm" required="">
+                    <a id="TimKiemVP" style="cursor: pointer;" data-id="@ViewBag.MaDM"><i class="fa fa-search"></i></a>
                 </div>
                 <div class="range">
                     <h3 class="agileits-sear-head">Tầm giá</h3>
@@ -140,7 +139,7 @@
                                 });
                                 $("#amount").val($("#slider-range").slider("values", 0) + " Triệu" + " - " + $("#slider-range").slider("values", 1) + " Triệu +");
                             });
-                        });                       
+                        });
                     </script>
 
                 </div>
@@ -162,8 +161,8 @@
                         </div>
                     }
 
-                  
-                    
+
+
                     <div class="clearfix"></div>
                 </div>
             </div>
@@ -359,7 +358,25 @@
                                         </div>
                                     </div>
                                 </div>
-
+                                <ul class="pagination pagination-sm">
+                                    @if (ViewBag.Trang > 0)
+                                    {
+                                        <li><a href="@Url.Action("Index", "Product", new { MaDM = ViewBag.MaDM, Trang = ViewBag.Trang - 1 })">Trước</a></li>
+                                        <li><a href="@Url.Action("Index", "Product", new { MaDM = ViewBag.MaDM, Trang = 1})">1</a></li>
+                                        <li><a href="@Url.Action("Index", "Product", new { MaDM = ViewBag.MaDM, Trang = 2})">2</a></li>
+                                        <li><a href="@Url.Action("Index", "Product", new { MaDM = ViewBag.MaDM, Trang = 3})">3</a></li>
+                                        <li><a href="@Url.Action("Index", "Product", new { MaDM = ViewBag.MaDM, Trang = 4})">4</a></li>
+                                        <li><a href="@Url.Action("Index", "Product", new { MaDM = ViewBag.MaDM, Trang = ViewBag.Trang + 1})">Sau</a></li>
+                                    }
+                                    else
+                                    {
+                                        <li><a href="@Url.Action("Index", "Product", new { MaDM = ViewBag.MaDM, Trang = 1})">1</a></li>
+                                        <li><a href="@Url.Action("Index", "Product", new { MaDM = ViewBag.MaDM, Trang = 2})">2</a></li>
+                                        <li><a href="@Url.Action("Index", "Product", new { MaDM = ViewBag.MaDM, Trang = 3})">3</a></li>
+                                        <li><a href="@Url.Action("Index", "Product", new { MaDM = ViewBag.MaDM, Trang = 4})">4</a></li>
+                                        <li><a href="@Url.Action("Index", "Product", new { MaDM = ViewBag.MaDM, Trang = ViewBag.Trang + 1})">Sau</a></li>
+                                    }
+                                </ul>
                             </div>
                         </div>
                     </div>
@@ -380,7 +397,7 @@
 
         $().UItoTop({ easingType: 'easeOutQuart' });
 
-    });
+                                    });
 </script>
 <!-- start-smoth-scrolling -->
 <script type="text/javascript" src="/Content/js/move-top.js"></script>
@@ -395,4 +412,3 @@
 </script>
 <!-- start-smoth-scrolling -->
 <!-- //here ends scrolling icon -->
-<script type="text/javascript" src="/Content/js/btt.js"></script>

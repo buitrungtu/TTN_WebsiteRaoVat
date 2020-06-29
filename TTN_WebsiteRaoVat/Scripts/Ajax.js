@@ -18,10 +18,10 @@
         MaDM = $(this).data('madm');
         HienVatPham(MaDM, tieuchi);     
     })
-    $("#TimKiem").click(function () {
-        strTen = $('#strTim').val();
+    $("#TimKiemVP").click(function () {
         MaTL = $(this).data('id');
-        TimKiemVP(strTen, MaTL);
+        strTen = $('#strTim').val();
+        TimKiemVP(strTen, MaTL);  
     })
 });  
 function TimKiemVP(strTen,MaTL) {
