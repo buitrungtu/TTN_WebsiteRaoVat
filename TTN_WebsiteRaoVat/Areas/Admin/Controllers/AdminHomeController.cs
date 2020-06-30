@@ -41,7 +41,11 @@ namespace TTN_WebsiteRaoVat.Areas.Admin.Controllers
         {
             return View();
         }
-        
+        public ActionResult LogoutAdmin()
+        {
+            Session[CommonConstants.ADMIN_SESSION] = null;
+            return Redirect("/");
+        }
         public ActionResult ResultLoginAdmin(string username, string pass)
         {
             if (ModelState.IsValid)
@@ -54,7 +58,7 @@ namespace TTN_WebsiteRaoVat.Areas.Admin.Controllers
             }
             return View("LoginAdmin");
         }
-       
+        
         
 
     }
