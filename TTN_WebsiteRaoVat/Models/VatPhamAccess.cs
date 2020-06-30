@@ -80,13 +80,21 @@ namespace TTN_WebsiteRaoVat.Models
             reader.Close();
             return dsvp;
         }
-        public List<VatPham> LayVatPham(int MaDM)
+        public List<VatPham> LayVatPham(int MaDM,int Trang)
         {
+            int start = (Trang - 1) * 12;
             List<VatPham> dsvp = new List<VatPham>();
             OpenConnection();
             SqlCommand command = new SqlCommand();
             command.CommandType = CommandType.Text;
-            command.CommandText = "select * from dbo.DanhSachVatPham(@MaDM)";
+            if(Trang > 0)
+            {
+                command.CommandText = "select * from dbo.DanhSachVatPham(@MaDM) order by MaVP OFFSET " + start + " ROWS FETCH NEXT 12 ROWS ONLY;";
+            }
+            else
+            {
+                command.CommandText = "select * from dbo.DanhSachVatPham(@MaDM)";
+            }
             command.Connection = conn;
             command.Parameters.Add("@MaDM", SqlDbType.Int).Value = MaDM;
             SqlDataReader reader = command.ExecuteReader();

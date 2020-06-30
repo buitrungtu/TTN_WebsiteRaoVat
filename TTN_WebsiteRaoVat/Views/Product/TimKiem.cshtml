@@ -4,7 +4,7 @@
     ViewBag.Title = "TimKiem";
     Layout = "~/Views/Shared/_Layout.cshtml";
     VatPhamAccess vpa = new VatPhamAccess();
-    List<VatPham> LVP = vpa.LayVatPham(0);
+    List<VatPham> LVP = vpa.LayVatPham(0,1);
     TaiKhoanAccess tka = new TaiKhoanAccess();
     List<DanhMuc> LDM = vpa.LayDanhMuc();
     List<TinhThanh> dsTinhThanh = vpa.LayTinhThanh();
@@ -98,10 +98,10 @@
             <div class="side-bar col-md-3">
                 <div class="search-hotel">
                     <h3 class="agileits-sear-head">Tìm kiếm</h3>
-                    <form>
+                    
                         <input type="text" id="strTim" placeholder="Tên vật phẩm" required="">
-                        <input id="TimKiem" type="submit" value=" ">
-                    </form>
+                        <a id="TimKiemVP" style="cursor: pointer;" data-id="@ViewBag.MaDM"><i class="fa fa-search"></i></a>
+                    
                 </div>
                 <div class="range">
                     <h3 class="agileits-sear-head">Tầm giá</h3>
@@ -357,7 +357,25 @@
                                         </div>
                                     </div>
                                 </div>
-
+                                <ul class="pagination pagination-sm">
+                                    @if (ViewBag.Trang > 0)
+                                    {
+                                        <li><a href="@Url.Action("Index", "Product", new { MaDM = ViewBag.MaDM, Trang = ViewBag.Trang - 1 })">Trước</a></li>
+                                        <li><a href="@Url.Action("Index", "Product", new { MaDM = ViewBag.MaDM, Trang = 1})">1</a></li>
+                                        <li><a href="@Url.Action("Index", "Product", new { MaDM = ViewBag.MaDM, Trang = 2})">2</a></li>
+                                        <li><a href="@Url.Action("Index", "Product", new { MaDM = ViewBag.MaDM, Trang = 3})">3</a></li>
+                                        <li><a href="@Url.Action("Index", "Product", new { MaDM = ViewBag.MaDM, Trang = 4})">4</a></li>
+                                        <li><a href="@Url.Action("Index", "Product", new { MaDM = ViewBag.MaDM, Trang = ViewBag.Trang + 1})">Sau</a></li>
+                                    }
+                                    else
+                                    {
+                                        <li><a href="@Url.Action("Index", "Product", new { MaDM = ViewBag.MaDM, Trang = 1})">1</a></li>
+                                        <li><a href="@Url.Action("Index", "Product", new { MaDM = ViewBag.MaDM, Trang = 2})">2</a></li>
+                                        <li><a href="@Url.Action("Index", "Product", new { MaDM = ViewBag.MaDM, Trang = 3})">3</a></li>
+                                        <li><a href="@Url.Action("Index", "Product", new { MaDM = ViewBag.MaDM, Trang = 4})">4</a></li>
+                                        <li><a href="@Url.Action("Index", "Product", new { MaDM = ViewBag.MaDM, Trang = ViewBag.Trang + 1})">Sau</a></li>
+                                    }
+                                </ul>
                             </div>
                         </div>
                     </div>

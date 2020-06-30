@@ -13,18 +13,23 @@ namespace TTN_WebsiteRaoVat.Controllers
     {
         VatPhamAccess vpa = new VatPhamAccess();
 
-        public ActionResult Index(int MaDM)
+        public ActionResult Index(int MaDM, int Trang)
         {
-            List<VatPham> dsvp = vpa.LayVatPham(MaDM);
+            List<VatPham> dsvp = vpa.LayVatPham(MaDM, Trang);
             // mặc định là mới nhất lên đầu
             dsvp = dsvp.OrderBy(x => x.NgayDang).ToList();
-            ViewBag.MaDM = MaDM; 
+            ViewBag.MaDM = MaDM;
+            ViewBag.Trang = Trang;
             return View(dsvp);
         }
         public ActionResult TimKiem(string strTimKiem, int TheLoai)
-        {
-            List<VatPham> dsvp = vpa.TimKiemVP(strTimKiem, TheLoai);
-            dsvp = dsvp.OrderBy(x => x.NgayDang).ToList();
+        {           
+            List<VatPham> dsvp = vpa.LayVatPham(TheLoai,0);
+            foreach(var i in dsvp)
+            {
+                i.TrongSo = XauConChungDaiNhat(strTimKiem, i.TenVP);
+            }
+            dsvp = dsvp.Where(x => x.TrongSo > 0).OrderBy(x=>x.TrongSo).ToList();            
             ViewBag.MaDM = TheLoai;
             return View(dsvp);
         }
@@ -37,7 +42,7 @@ namespace TTN_WebsiteRaoVat.Controllers
         }
         public ActionResult ShowVatPham(int MaDM, int tieuchi)
         {
-            List<VatPham> dsvp = vpa.LayVatPham(MaDM);
+            List<VatPham> dsvp = vpa.LayVatPham(MaDM,1);
             ViewBag.MaDM = MaDM;
             ViewBag.TieuChi = tieuchi;
             if (tieuchi == 0)
@@ -58,7 +63,7 @@ namespace TTN_WebsiteRaoVat.Controllers
         
         public ActionResult LocTheoGia(int MaDM,long min,long max,int tieuchi)
         {
-            List<VatPham> dsvp = vpa.LayVatPham(MaDM);
+            List<VatPham> dsvp = vpa.LayVatPham(MaDM,1);
             ViewBag.MaDM = MaDM;
             ViewBag.TieuChi = tieuchi;
             ViewBag.min = min;
@@ -161,7 +166,7 @@ namespace TTN_WebsiteRaoVat.Controllers
             int theloai = Int32.Parse(TheLoai);
             if (vpa.ThemVatPham(SDT, HoTen, MaTinhThanh, QuanHuyen, TieuDe, MoTa, TinhTrang, giaTien, theloai, temp[0], strLink))
             {
-                return RedirectToAction("Index", "Product", new {MaDM = theloai});
+                return RedirectToAction("Index", "Product", new {MaDM = theloai,Trang = 1});
             }
             return View("DangTinBan");
         }
@@ -169,30 +174,42 @@ namespace TTN_WebsiteRaoVat.Controllers
         {
             string[] t1 = s1.Split(' ');
             string[] t2 = s2.Split(' ');
-            int[,] kq = new int[100, 100];
+            int len = 0;
+            if (t1.Length < t2.Length) len = t2.Length;
+            else len = t1.Length;
+            int[,] kq = new int[len, len];
+            int max = 0;
+
             for (int i = 0; i < t1.Length; i++)
             {
-                kq[i, 0] = 0;
-            }
-            for (int i = 0; i < t2.Length; i++)
-            {
-                kq[0, i] = 0;
-            }
-            for (int i = 1; i < t1.Length; i++)
-            {
-                for (int j = 1; j < t2.Length; j++)
+                for (int j = 0; j < t2.Length; j++)
                 {
-                    if (t1[i].ToLower().CompareTo(t2[j].ToLower()) == 0)
+                    if (t1[i].ToLower() == t2[j].ToLower())
                     {
-                        kq[i, j] = kq[i - 1, j - 1] + 1;
+                        if (i == 0 || j == 0)
+                        {
+                            kq[i, j] = 1;
+                        }
+                        else
+                        {
+                            kq[i, j] = kq[i - 1, j - 1] + 1;
+                        }
+                        max = kq[i, j];
                     }
                     else
                     {
-                        kq[i, j] = (kq[i, j - 1] > kq[i - 1, j]) ? kq[i, j - 1] : kq[i - 1, j];
+                        if (i != 0 && j != 0)
+                        {
+                            if (kq[i - 1, j] >= kq[i, j - 1]) kq[i, j] = kq[i - 1, j];
+                            else
+                            {
+                                kq[i, j] = kq[i, j - 1];
+                            }
+                        }
                     }
                 }
             }
-            return kq[t1.Length, t2.Length];
+            return max;
         }
     }
     

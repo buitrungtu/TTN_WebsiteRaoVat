@@ -43,7 +43,7 @@ namespace TTN_WebsiteRaoVat
             // Điều hướng vật phẩm
             routes.MapRoute(
                 name: "Tất cả danh mục",
-                url: "TatCaDanhMuc/{MaDM}",
+                url: "TatCaDanhMuc/{MaDM}-{TrangSo}",
                 defaults: new { controller = "Product", action = "Index", id = UrlParameter.Optional }
             );
             routes.MapRoute(
