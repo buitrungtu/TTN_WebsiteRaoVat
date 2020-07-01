@@ -7,15 +7,16 @@
     var session = (UserLogin)Session[TTN_WebsiteRaoVat.Common.CommonConstants.USER_SESSION];
     string sdt;
     VatPhamAccess vpa = new VatPhamAccess();
-    
-}
 
+}
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v7.0" nonce="TBKvIi2l"></script>
 <!-- breadcrumbs -->
 <div class="w3layouts-breadcrumbs text-center">
     <div class="container">
         <span class="agile-breadcrumbs">
             <a href="/Home"><i class="fa fa-home home_1"></i></a> /
-            <a href="/TatCaDanhMuc/@Model.MaDM">@Model.TheLoai</a> /            
+            <a href="/TatCaDanhMuc/@Model.MaDM">@Model.TheLoai</a> /
             <span>@Model.TenVP</span>
         </span>
     </div>
@@ -74,8 +75,9 @@
                         @using (Html.BeginForm("DatMua", "Product"))
                         {
                             <h3>Thông tin mua hàng</h3>
-                            <input type="hidden"  name="SDT" value="@sdt" />
-                            <input type="hidden"  name="MaVP" value="@Model.MaVP" />
+                            <input type="hidden" name="SDT" value="@sdt" />
+                            <input type="hidden" name="SDTNB" value="@Model.SDT" />
+                            <input type="hidden" name="MaVP" value="@Model.MaVP" />
                             <input type="text" name="TenNM" placeholder="Tên bạn" required="">
                             <input type="email" name="Email" placeholder="Email" required="">
                             <input type="text" name="DiaChi" placeholder="Địa chỉ" required="">
@@ -84,20 +86,21 @@
                         }
                     </div>
 
-                    <div class="agileinfo_signin FormBaoXau">
-                        @using (Html.BeginForm("BaoXau", "Product"))
-                        {
-                            <h3>Báo cáo sản phẩm</h3>
-                            <input type="hidden"  name="SDT" value="@sdt" />
-                            <input type="hidden"  name="MaVP" value="@Model.MaVP" />                            
-                            <input type="text" name="LyDo" placeholder="Lý do" required="">
-                            <textarea class="GhiThem" placeholder="Ghi chú thêm" name="GhiChu"></textarea>
-                            <input type="submit" value="Báo cáo">
-                        }
-                    </div>
+                        <div class="agileinfo_signin FormBaoXau">
+                            @using (Html.BeginForm("BaoXau", "Product"))
+                            {
+                                <h3>Báo cáo sản phẩm</h3>
+                                <input type="hidden" name="SDT" value="@sdt" />
+                                <input type="hidden" name="MaVP" value="@Model.MaVP" />
+                                <input type="text" name="LyDo" placeholder="Lý do" required="">
+                                <textarea class="GhiThem" placeholder="Ghi chú thêm" name="GhiChu"></textarea>
+                                <input type="submit" value="Báo cáo">
+                            }
+                        </div>
 
                     }
-                    <a href="#" class="btn-Thich ChiaSe">Chia sẻ  <i class="fa fa-facebook-square"></i></a>
+                    
+                    <div class="fb-share-button" data-href="/ChiTietVatPham/@Model.MaVP" data-layout="button" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Chia sẻ</a></div>
                     @if (vpa.DaThich(sdt, Model.MaVP))
                     {
                         <div id="btnThich" class="btn-Thich Thich DaThich" data-id="@Model.MaVP.ToString()" data-sdt="@sdt">Thích  <i class="fa fa-heart"></i></div>
@@ -107,7 +110,7 @@
                         <div id="btnThich" class="btn-Thich Thich" data-id="@Model.MaVP.ToString()" data-sdt="@sdt">Thích  <i class="fa fa-heart"></i></div>
                     }
 
-                    <h4><span class="w3layouts-agileinfo">Lượt thích</span>: <strong>150</strong></h4>
+                    <h4><span class="w3layouts-agileinfo">Lượt thích</span>: <strong id="LuotThich">@Model.LuotThich</strong></h4>
                     <h4>
                         <span class="w3layouts-agileinfo">Mô tả:</span><p>
                             @Model.MoTa
@@ -138,13 +141,12 @@
                     </div>
                     <div class="itemtype">
                         <p class="p-price">Người bán:</p>
-                        <a href="">@Model.TenNguoiBan</a>
+                        <a href="@Url.Action("TrangCaNhan", "User", new { sdt = @Model.SDT.Trim()})">@Model.TenNguoiBan</a>
                         <div class="clearfix"></div>
                     </div>
                 </div>
                 <div class="interested text-center">
                     <h4>Liên hệ qua số điện thoại:</h4>
-
                     <p><i class="glyphicon glyphicon-earphone"></i>@Model.SDT</p>
                 </div>
                 <div class="interested text-center">

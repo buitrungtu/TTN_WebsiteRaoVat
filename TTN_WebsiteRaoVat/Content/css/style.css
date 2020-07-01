@@ -3901,8 +3901,8 @@ h3.rate {
     }
 
     .interested p {
-        color: #fdf2f2;
-        font-size: 14px;
+        color: #ffffff;
+        font-size: 23px;
         margin: 30px 0 0 0;
     }
 
@@ -8574,3 +8574,5 @@ textarea.GhiThem {
     width: 100%;
     height: 150px;
 }
+.KhoangCach {    margin: 40px;}
+a.NutDSDatHang {       float: right;    background: #ec9c09;}

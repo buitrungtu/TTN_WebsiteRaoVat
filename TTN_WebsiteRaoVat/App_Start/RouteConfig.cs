@@ -30,6 +30,11 @@ namespace TTN_WebsiteRaoVat
                 defaults: new { controller = "User", action = "TrangCaNhan", id = UrlParameter.Optional }
             );
             routes.MapRoute(
+                name: "Danh sách đặt hàng",
+                url: "DonDatHang/{sdt}",
+                defaults: new { controller = "User", action = "DanhSachDatHang", id = UrlParameter.Optional }
+            );
+            routes.MapRoute(
                 name: "Thay đổi trang cá nhân",
                 url: "ThayDoiThongTinCaNhan/{sdt}",
                 defaults: new { controller = "User", action = "ThayDoiThongTinCaNhan", id = UrlParameter.Optional }

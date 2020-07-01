@@ -114,6 +114,73 @@ namespace TTN_WebsiteRaoVat.Models
             }
             
         }
+        public List<VatPham> VatPhamDaThich(string sdt)
+        {
+            List<VatPham> dsvp = new List<VatPham>();
+            OpenConnection();
+            SqlCommand command = new SqlCommand();
+            command.CommandType = CommandType.Text;
+            command.CommandText = "select * from dbo.DanhSachVatPham(0) where MaVP in (select MaVP from YeuThich where SDT= @sdt)";
+            command.Connection = conn;
+            command.Parameters.Add("@sdt", SqlDbType.NChar).Value = sdt;
+            SqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                VatPham vp = new VatPham();
+                vp.MaVP = reader.GetInt32(0);
+                vp.TenVP = reader.GetString(1);
+                vp.TenNguoiBan = reader.GetString(2);
+                vp.SDT = reader.GetString(3);
+                vp.ThanhPho = reader.GetString(4);
+                vp.MoTa = reader.GetString(5);
+                vp.TinhTrang = reader.GetString(6);
+                vp.GiaTien = reader.GetInt64(7);
+                vp.TheLoai = reader.GetString(8);
+                int temp = reader.GetInt32(9);
+                vp.NgayDang = ChuyenThoiGian(temp);
+                vp.LinkHinhAnh = new List<string>();
+                vp.LinkHinhAnh.Add(reader.GetString(10));
+                vp.ChatLuong = reader.GetInt32(11);
+                vp.DiaDiem = reader.GetString(12);
+                vp.LoaiTK = reader.GetInt32(13);
+                dsvp.Add(vp);
+            }
+            reader.Close();
+            return dsvp;
+        }
+        public List<ThongTinDatHang> LayThongTinDatHang(string sdt)
+        {
+            List<ThongTinDatHang> kq = new List<ThongTinDatHang>();
+            OpenConnection();
+            SqlCommand command = new SqlCommand();
+            command.CommandType = CommandType.Text;
+            command.CommandText = "select * from dbo.DanhSachDatHang(@sdt)";
+            command.Connection = conn;
+            command.Parameters.Add("@sdt", SqlDbType.NChar).Value = sdt;
+            SqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                ThongTinDatHang tb = new ThongTinDatHang();
+                tb.MaVP = reader.GetInt32(0);
+                tb.TenVP = reader.GetString(1);
+                tb.SDT = reader.GetString(2);
+                tb.HoTen = reader.GetString(3);
+                tb.Email = reader.GetString(4);
+                tb.DiaChi = reader.GetString(5);
+                if (!reader.IsDBNull(6))
+                {
+                    tb.GhiChu = reader.GetString(6);
+                }
+                else
+                {
+                    tb.GhiChu = "Khách hàng không thêm ghi chú";
+                }
+                tb.ThoiGian = reader.GetDateTime(7);
+                kq.Add(tb);
+            }
+            reader.Close();
+            return kq;
+        }
         public List<ThongBao> GetThongBao(string sdt)
         {
             List<ThongBao> kq = new List<ThongBao>();
@@ -223,7 +290,7 @@ namespace TTN_WebsiteRaoVat.Models
                 return (gio / 8064).ToString() + " năm trước";
             }
         }
-         public List<PhanHoi> NhanPhanHoi()
+        public List<PhanHoi> NhanPhanHoi()
         {
             List<PhanHoi> dsph = new List<PhanHoi>();
             OpenConnection();
@@ -245,5 +312,22 @@ namespace TTN_WebsiteRaoVat.Models
             reader.Close();
             return dsph;
         }
+        public bool XoaDonHang(int MaVP, string sdtnm)
+        {
+            OpenConnection();
+            SqlCommand command = new SqlCommand();
+            command.CommandType = CommandType.Text;
+            command.CommandText = "delete DatMua where MaNM = (select MaNM from NguoiMua where SDT = @sdtnm) and MaVP = @mavp";
+            command.Connection = conn;
+            command.Parameters.Add("@sdtnm", SqlDbType.NChar).Value = sdtnm;
+            command.Parameters.Add("@mavp", SqlDbType.Int).Value = MaVP;
+            int ret = command.ExecuteNonQuery();
+            if (ret > 0)
+            {
+                return true;
+            }
+            return false;
+        }
+        
     }
 }
