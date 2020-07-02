@@ -117,6 +117,7 @@ namespace TTN_WebsiteRaoVat.Models
                 vp.ChatLuong = reader.GetInt32(11);
                 vp.DiaDiem = reader.GetString(12);
                 vp.LoaiTK = reader.GetInt32(13);
+                vp.MaTP = reader.GetInt32(14);
                 dsvp.Add(vp);
             }
             reader.Close();

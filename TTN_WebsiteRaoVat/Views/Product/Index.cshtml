@@ -97,6 +97,7 @@
                 <li><a class="DanhMuc TatCa" href="#0" data-id="@ViewBag.MaDM"> Tất cả danh mục<span class="num-of-ads">(@LVP.Count)</span></a></li>
             </ul>
         </div>
+        <div class="LamMo"></div>
         <div class="ads-grid">
             <div class="side-bar col-md-3">
                 <div class="search-hotel">
@@ -141,7 +142,18 @@
                             });
                         });
                     </script>
-
+                    <div class="btnSuaXoa DiaDiem">Chọn địa điểm </div>
+                    <div class="agileinfo_signin ChonDiaDiem">
+                        <h3>Địa điểm</h3>
+                        <select id="basic2" class="MaTP show-tick form-control">
+                            <option value="0">Tất cả địa điểm</option>
+                            @foreach (var i in dsTinhThanh)
+                            {
+                                <option value="@i.MaTinhThanh">@i.TenTinhThanh</option>
+                            }
+                        </select>
+                        <input id="ChonDiaDiem"  type="submit" value="Xác nhận">
+                    </div>
                 </div>
                 <div class="w3ls-featured-ads">
                     <h2 class="sear-head fer">Mặt hàng nổi bật</h2>

@@ -27,7 +27,14 @@
     $(".btnXoaDH").click(function () {
         MaVP = $(this).data('id');
         sdtnm = $(this).data('sdt');
+        
         XoaDonHang(MaVP, sdtnm);
+    })
+
+    $("#ChonDiaDiem").click(function () {
+        MaTP = $('.MaTP').val();
+        
+        LocTheoDiaDiem(MaTP);
     })
 });  
 function TimKiemVP(strTen,MaTL) {
@@ -70,13 +77,28 @@ function HienVatPham(maDM, tc) {
         }
     });
 }
+function LocTheoDiaDiem(MaTP) {
+    $.ajax({
+        async: true,
+        type: "POST",
+        url: "/Product/LocDiaDiem",
+        data: { MaTP: MaTP},
+        success: function (response) {
+            $("#DanhSachVatPham").html(response);
+        }
+    });
+}
 function XoaDonHang(MaVP, SDTNM) {
     $.ajax({
         type: "POST",
         url: "/User/XoaDonHang",
         data: { sdtnm: SDTNM, MaVP: MaVP },
         success: function (response) {
-            location.reload();
+            if (response.status) {
+                location.reload();
+            } else {
+                alert("Không thể xóa!");
+            }
         }
     });
 }

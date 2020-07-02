@@ -26,5 +26,6 @@ namespace TTN_WebsiteRaoVat.Models
         public int LoaiTK { get; set; }
         public int LuotThich { get; set; }
         public int TrongSo { get; set; }
+        public int MaTP { get; set; }
     }   
 }

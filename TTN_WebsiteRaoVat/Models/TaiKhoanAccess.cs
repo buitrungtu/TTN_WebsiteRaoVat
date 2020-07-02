@@ -317,9 +317,9 @@ namespace TTN_WebsiteRaoVat.Models
             OpenConnection();
             SqlCommand command = new SqlCommand();
             command.CommandType = CommandType.Text;
-            command.CommandText = "delete DatMua where MaNM = (select MaNM from NguoiMua where SDT = @sdtnm) and MaVP = @mavp";
+            command.CommandText = "delete DatMua where MaNM in (select MaNM from NguoiMua where SDT = @sdtnm) and MaVP = @mavp";
             command.Connection = conn;
-            command.Parameters.Add("@sdtnm", SqlDbType.NChar).Value = sdtnm;
+            command.Parameters.Add("@sdtnm", SqlDbType.NChar).Value = sdtnm.Trim();
             command.Parameters.Add("@mavp", SqlDbType.Int).Value = MaVP;
             int ret = command.ExecuteNonQuery();
             if (ret > 0)

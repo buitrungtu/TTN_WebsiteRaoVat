@@ -32,6 +32,10 @@ document.addEventListener("DOMContentLoaded",function() {
 		$('.ThongTinMuaHang').removeClass('HienLen');
         $('.LamMo').removeClass('HienLen');
         $('.FormBaoXau').removeClass('HienLen');
+        $('.ChonDiaDiem').removeClass('HienLen');
 	});
-    
+    $('.DiaDiem').click(function (event) {
+        $('.ChonDiaDiem').addClass('HienLen');
+        $('.LamMo').addClass('HienLen');
+    });
 },false)

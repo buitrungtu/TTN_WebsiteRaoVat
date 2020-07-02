@@ -60,7 +60,18 @@ namespace TTN_WebsiteRaoVat.Controllers
             }
             return PartialView(dsvp);
         }
-        
+        public ActionResult LocDiaDiem(int MaTP)
+        {
+            List<VatPham> dsvp = vpa.LayVatPham(0, 0);
+            if(MaTP != 0)
+            {
+                dsvp = dsvp.Where(x => x.MaTP == MaTP).ToList();
+            }        
+            ViewBag.MaDM = 0;
+            ViewBag.TieuChi = 0;
+            dsvp = dsvp.OrderBy(x => x.NgayDang).ToList();
+            return PartialView(dsvp);
+        }
         public ActionResult LocTheoGia(int MaDM,long min,long max,int tieuchi)
         {
             List<VatPham> dsvp = vpa.LayVatPham(MaDM,1);

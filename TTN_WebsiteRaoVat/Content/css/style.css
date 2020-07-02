@@ -8273,7 +8273,7 @@ a.btnSuaThongTin:hover {
     margin: 7px 30px;
 }
 
-a.btnSuaXoa {
+.btnSuaXoa {
     width: 150px;
     margin: 10px;
     display: block;
@@ -8287,11 +8287,13 @@ a.btnSuaXoa {
     text-align: center;
 }
 
-    a.btnSuaXoa:hover {
+    .btnSuaXoa:hover {
         background-color: rgba(255, 76, 76, 0.66);
         color: #fff;
     }
-
+    .btnSuaXoa.DiaDiem {
+        cursor: pointer;
+    }
 .itemtype a {
     margin-left: 20%;
     color: #0099e5;
@@ -8408,7 +8410,7 @@ i.fa.fa-caret-down {
     font-size: 20px;
 }
 
-.agileinfo_signin.ThongTinMuaHang {
+.agileinfo_signin.ThongTinMuaHang,.ChonDiaDiem {
     position: fixed;
     top: 10%;
     left: 35%;
@@ -8576,3 +8578,4 @@ textarea.GhiThem {
 }
 .KhoangCach {    margin: 40px;}
 a.NutDSDatHang {       float: right;    background: #ec9c09;}
+.btnSuaXoa.DiaDiem {margin-top: 20px;}
