@@ -110,9 +110,9 @@ namespace TTN_WebsiteRaoVat.Controllers
             }
             return RedirectToAction("ChiTietVatPham", "Product", new { MaVP = MaVP });
         }
-        public ActionResult DatMua(string SDT, int MaVP, string TenNM,string Email,string DiaChi ,string GhiChu)
+        public ActionResult DatMua(string SDT,string SDTNB, int MaVP, string TenNM,string Email,string DiaChi ,string GhiChu)
         {
-            if (vpa.DatMuaSanPham(SDT, MaVP, TenNM,Email,DiaChi, GhiChu))
+            if (vpa.DatMuaSanPham(SDT,SDTNB, MaVP, TenNM,Email,DiaChi, GhiChu))
             {
                 return RedirectToAction("ChiTietVatPham", "Product", new { MaVP = MaVP });
             }

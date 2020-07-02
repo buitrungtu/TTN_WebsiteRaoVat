@@ -23,6 +23,12 @@
         strTen = $('#strTim').val();
         TimKiemVP(strTen, MaTL);  
     })
+
+    $(".btnXoaDH").click(function () {
+        MaVP = $(this).data('id');
+        sdtnm = $(this).data('sdt');
+        XoaDonHang(MaVP, sdtnm);
+    })
 });  
 function TimKiemVP(strTen,MaTL) {
     $.ajax({
@@ -34,8 +40,8 @@ function TimKiemVP(strTen,MaTL) {
         }
     });
 }
-function ThichVatPham(mavp, sdt) {
-    var ThichVatPham = {
+function ThichVatPham(mavp, sdt) {    
+     var ThichVatPham = {
         MaVP: mavp,
         SDT: sdt
     };
@@ -48,6 +54,7 @@ function ThichVatPham(mavp, sdt) {
         success: function (response) {
             if (response.status) {
                 $(".Thich").toggleClass('DaThich');
+                $("#LuotThich").load(location.href + " #LuotThich"); 
             }
         },
     });
@@ -60,6 +67,16 @@ function HienVatPham(maDM, tc) {
         data: { MaDM: maDM, tieuchi: tc},
         success: function (response) {        
             $("#DanhSachVatPham").html(response);            
+        }
+    });
+}
+function XoaDonHang(MaVP, SDTNM) {
+    $.ajax({
+        type: "POST",
+        url: "/User/XoaDonHang",
+        data: { sdtnm: SDTNM, MaVP: MaVP },
+        success: function (response) {
+            location.reload();
         }
     });
 }

@@ -150,6 +150,7 @@ namespace TTN_WebsiteRaoVat.Models
                     vp.ChatLuong = reader.GetInt32(11);
                     vp.DiaDiem = reader.GetString(12);
                     vp.MaDM = reader.GetInt32(13);
+                    vp.LuotThich = reader.GetInt32(14);
                     reader.Close();
                     vp.LinkHinhAnh = LayHinhAnh(vp.MaVP);
                 }
@@ -233,7 +234,7 @@ namespace TTN_WebsiteRaoVat.Models
             }
             return false;
         }
-        public bool DatMuaSanPham(string SDT, int MaVP, string TenNM, string Email,string DiaChi,string GhiChu)
+        public bool DatMuaSanPham(string SDT,string SDTNB ,int MaVP, string TenNM, string Email,string DiaChi,string GhiChu)
         {
             OpenConnection();
             SqlCommand command = new SqlCommand();
@@ -249,7 +250,18 @@ namespace TTN_WebsiteRaoVat.Models
             command.Parameters.Add("@ghichu", SqlDbType.NVarChar).Value = GhiChu;
             int ret = command.ExecuteNonQuery();
 
-            if (ret > 0)
+            SqlCommand comm = new SqlCommand();
+            comm.CommandType = CommandType.StoredProcedure;
+            comm.CommandText = "ThongBaoTaiKhoan";
+            comm.Connection = conn;
+            comm.Parameters.Add("@sdt", SqlDbType.NChar).Value = SDTNB;
+            comm.Parameters.Add("@mavp", SqlDbType.Int).Value = MaVP;
+            comm.Parameters.Add("@noidungtb", SqlDbType.NVarChar).Value = "Bạn có đơn hàng cần giải quyết";
+            comm.Parameters.Add("@src", SqlDbType.NVarChar).Value = "/DonDatHang/"+ SDTNB;
+            int ret2 = comm.ExecuteNonQuery();
+
+
+            if (ret > 0 && ret2 > 0)
             {
                 return true;
             }
@@ -273,6 +285,7 @@ namespace TTN_WebsiteRaoVat.Models
             comm.Parameters.Add("@sdt", SqlDbType.NChar).Value = temp.SDT;
             comm.Parameters.Add("@mavp", SqlDbType.Int).Value = Int32.Parse(temp.MaVP);
             comm.Parameters.Add("@noidungtb", SqlDbType.NVarChar).Value = "Có người thích sản phẩm của bạn";
+            comm.Parameters.Add("@src", SqlDbType.NVarChar).Value = "/ChiTietVatPham/"+temp.MaVP;
             int ret2 = comm.ExecuteNonQuery();
             if (ret > 0 && ret2 > 0) return true;
 

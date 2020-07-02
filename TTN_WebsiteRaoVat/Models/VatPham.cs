@@ -24,6 +24,7 @@ namespace TTN_WebsiteRaoVat.Models
         public int KiemDuyet { get; set; }
         public int NgungBan { get; set; }
         public int LoaiTK { get; set; }
+        public int LuotThich { get; set; }
         public int TrongSo { get; set; }
     }   
 }

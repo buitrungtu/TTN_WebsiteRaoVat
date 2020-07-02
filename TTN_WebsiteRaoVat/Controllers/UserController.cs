@@ -65,7 +65,18 @@ namespace TTN_WebsiteRaoVat.Controllers
         public ActionResult TrangCaNhan(string sdt)
         {
             TaiKhoan tk = tka.LayThongTinTaiKhoan(sdt);
+            ViewBag.sdt = sdt;
             return View(tk);
+        }
+        public ActionResult DanhSachDatHang(string sdt)
+        {
+            List<ThongTinDatHang> tk = tka.LayThongTinDatHang(sdt);            
+            return View(tk);
+        }
+        public ActionResult DanhSachThich(string sdt)
+        {
+            List<VatPham> dsvp = tka.VatPhamDaThich(sdt);
+            return View(dsvp);
         }
         string ChuyenDoiNgayThang(string s)
         {
@@ -122,6 +133,20 @@ namespace TTN_WebsiteRaoVat.Controllers
         {
             VatPhamAccess vpa = new VatPhamAccess();
             if (vpa.NgungBan(MaVP))
+            {
+                return Json(new
+                {
+                    status = true
+                });
+            }
+            return Json(new
+            {
+                status = false
+            });
+        }
+        public JsonResult XoaDonHang(string sdtnm,int MaVP)
+        {           
+            if (tka.XoaDonHang(MaVP,sdtnm))
             {
                 return Json(new
                 {
