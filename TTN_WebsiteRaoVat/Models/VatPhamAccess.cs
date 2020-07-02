@@ -89,7 +89,7 @@ namespace TTN_WebsiteRaoVat.Models
             command.CommandType = CommandType.Text;
             if(Trang > 0)
             {
-                command.CommandText = "select * from dbo.DanhSachVatPham(@MaDM) order by MaVP OFFSET " + start + " ROWS FETCH NEXT 12 ROWS ONLY;";
+                command.CommandText = "select * from dbo.DanhSachVatPham(@MaDM) order by NgayDang OFFSET " + start + " ROWS FETCH NEXT 12 ROWS ONLY;";
             }
             else
             {

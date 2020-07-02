@@ -32,7 +32,7 @@
         <div class="product-desc">
             <div class="col-md-7 product-view">
                 <h2>@Model.TenVP</h2>
-                <div class="btn-Thich DatMua"><i class="fa fa-money"></i> Đặt mua</div>
+                
                 <p> <i class="glyphicon glyphicon-map-marker"></i><a href="#">@Model.DiaDiem</a>, <a href="#">@Model.ThanhPho</a> | @Model.NgayDang</p>
                 <div class="flexslider">
                     <ul class="slides">
@@ -69,20 +69,7 @@
                     else
                     {
                         sdt = session.SDT;
-                    <div class="agileinfo_signin ThongTinMuaHang">
-
-                        @using (Html.BeginForm("DatMua", "Product"))
-                        {
-                            <h3>Thông tin mua hàng</h3>
-                            <input type="hidden"  name="SDT" value="@sdt" />
-                            <input type="hidden"  name="MaVP" value="@Model.MaVP" />
-                            <input type="text" name="TenNM" placeholder="Tên bạn" required="">
-                            <input type="email" name="Email" placeholder="Email" required="">
-                            <input type="text" name="DiaChi" placeholder="Địa chỉ" required="">
-                            <input type="text" name="GhiChu" placeholder="Ghi chú" required="">
-                            <input type="submit" value="Đặt mua">
-                        }
-                    </div>
+                    
 
                     <div class="agileinfo_signin FormBaoXau">
                         @using (Html.BeginForm("BaoXau", "Product"))

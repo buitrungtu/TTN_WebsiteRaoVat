@@ -38,7 +38,7 @@ function KhoaVatPham(MaVP) {
 }
 function MoKhoaVatPham(MaVP) {
     $.ajax({
-        async: true,
+        
         type: "POST",
         url: "/XuLyAdmin/MoKhoaVatPham",
         data: { MaVP: MaVP },
@@ -54,7 +54,7 @@ function MoKhoaVatPham(MaVP) {
 }
 function DuyetVatPham(MaVP) {
     $.ajax({
-        async: true,
+        
         type: "POST",
         url: "/XuLyAdmin/DuyetVatPham",
         data: { MaVP: MaVP },
@@ -70,7 +70,7 @@ function DuyetVatPham(MaVP) {
 }
 function XoaVatPham(MaVP) {
     $.ajax({
-        async: true,
+        
         type: "POST",
         url: "/XuLyAdmin/XoaVatPham",
         data: { MaVP: MaVP },
