@@ -23,13 +23,16 @@ namespace TTN_WebsiteRaoVat.Controllers
             return View(dsvp);
         }
         public ActionResult TimKiem(string strTimKiem, int TheLoai)
-        {           
+        {
+            /*
             List<VatPham> dsvp = vpa.LayVatPham(TheLoai,0);
             foreach(var i in dsvp)
             {
                 i.TrongSo = XauConChungDaiNhat(strTimKiem, i.TenVP);
             }
-            dsvp = dsvp.Where(x => x.TrongSo > 0).OrderBy(x=>x.TrongSo).ToList();            
+            dsvp = dsvp.Where(x => x.TrongSo > 0).OrderBy(x=>x.TrongSo).ToList(); 
+            */
+            List<VatPham> dsvp = vpa.TimKiemVP(strTimKiem, TheLoai);
             ViewBag.MaDM = TheLoai;
             return View(dsvp);
         }
